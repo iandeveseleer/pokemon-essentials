@@ -327,7 +327,7 @@ class HallOfFame_Scene
     overlay=@sprites["overlay"].bitmap
     overlay.clear
     pbDrawTextPositions(overlay,[[_INTL("Bienvenue au Panthéon!"),
-        Graphics.width/2,Graphics.height-80,-4,BASECOLOR,SHADOWCOLOR]])
+       Graphics.width/2,Graphics.height-80,2,BASECOLOR,SHADOWCOLOR]])
   end
 
   def pbAnimationLoop
