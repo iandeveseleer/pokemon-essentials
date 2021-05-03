@@ -69,7 +69,7 @@ def pbChangeMaximum(canvas)
   sliderwin2.viewport=canvas.viewport
   sliderwin2.addSlider(_INTL("Frames:"),1,1000,canvas.animation.length)
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   sliderwin2.opacity=200
   loop do
     Graphics.update
@@ -93,7 +93,7 @@ def pbAnimName(animation,cmdwin)
   window.addControl(TextField.new(_INTL("New Name:"),animation.name))
   Input.text_input = true
   okbutton=window.addButton(_INTL("OK"))
-  cancelbutton=window.addButton(_INTL("Cancel"))
+  cancelbutton=window.addButton(_INTL("ANNULER"))
   window.opacity=224
   loop do
     Graphics.update
@@ -190,7 +190,7 @@ def pbChooseNum(cel)
   sliderwin2.addLabel(_INTL("Old Number: {1}",cel))
   sliderwin2.addSlider(_INTL("New Number:"),2,PBAnimation::MAX_SPRITES,cel)
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   loop do
     Graphics.update
     Input.update
@@ -216,7 +216,7 @@ def pbSetTone(cel,previewsprite)
   sliderwin2.addSlider(_INTL("Blue Offset:"),-255,255,cel[AnimFrame::TONEBLUE])
   sliderwin2.addSlider(_INTL("Gray Tone:"),0,255,cel[AnimFrame::TONEGRAY])
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   loop do
     previewsprite.tone.set(
        sliderwin2.value(0),
@@ -250,7 +250,7 @@ def pbSetFlash(cel,previewsprite)
   sliderwin2.addSlider(_INTL("Blue:"),0,255,cel[AnimFrame::COLORBLUE])
   sliderwin2.addSlider(_INTL("Alpha:"),0,255,cel[AnimFrame::COLORALPHA])
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   loop do
     previewsprite.tone.set(
        sliderwin2.value(0),
@@ -304,7 +304,7 @@ def pbCellProperties(canvas)
   flashbutton=sliderwin2.addButton(_INTL("Set Blending Color"))
   tonebutton=sliderwin2.addButton(_INTL("Set Color Tone"))
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   # Set X and Y for preview sprite
   cel[AnimFrame::X]=320+96
   cel[AnimFrame::Y]=96
@@ -533,7 +533,7 @@ def pbSelectSE(canvas,audio)
   maxsizewindow.addButton(_INTL("Play Sound"))
   maxsizewindow.addButton(_INTL("Stop Sound"))
   maxsizewindow.addButton(_INTL("OK"))
-  maxsizewindow.addButton(_INTL("Cancel"))
+  maxsizewindow.addButton(_INTL("ANNULER"))
   maxsizewindow.opacity=200
   maxsizewindow.viewport=canvas.viewport
   loop do
@@ -602,7 +602,7 @@ def pbSelectBG(canvas,timing)
   maxsizewindow.addSlider(_INTL("Blue:"),0,255,timing.colorBlue || 0)
   maxsizewindow.addSlider(_INTL("Alpha:"),0,255,timing.colorAlpha || 0)
   maxsizewindow.addButton(_INTL("OK"))
-  maxsizewindow.addButton(_INTL("Cancel"))
+  maxsizewindow.addButton(_INTL("ANNULER"))
   maxsizewindow.opacity=200
   maxsizewindow.viewport=canvas.viewport
   loop do
@@ -649,7 +649,7 @@ def pbEditBG(canvas,timing)
   maxsizewindow.addOptionalSlider(_INTL("Blue:"),0,255,timing.colorBlue || 0)
   maxsizewindow.addOptionalSlider(_INTL("Alpha:"),0,255,timing.colorAlpha || 0)
   maxsizewindow.addButton(_INTL("OK"))
-  maxsizewindow.addButton(_INTL("Cancel"))
+  maxsizewindow.addButton(_INTL("ANNULER"))
   maxsizewindow.controls[1].checked=(timing.bgX!=nil)
   maxsizewindow.controls[2].checked=(timing.bgY!=nil)
   maxsizewindow.controls[3].checked=(timing.opacity!=nil)
@@ -703,7 +703,7 @@ def pbCopyFrames(canvas)
   sliderwin2.addSlider(_INTL("Last Frame:"),1,canvas.animation.length,canvas.animation.length)
   sliderwin2.addSlider(_INTL("Copy to:"),1,canvas.animation.length,canvas.currentframe+1)
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   sliderwin2.opacity=200
   loop do
     Graphics.update
@@ -749,7 +749,7 @@ def pbClearFrames(canvas)
   sliderwin2.addSlider(_INTL("First Frame:"),1,canvas.animation.length,1)
   sliderwin2.addSlider(_INTL("Last Frame:"),1,canvas.animation.length,canvas.animation.length)
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   sliderwin2.opacity=200
   loop do
     Graphics.update
@@ -783,7 +783,7 @@ def pbTweening(canvas)
   set1=sliderwin2.addCheckbox(_INTL("Position/Zoom/Angle"))
   set2=sliderwin2.addCheckbox(_INTL("Opacity/Blending"))
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   loop do
     Graphics.update
     Input.update
@@ -874,7 +874,7 @@ def pbCellBatch(canvas)
   curfoc=[3,1,0,2,3][canvas.animation.position || 4]
   set10=sliderwin2.addOptionalTextSlider(_INTL("Focus:"),foc,curfoc)
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   loop do
     Graphics.update
     Input.update
@@ -921,7 +921,7 @@ def pbEntireSlide(canvas)
   sliderwin2.addSlider(_INTL("X-Axis Movement"),-500,500,0)
   sliderwin2.addSlider(_INTL("Y-Axis Movement"),-500,500,0)
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   sliderwin2.opacity=200
   loop do
     Graphics.update

@@ -218,7 +218,7 @@ end
 
 def pbHPItem(pkmn,restoreHP,scene)
   if !pkmn.able? || pkmn.hp==pkmn.totalhp
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     return false
   end
   hpGain = pbItemRestoreHP(pkmn,restoreHP)
@@ -296,7 +296,7 @@ def pbRaiseHappinessAndLowerEV(pkmn,scene,stat,messages)
   h = pkmn.happiness<255
   e = pkmn.ev[stat]>0
   if !h && !e
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     return false
   end
   if h
@@ -317,7 +317,7 @@ end
 #===============================================================================
 def pbBattleItemCanCureStatus?(status,pkmn,scene,showMessages)
   if !pkmn.able? || pkmn.status!=status
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     return false
   end
   return true
@@ -325,7 +325,7 @@ end
 
 def pbBattleItemCanRaiseStat?(stat,battler,scene,showMessages)
   if !battler || !battler.pbCanRaiseStatStage?(stat,battler)
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     return false
   end
   return true
@@ -477,7 +477,7 @@ def pbUseItem(bag,item,bagscene=nil)
       annot = []
       for pkmn in $Trainer.party
         elig = pkmn.check_evolution_on_use_item(item)
-        annot.push((elig) ? _INTL("ABLE") : _INTL("NOT ABLE"))
+        annot.push((elig) ? _INTL("APTE") : _INTL("PAS APTE"))
       end
     end
     pbFadeOutIn {
@@ -728,7 +728,7 @@ def pbChooseItemFromList(message, variable, *args)
     $game_variables[variable] = 0
     return nil
   end
-  commands.push(_INTL("Cancel"))
+  commands.push(_INTL("ANNULER"))
   itemid.push(nil)
   ret = pbMessage(message, commands, -1)
   if ret < 0 || ret >= commands.length-1

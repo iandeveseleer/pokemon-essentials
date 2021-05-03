@@ -613,10 +613,10 @@ class PokeBattle_Battle
   def pbThisEx(idxBattler,idxParty)
     party = pbParty(idxBattler)
     if opposes?(idxBattler)
-      return _INTL("The opposing {1}",party[idxParty].name) if trainerBattle?
-      return _INTL("The wild {1}",party[idxParty].name)
+      return _INTL("Le {1} ennemi",party[idxParty].name) if trainerBattle?
+      return _INTL("Le {1} sauvage",party[idxParty].name)
     end
-    return _INTL("The ally {1}",party[idxParty].name) if !pbOwnedByPlayer?(idxBattler)
+    return _INTL("Le {1} allié",party[idxParty].name) if !pbOwnedByPlayer?(idxBattler)
     return party[idxParty].name
   end
 

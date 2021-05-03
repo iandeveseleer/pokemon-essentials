@@ -238,7 +238,7 @@ def pbDefinePath(canvas)
   defcurvebutton=sliderwin2.addButton(_INTL("Define Smooth Curve"))
   defpathbutton=sliderwin2.addButton(_INTL("Define Freehand Path"))
   okbutton=sliderwin2.addButton(_INTL("OK"))
-  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  cancelbutton=sliderwin2.addButton(_INTL("ANNULER"))
   points=[]
   path=nil
   loop do

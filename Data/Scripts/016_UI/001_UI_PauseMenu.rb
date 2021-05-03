@@ -117,33 +117,33 @@ class PokemonPauseMenu
       commands[cmdPokedex = commands.length] = _INTL("Pokédex")
     end
     commands[cmdPokemon = commands.length]   = _INTL("Pokémon") if $Trainer.party_count > 0
-    commands[cmdBag = commands.length]       = _INTL("Bag") if !pbInBugContest?
-    commands[cmdPokegear = commands.length]  = _INTL("Pokégear") if $Trainer.has_pokegear
+    commands[cmdBag = commands.length]       = _INTL("Sac") if !pbInBugContest?
+    commands[cmdPokegear = commands.length]  = _INTL("Pokématos") if $Trainer.has_pokegear
     commands[cmdTrainer = commands.length]   = $Trainer.name
     if pbInSafari?
       if Settings::SAFARI_STEPS <= 0
         @scene.pbShowInfo(_INTL("Balls: {1}",pbSafariState.ballcount))
       else
-        @scene.pbShowInfo(_INTL("Steps: {1}/{2}\nBalls: {3}",
+        @scene.pbShowInfo(_INTL("Pas: {1}/{2}\nBalls: {3}",
            pbSafariState.steps, Settings::SAFARI_STEPS, pbSafariState.ballcount))
       end
-      commands[cmdQuit = commands.length]    = _INTL("Quit")
+      commands[cmdQuit = commands.length]    = _INTL("Quitter")
     elsif pbInBugContest?
       if pbBugContestState.lastPokemon
-        @scene.pbShowInfo(_INTL("Caught: {1}\nLevel: {2}\nBalls: {3}",
+        @scene.pbShowInfo(_INTL("Attrapé: {1}\nNiveau: {2}\nBalls: {3}",
            pbBugContestState.lastPokemon.speciesName,
            pbBugContestState.lastPokemon.level,
            pbBugContestState.ballcount))
       else
-        @scene.pbShowInfo(_INTL("Caught: None\nBalls: {1}",pbBugContestState.ballcount))
+        @scene.pbShowInfo(_INTL("Attrapé: Aucun\nBalls: {1}",pbBugContestState.ballcount))
       end
-      commands[cmdQuit = commands.length]    = _INTL("Quit Contest")
+      commands[cmdQuit = commands.length]    = _INTL("Quitter le Concours")
     else
-      commands[cmdSave = commands.length]    = _INTL("Save") if $game_system && !$game_system.save_disabled
+      commands[cmdSave = commands.length]    = _INTL("Sauver") if $game_system && !$game_system.save_disabled
     end
     commands[cmdOption = commands.length]    = _INTL("Options")
     commands[cmdDebug = commands.length]     = _INTL("Debug") if $DEBUG
-    commands[cmdEndGame = commands.length]   = _INTL("Quit Game")
+    commands[cmdEndGame = commands.length]   = _INTL("Quitter le jeu")
     loop do
       command = @scene.pbShowCommands(commands)
       if cmdPokedex>=0 && command==cmdPokedex
@@ -220,7 +220,7 @@ class PokemonPauseMenu
       elsif cmdQuit>=0 && command==cmdQuit
         @scene.pbHideMenu
         if pbInSafari?
-          if pbConfirmMessage(_INTL("Would you like to leave the Safari Game right now?"))
+          if pbConfirmMessage(_INTL("Voulez-vous quitter la partie de Safari maintenant?"))
             @scene.pbEndScene
             pbSafariState.decision = 1
             pbSafariState.pbGoToStart
@@ -229,7 +229,7 @@ class PokemonPauseMenu
             pbShowMenu
           end
         else
-          if pbConfirmMessage(_INTL("Would you like to end the Contest now?"))
+          if pbConfirmMessage(_INTL("Voulez-vous arrêter le Concours maintenant?"))
             @scene.pbEndScene
             pbBugContestState.pbStartJudging
             return
@@ -265,7 +265,7 @@ class PokemonPauseMenu
         }
       elsif cmdEndGame>=0 && command==cmdEndGame
         @scene.pbHideMenu
-        if pbConfirmMessage(_INTL("Are you sure you want to quit the game?"))
+        if pbConfirmMessage(_INTL("Voulez-vous quitter le jeu?"))
           scene = PokemonSave_Scene.new
           screen = PokemonSaveScreen.new(scene)
           if screen.pbSaveScreen

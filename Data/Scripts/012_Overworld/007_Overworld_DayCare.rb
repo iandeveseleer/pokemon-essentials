@@ -93,7 +93,7 @@ def pbDayCareChoose(text,variable)
         choices.push(_ISPRINTF("{1:s} (Lv.{2:d})",pokemon.name,pokemon.level))
       end
     end
-    choices.push(_INTL("CANCEL"))
+    choices.push(_INTL("ANNULER"))
     command = pbMessage(text,choices,choices.length)
     $game_variables[variable] = (command==2) ? -1 : command
   end

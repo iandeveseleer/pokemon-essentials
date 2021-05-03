@@ -294,11 +294,33 @@ Land,21
 #-------------------------------
 [075] # Tiall Region
 Land,21
-    20,GEODUDE_1,11,14
-    20,RATTATA_1,11,14
+    20,GEODUDE,11,14
+    20,RATTATA,11,14
     10,CUBONE,11,14
-    10,DIGLETT_1,11,14
-    10,MEOWTH_1,11,14
+    10,DIGLETT,11,14
+    10,MEOWTH,11,14
     10,PIKACHU,11,14
-    10,SANDSHREW_1,11,14
-    10,VULPIX_1,11,14
+    10,SANDSHREW,11,14
+    10,VULPIX,11,14
+
+
+#-------------------------------
+[082] # Route 1
+Land,21
+    40,PIDGEY,3,4
+    30,RATTATA,3,4
+    15,ODDISH,3,4
+    15,BELLSPROUT,3,4
+    5,CATERPIE,2,4
+    5,RATTATA,3,5
+    5,PIDGEY,5
+    5,RATTATA,5
+    5,SPEAROW,5
+    5,SENTRET,3,5
+    5,PIKACHU,5
+    5,LOTAD,5
+LandNight,21
+    40,HOOTHOOT,3,4
+    50,RATTATA,3,4
+    9,SPEAROW,3,4
+    1,RATICATE,5

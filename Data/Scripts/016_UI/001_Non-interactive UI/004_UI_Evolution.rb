@@ -559,7 +559,7 @@ class PokemonEvolutionScene
     pbFlashInOut(canceled,oldstate,oldstate2)
     if canceled
       pbMessageDisplay(@sprites["msgwindow"],
-         _INTL("Huh? {1} stopped evolving!",@pokemon.name)) { pbUpdate }
+         _INTL("Hein? {1} a cessé d'évoluer!",@pokemon.name)) { pbUpdate }
     else
       pbEvolutionSuccess
     end
@@ -578,7 +578,7 @@ class PokemonEvolutionScene
     pbMEPlay("Evolution success")
     newspeciesname = GameData::Species.get(@newspecies).name
     pbMessageDisplay(@sprites["msgwindow"],
-       _INTL("\\se[]Congratulations! Your {1} evolved into {2}!\\wt[80]",
+       _INTL("\\se[]Félicitations! Votre {1} a évolué en {2}!\\wt[80]",
        @pokemon.name,newspeciesname)) { pbUpdate }
     @sprites["msgwindow"].text = ""
     # Check for consumed item and check if Pokémon should be duplicated

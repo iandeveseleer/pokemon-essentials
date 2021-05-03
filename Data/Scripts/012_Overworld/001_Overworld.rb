@@ -52,7 +52,7 @@ Events.onMapUpdate += proc { |_sender,_e|
        !$game_player.move_route_forcing && !$game_temp.message_window_showing &&
        !pbMapInterpreterRunning?
       if pbGetTimeNow.sec==0
-        pbMessage(_INTL("The game has detected that the battery is low. You should save soon to avoid losing your progress."))
+        pbMessage(_INTL("Le jeu a détecté que la batterie est faible. Vous devriez sauvegarder rapidement pour éviter de perdre votre progression."))
         $PokemonTemp.batterywarning = true
       end
     end
@@ -100,12 +100,12 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
         i.hp -= 1 if i.hp>1 || Settings::POISON_FAINT_IN_FIELD
         if i.hp==1 && !Settings::POISON_FAINT_IN_FIELD
           i.status = :NONE
-          pbMessage(_INTL("{1} survived the poisoning.\\nThe poison faded away!\1",i.name))
+          pbMessage(_INTL("{1} a survécu au poisin.\\nIl s'est dissipé!\1",i.name))
           next
         elsif i.hp==0
           i.changeHappiness("faint")
           i.status = :NONE
-          pbMessage(_INTL("{1} fainted...",i.name))
+          pbMessage(_INTL("{1} est KO...",i.name))
         end
         if $Trainer.able_pokemon_count == 0
           handled[0] = true
@@ -118,8 +118,8 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
 
 def pbCheckAllFainted
   if $Trainer.able_pokemon_count == 0
-    pbMessage(_INTL("You have no more Pokémon that can fight!\1"))
-    pbMessage(_INTL("You blacked out!"))
+    pbMessage(_INTL("Tu n'as plus de Pokémon pouvant se battre!\1"))
+    pbMessage(_INTL("Tu es hors-jeu!"))
     pbBGMFade(1.0)
     pbBGSFade(1.0)
     pbFadeOutIn { pbStartOver }
@@ -710,33 +710,33 @@ def pbItemBall(item,quantity=1)
   if $PokemonBag.pbStoreItem(item,quantity)   # If item can be picked up
     meName = (item.is_key_item?) ? "Key item get" : "Item get"
     if item == :LEFTOVERS
-      pbMessage(_INTL("\\me[{1}]You found some \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
+      pbMessage(_INTL("\\me[{1}] {3} trouve quelques \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
     elsif item.is_machine?   # TM or HM
-      pbMessage(_INTL("\\me[{1}]You found \\c[1]{2} {3}\\c[0]!\\wtnp[30]",meName,itemname,GameData::Move.get(move).name))
+      pbMessage(_INTL("\\me[{1}]{3} trouve \\c[1]{2} {3}\\c[0]!\\wtnp[30]",meName,itemname,GameData::Move.get(move).name, $Trainer.name))
     elsif quantity>1
-      pbMessage(_INTL("\\me[{1}]You found {2} \\c[1]{3}\\c[0]!\\wtnp[30]",meName,quantity,itemname))
+      pbMessage(_INTL("\\me[{1}]{3} trouve {2} \\c[1]{3}\\c[0]!\\wtnp[30]",meName,quantity,itemname,$Trainer.name))
     elsif itemname.starts_with_vowel?
-      pbMessage(_INTL("\\me[{1}]You found an \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
+      pbMessage(_INTL("\\me[{1}]{3} trouve \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
     else
-      pbMessage(_INTL("\\me[{1}]You found a \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
+      pbMessage(_INTL("\\me[{1}]{3} trouve \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
     end
-    pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
-       itemname,pocket,PokemonBag.pocketNames()[pocket]))
+    pbMessage(_INTL("{1} range {2} dans la <icon=bagPocket{3}>\\c[1]Poche à {4}\\c[0].",
+                    $Trainer.name,itemname,pocket,PokemonBag.pocketNames()[pocket]))
     return true
   end
   # Can't add the item
   if item == :LEFTOVERS
-    pbMessage(_INTL("You found some \\c[1]{1}\\c[0]!\\wtnp[30]",itemname))
+    pbMessage(_INTL("{3} trouve quelques \\c[1]{1}\\c[0]!\\wtnp[30]",itemname,$Trainer.name))
   elsif item.is_machine?   # TM or HM
-    pbMessage(_INTL("You found \\c[1]{1} {2}\\c[0]!\\wtnp[30]",itemname,GameData::Move.get(move).name))
+    pbMessage(_INTL("{3} trouve \\c[1]{1} {2}\\c[0]!\\wtnp[30]",itemname,GameData::Move.get(move).name,$Trainer.name))
   elsif quantity>1
-    pbMessage(_INTL("You found {1} \\c[1]{2}\\c[0]!\\wtnp[30]",quantity,itemname))
+    pbMessage(_INTL("{3} trouve {1} \\c[1]{2}\\c[0]!\\wtnp[30]",quantity,itemname,$Trainer.name))
   elsif itemname.starts_with_vowel?
-    pbMessage(_INTL("You found an \\c[1]{1}\\c[0]!\\wtnp[30]",itemname))
+    pbMessage(_INTL("{3} trouve \\c[1]{1}\\c[0]!\\wtnp[30]",itemname,$Trainer.name))
   else
-    pbMessage(_INTL("You found a \\c[1]{1}\\c[0]!\\wtnp[30]",itemname))
+    pbMessage(_INTL("{3} trouve \\c[1]{1}\\c[0]!\\wtnp[30]",itemname,$Trainer.name))
   end
-  pbMessage(_INTL("But your Bag is full..."))
+  pbMessage(_INTL("Dommage...\\nLe Sac est plein..."))
   return false
 end
 
@@ -753,19 +753,19 @@ def pbReceiveItem(item,quantity=1)
   move = item.move
   meName = (item.is_key_item?) ? "Key item get" : "Item get"
   if item == :LEFTOVERS
-    pbMessage(_INTL("\\me[{1}]You obtained some \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
+    pbMessage(_INTL("\\me[{1}]{3} obtient quelques \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
   elsif item.is_machine?   # TM or HM
-    pbMessage(_INTL("\\me[{1}]You obtained \\c[1]{2} {3}\\c[0]!\\wtnp[30]",meName,itemname,GameData::Move.get(move).name))
+    pbMessage(_INTL("\\me[{1}]{3} obtient \\c[1]{2} {3}\\c[0]!\\wtnp[30]",meName,itemname,GameData::Move.get(move).name,$Trainer.name))
   elsif quantity>1
-    pbMessage(_INTL("\\me[{1}]You obtained {2} \\c[1]{3}\\c[0]!\\wtnp[30]",meName,quantity,itemname))
+    pbMessage(_INTL("\\me[{1}]{3} obtient {2} \\c[1]{3}\\c[0]!\\wtnp[30]",meName,quantity,itemname,$Trainer.name))
   elsif itemname.starts_with_vowel?
-    pbMessage(_INTL("\\me[{1}]You obtained an \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
+    pbMessage(_INTL("\\me[{1}]{3} obtient \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
   else
-    pbMessage(_INTL("\\me[{1}]You obtained a \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname))
+    pbMessage(_INTL("\\me[{1}]{3} obtient \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
   end
   if $PokemonBag.pbStoreItem(item,quantity)   # If item can be added
-    pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
-       itemname,pocket,PokemonBag.pocketNames()[pocket]))
+    pbMessage(_INTL("{1} range {2} dans la <icon=bagPocket{3}>\\c[1]Poche à {4}\\c[0].",
+                    $Trainer.name,itemname,pocket,PokemonBag.pocketNames()[pocket]))
     return true
   end
   return false   # Can't add the item

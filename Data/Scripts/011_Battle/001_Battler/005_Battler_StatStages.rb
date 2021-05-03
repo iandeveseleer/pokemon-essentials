@@ -52,9 +52,9 @@ class PokeBattle_Battler
     # Stat up animation and message
     @battle.pbCommonAnimation("StatUp",self) if showAnim
     arrStatTexts = [
-       _INTL("{1}'s {2} rose!",pbThis,GameData::Stat.get(stat).name),
-       _INTL("{1}'s {2} rose sharply!",pbThis,GameData::Stat.get(stat).name),
-       _INTL("{1}'s {2} rose drastically!",pbThis,GameData::Stat.get(stat).name)]
+      _INTL("{2} du {1} augmente!",pbThis(true),GameData::Stat.get(stat).name),
+      _INTL("{2} du {1} augmente fortement!",pbThis(true),GameData::Stat.get(stat).name),
+      _INTL("{2} du {1} augmente drastiquement!",pbThis(true),GameData::Stat.get(stat).name)]
     @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
     # Trigger abilities upon stat gain
     if abilityActive?
@@ -146,7 +146,7 @@ class PokeBattle_Battler
     end
     # Check the stat stage
     if statStageAtMin?(stat)
-      @battle.pbDisplay(_INTL("{1}'s {2} won't go any lower!",
+      @battle.pbDisplay(_INTL("{1} du {2} n'ira pas plus bas!",
          pbThis, GameData::Stat.get(stat).name)) if showFailMsg
       return false
     end
@@ -184,9 +184,9 @@ class PokeBattle_Battler
     # Stat down animation and message
     @battle.pbCommonAnimation("StatDown",self) if showAnim
     arrStatTexts = [
-       _INTL("{1}'s {2} fell!",pbThis,GameData::Stat.get(stat).name),
-       _INTL("{1}'s {2} harshly fell!",pbThis,GameData::Stat.get(stat).name),
-       _INTL("{1}'s {2} severely fell!",pbThis,GameData::Stat.get(stat).name)]
+       _INTL("{2} du {1} baisse!",pbThis(true),GameData::Stat.get(stat).name),
+       _INTL("{2} du {1} baisse brusquement!",pbThis(true),GameData::Stat.get(stat).name),
+       _INTL("{2} du {1} baisse sévèrement!",pbThis(true),GameData::Stat.get(stat).name)]
     @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
     # Trigger abilities upon stat loss
     if abilityActive?

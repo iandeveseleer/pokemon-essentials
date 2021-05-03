@@ -6,7 +6,7 @@
 class PokeBattle_UnimplementedMove < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     if statusMove?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("Mais cela échoue!"))
       return true
     end
     return false
@@ -547,19 +547,19 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     if @sidedEffect
       if user.pbOwnSide.effects[@effect]
         user.effects[PBEffects::ProtectRate] = 1
-        @battle.pbDisplay(_INTL("But it failed!"))
+        @battle.pbDisplay(_INTL("Mais cela échoue!"))
         return true
       end
     elsif user.effects[@effect]
       user.effects[PBEffects::ProtectRate] = 1
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("Mais cela échoue!"))
       return true
     end
     if (!@sidedEffect || Settings::MECHANICS_GENERATION <= 5) &&
        user.effects[PBEffects::ProtectRate]>1 &&
        @battle.pbRandom(user.effects[PBEffects::ProtectRate])!=0
       user.effects[PBEffects::ProtectRate] = 1
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("Mais cela échoue!"))
       return true
     end
     if pbMoveFailedLastInRound?(user)
@@ -611,7 +611,7 @@ class PokeBattle_WeatherMove < PokeBattle_Move
       @battle.pbDisplay(_INTL("The mysterious air current blows on regardless!"))
       return true
     when @weatherType
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("Mais cela échoue!"))
       return true
     end
     return false

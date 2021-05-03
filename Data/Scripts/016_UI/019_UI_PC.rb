@@ -173,7 +173,7 @@ def pbPCMailbox
       for mail in $PokemonGlobal.mailbox
         commands.push(mail.sender)
       end
-      commands.push(_INTL("Cancel"))
+      commands.push(_INTL("ANNULER"))
       command = pbShowCommands(nil,commands,-1,command)
       if command>=0 && command<$PokemonGlobal.mailbox.length
         mailIndex = command
@@ -182,7 +182,7 @@ def pbPCMailbox
            _INTL("Read"),
            _INTL("Move to Bag"),
            _INTL("Give"),
-           _INTL("Cancel")
+           _INTL("ANNULER")
            ],-1)
         case commandMail
         when 0   # Read

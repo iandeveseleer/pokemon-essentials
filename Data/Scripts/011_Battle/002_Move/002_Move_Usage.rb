@@ -17,7 +17,7 @@ class PokeBattle_Move
   end
 
   def pbDisplayUseMessage(user)
-    @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
+    @battle.pbDisplayBrief(_INTL("{1} utilise {2}!",user.pbThis,@name))
   end
 
   def pbMissMessage(user,target); return false; end
@@ -106,7 +106,7 @@ class PokeBattle_Move
       break
     end
     if !unmoved
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("Mais cela échoue!"))
       return true
     end
     return false
@@ -115,7 +115,7 @@ class PokeBattle_Move
   def pbMoveFailedTargetAlreadyMoved?(target)
     if (@battle.choices[target.index][0]!=:UseMove &&
        @battle.choices[target.index][0]!=:Shift) || target.movedThisRound?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("Mais cela échoue!"))
       return true
     end
     return false
@@ -127,9 +127,9 @@ class PokeBattle_Move
       if showMessage
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+          @battle.pbDisplay(_INTL("Cela n'affecte pas {1}!",target.pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!",
+          @battle.pbDisplay(_INTL("{1} n'est pas affecté grâce à {2}!",
             target.pbThis,target.abilityName))
         end
         @battle.pbHideAbilitySplash(target)
@@ -141,9 +141,9 @@ class PokeBattle_Move
       if showMessage
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+          @battle.pbDisplay(_INTL("Cela n'affecte pas {1}!",target.pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} is unaffected because of {2}'s {3}!",
+          @battle.pbDisplay(_INTL("{1} n'est pas affecté grâce à {3} de {2}!",
             target.pbThis,b.pbThis(true),b.abilityName))
         end
         @battle.pbHideAbilitySplash(target)
@@ -253,15 +253,15 @@ class PokeBattle_Move
     return if target.damageState.disguise
     if Effectiveness.super_effective?(target.damageState.typeMod)
       if numTargets>1
-        @battle.pbDisplay(_INTL("It's super effective on {1}!",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("C'est super efficace sur {1}!",target.pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("It's super effective!"))
+        @battle.pbDisplay(_INTL("C'est super efficace!"))
       end
     elsif Effectiveness.not_very_effective?(target.damageState.typeMod)
       if numTargets>1
-        @battle.pbDisplay(_INTL("It's not very effective on {1}...",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("Ce n'est pas très efficace sur {1}...",target.pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("It's not very effective..."))
+        @battle.pbDisplay(_INTL("Ce n'est pas très efficace..."))
       end
     end
   end
@@ -273,9 +273,9 @@ class PokeBattle_Move
     end
     if target.damageState.critical
       if numTargets>1
-        @battle.pbDisplay(_INTL("A critical hit on {1}!",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("Coup critique sur {1}!",target.pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("A critical hit!"))
+        @battle.pbDisplay(_INTL("Coup critique!"))
       end
     end
     # Effectiveness message, for moves with 1 hit

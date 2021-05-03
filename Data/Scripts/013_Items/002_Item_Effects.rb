@@ -191,7 +191,7 @@ ItemHandlers::UseInField.add(:SACREDASH,proc { |item|
     canrevive = true; break
   end
   if !canrevive
-    pbMessage(_INTL("It won't have any effect."))
+    pbMessage(_INTL("Cela n'aura aucun effet."))
     next 0
   end
   revived = 0
@@ -208,7 +208,7 @@ ItemHandlers::UseInField.add(:SACREDASH,proc { |item|
       end
     end
     if revived==0
-      screen.pbDisplay(_INTL("It won't have any effect."))
+      screen.pbDisplay(_INTL("Cela n'aura aucun effet."))
     end
     screen.pbEndScene
   }
@@ -336,7 +336,7 @@ ItemHandlers::UseInField.add(:EXPALLOFF,proc { |item|
 ItemHandlers::UseOnPokemon.addIf(proc { |item| GameData::Item.get(item).is_evolution_stone? },
   proc { |item,pkmn,scene|
     if pkmn.shadowPokemon?
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
       next false
     end
     newspecies = pkmn.check_evolution_on_use_item(item)
@@ -353,7 +353,7 @@ ItemHandlers::UseOnPokemon.addIf(proc { |item| GameData::Item.get(item).is_evolu
       }
       next true
     end
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   }
 )
@@ -403,7 +403,7 @@ ItemHandlers::UseOnPokemon.add(:SITRUSBERRY,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:AWAKENING,proc { |item,pkmn,scene|
   if pkmn.fainted? || pkmn.status != :SLEEP
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.heal_status
@@ -416,7 +416,7 @@ ItemHandlers::UseOnPokemon.copy(:AWAKENING,:CHESTOBERRY,:BLUEFLUTE,:POKEFLUTE)
 
 ItemHandlers::UseOnPokemon.add(:ANTIDOTE,proc { |item,pkmn,scene|
   if pkmn.fainted? || pkmn.status != :POISON
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.heal_status
@@ -429,7 +429,7 @@ ItemHandlers::UseOnPokemon.copy(:ANTIDOTE,:PECHABERRY)
 
 ItemHandlers::UseOnPokemon.add(:BURNHEAL,proc { |item,pkmn,scene|
   if pkmn.fainted? || pkmn.status != :BURN
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.heal_status
@@ -442,7 +442,7 @@ ItemHandlers::UseOnPokemon.copy(:BURNHEAL,:RAWSTBERRY)
 
 ItemHandlers::UseOnPokemon.add(:PARALYZEHEAL,proc { |item,pkmn,scene|
   if pkmn.fainted? || pkmn.status != :PARALYSIS
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.heal_status
@@ -455,7 +455,7 @@ ItemHandlers::UseOnPokemon.copy(:PARALYZEHEAL,:PARLYZHEAL,:CHERIBERRY)
 
 ItemHandlers::UseOnPokemon.add(:ICEHEAL,proc { |item,pkmn,scene|
   if pkmn.fainted? || pkmn.status != :FROZEN
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.heal_status
@@ -468,7 +468,7 @@ ItemHandlers::UseOnPokemon.copy(:ICEHEAL,:ASPEARBERRY)
 
 ItemHandlers::UseOnPokemon.add(:FULLHEAL,proc { |item,pkmn,scene|
   if pkmn.fainted? || pkmn.status == :NONE
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.heal_status
@@ -484,7 +484,7 @@ ItemHandlers::UseOnPokemon.copy(:FULLHEAL,:RAGECANDYBAR) if Settings::RAGE_CANDY
 
 ItemHandlers::UseOnPokemon.add(:FULLRESTORE,proc { |item,pkmn,scene|
   if pkmn.fainted? || (pkmn.hp==pkmn.totalhp && pkmn.status == :NONE)
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   hpgain = pbItemRestoreHP(pkmn,pkmn.totalhp-pkmn.hp)
@@ -500,7 +500,7 @@ ItemHandlers::UseOnPokemon.add(:FULLRESTORE,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:REVIVE,proc { |item,pkmn,scene|
   if !pkmn.fainted?
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.hp = (pkmn.totalhp/2).floor
@@ -513,7 +513,7 @@ ItemHandlers::UseOnPokemon.add(:REVIVE,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:MAXREVIVE,proc { |item,pkmn,scene|
   if !pkmn.fainted?
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.heal_HP
@@ -541,7 +541,7 @@ ItemHandlers::UseOnPokemon.add(:ENERGYROOT,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:HEALPOWDER,proc { |item,pkmn,scene|
   if pkmn.fainted? || pkmn.status == :NONE
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.heal_status
@@ -553,7 +553,7 @@ ItemHandlers::UseOnPokemon.add(:HEALPOWDER,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:REVIVALHERB,proc { |item,pkmn,scene|
   if !pkmn.fainted?
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pkmn.heal_HP
@@ -568,7 +568,7 @@ ItemHandlers::UseOnPokemon.add(:ETHER,proc { |item,pkmn,scene|
   move = scene.pbChooseMove(pkmn,_INTL("Restore which move?"))
   next false if move<0
   if pbRestorePP(pkmn,move,10)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("PP was restored."))
@@ -581,7 +581,7 @@ ItemHandlers::UseOnPokemon.add(:MAXETHER,proc { |item,pkmn,scene|
   move = scene.pbChooseMove(pkmn,_INTL("Restore which move?"))
   next false if move<0
   if pbRestorePP(pkmn,move,pkmn.moves[move].total_pp-pkmn.moves[move].pp)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("PP was restored."))
@@ -594,7 +594,7 @@ ItemHandlers::UseOnPokemon.add(:ELIXIR,proc { |item,pkmn,scene|
     pprestored += pbRestorePP(pkmn,i,10)
   end
   if pprestored==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("PP was restored."))
@@ -607,7 +607,7 @@ ItemHandlers::UseOnPokemon.add(:MAXELIXIR,proc { |item,pkmn,scene|
     pprestored += pbRestorePP(pkmn,i,pkmn.moves[i].total_pp-pkmn.moves[i].pp)
   end
   if pprestored==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("PP was restored."))
@@ -618,7 +618,7 @@ ItemHandlers::UseOnPokemon.add(:PPUP,proc { |item,pkmn,scene|
   move = scene.pbChooseMove(pkmn,_INTL("Boost PP of which move?"))
   if move>=0
     if pkmn.moves[move].total_pp<=1 || pkmn.moves[move].ppup>=3
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
       next false
     end
     pkmn.moves[move].ppup += 1
@@ -633,7 +633,7 @@ ItemHandlers::UseOnPokemon.add(:PPMAX,proc { |item,pkmn,scene|
   move = scene.pbChooseMove(pkmn,_INTL("Boost PP of which move?"))
   if move>=0
     if pkmn.moves[move].total_pp<=1 || pkmn.moves[move].ppup>=3
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
       next false
     end
     pkmn.moves[move].ppup = 3
@@ -646,7 +646,7 @@ ItemHandlers::UseOnPokemon.add(:PPMAX,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:HPUP,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:HP)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbRefresh
@@ -657,7 +657,7 @@ ItemHandlers::UseOnPokemon.add(:HPUP,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:PROTEIN,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:ATTACK)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Attack increased.",pkmn.name))
@@ -667,7 +667,7 @@ ItemHandlers::UseOnPokemon.add(:PROTEIN,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:IRON,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:DEFENSE)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Defense increased.",pkmn.name))
@@ -677,7 +677,7 @@ ItemHandlers::UseOnPokemon.add(:IRON,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:CALCIUM,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:SPECIAL_ATTACK)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Special Attack increased.",pkmn.name))
@@ -687,7 +687,7 @@ ItemHandlers::UseOnPokemon.add(:CALCIUM,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:ZINC,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:SPECIAL_DEFENSE)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Special Defense increased.",pkmn.name))
@@ -697,7 +697,7 @@ ItemHandlers::UseOnPokemon.add(:ZINC,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:CARBOS,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:SPEED)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Speed increased.",pkmn.name))
@@ -707,7 +707,7 @@ ItemHandlers::UseOnPokemon.add(:CARBOS,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:HEALTHWING,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:HP,1,false)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbRefresh
@@ -718,7 +718,7 @@ ItemHandlers::UseOnPokemon.add(:HEALTHWING,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:MUSCLEWING,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:ATTACK,1,false)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Attack increased.",pkmn.name))
@@ -728,7 +728,7 @@ ItemHandlers::UseOnPokemon.add(:MUSCLEWING,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:RESISTWING,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:DEFENSE,1,false)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Defense increased.",pkmn.name))
@@ -738,7 +738,7 @@ ItemHandlers::UseOnPokemon.add(:RESISTWING,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:GENIUSWING,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:SPECIAL_ATTACK,1,false)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Special Attack increased.",pkmn.name))
@@ -748,7 +748,7 @@ ItemHandlers::UseOnPokemon.add(:GENIUSWING,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:CLEVERWING,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:SPECIAL_DEFENSE,1,false)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Special Defense increased.",pkmn.name))
@@ -758,7 +758,7 @@ ItemHandlers::UseOnPokemon.add(:CLEVERWING,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:SWIFTWING,proc { |item,pkmn,scene|
   if pbRaiseEffortValues(pkmn,:SPEED,1,false)==0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   scene.pbDisplay(_INTL("{1}'s Speed increased.",pkmn.name))
@@ -768,7 +768,7 @@ ItemHandlers::UseOnPokemon.add(:SWIFTWING,proc { |item,pkmn,scene|
 
 ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
   if pkmn.level>=GameData::GrowthRate.max_level || pkmn.shadowPokemon?
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pbChangeLevel(pkmn,pkmn.level+1,scene)
@@ -1095,7 +1095,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE,proc { |item,pkmn,scene|
     abil2 = i[0] if i[1]==1
   end
   if abil1.nil? || abil2.nil? || pkmn.hasHiddenAbility? || pkmn.isSpecies?(:ZYGARDE)
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   newabil = (pkmn.ability_index + 1) % 2

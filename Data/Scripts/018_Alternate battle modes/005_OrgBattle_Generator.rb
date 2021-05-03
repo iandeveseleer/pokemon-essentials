@@ -1273,7 +1273,7 @@ def pbWriteCup(id,rules)
        [_INTL("NO"),_INTL("YES, USE EXISTING"),_INTL("YES, USE NEW")],1)
   else
     cmd=pbMessage(_INTL("Generate Pokémon teams for this challenge?"),
-       [_INTL("YES"),_INTL("NO")],2)
+       [_INTL("Oui"),_INTL("Non")],2)
     if cmd==0
       cmd=2
     elsif cmd==1

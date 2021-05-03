@@ -478,7 +478,7 @@ class PokemonBagScreen
         commands[cmdRegister = commands.length] = _INTL("Register")
       end
       commands[cmdDebug = commands.length]      = _INTL("Debug") if $DEBUG
-      commands[commands.length]                 = _INTL("Cancel")
+      commands[commands.length]                 = _INTL("ANNULER")
       # Show commands generated above
       itemname = itm.name
       command = @scene.pbShowCommands(_INTL("{1} is selected.",itemname),commands)
@@ -532,7 +532,7 @@ class PokemonBagScreen
           command = @scene.pbShowCommands(_INTL("Do what with {1}?",itemname),[
             _INTL("Change quantity"),
             _INTL("Make Mystery Gift"),
-            _INTL("Cancel")
+            _INTL("ANNULER")
             ],command)
           case command
           ### Cancel ###

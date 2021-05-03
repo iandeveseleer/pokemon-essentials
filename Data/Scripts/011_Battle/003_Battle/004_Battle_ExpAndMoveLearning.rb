@@ -44,7 +44,7 @@ class PokeBattle_Battle
           eachInTeam(0,0) do |pkmn,i|
             next if !pkmn.able?
             next if b.participants.include?(i) || expShare.include?(i)
-            pbDisplayPaused(_INTL("Your party Pokémon in waiting also got Exp. Points!")) if showMessage
+            pbDisplayPaused(_INTL("Votre équipe gagne également des points d'expérience!")) if showMessage
             showMessage = false
             pbGainEVsOne(i,b)
             pbGainExpOne(i,b,numPartic,expShare,expAll,false)
@@ -157,9 +157,9 @@ class PokeBattle_Battle
     # "Exp gained" message
     if showMessages
       if isOutsider
-        pbDisplayPaused(_INTL("{1} got a boosted {2} Exp. Points!",pkmn.name,expGained))
+        pbDisplayPaused(_INTL("{1} gagne {2} points d'expérience boostés!",pkmn.name,expGained))
       else
-        pbDisplayPaused(_INTL("{1} got {2} Exp. Points!",pkmn.name,expGained))
+        pbDisplayPaused(_INTL("{1} gagne {2} points d'expérience!",pkmn.name,expGained))
       end
     end
     curLevel = pkmn.level
@@ -207,7 +207,7 @@ class PokeBattle_Battle
       pkmn.calc_stats
       battler.pbUpdate(false) if battler
       @scene.pbRefreshOne(battler.index) if battler
-      pbDisplayPaused(_INTL("{1} grew to Lv. {2}!",pkmn.name,curLevel))
+      pbDisplayPaused(_INTL("{1} monte au niveau {2}!",pkmn.name,curLevel))
       @scene.pbLevelUp(pkmn,battler,oldTotalHP,oldAttack,oldDefense,
                                     oldSpAtk,oldSpDef,oldSpeed)
       # Learn all moves learned at this level
@@ -231,31 +231,31 @@ class PokeBattle_Battle
       return if m && m.id==newMove   # Already knows the new move
       pkmn.moves[i] = Pokemon::Move.new(newMove)
       battler.moves[i] = PokeBattle_Move.from_pokemon_move(self, pkmn.moves[i]) if battler
-      pbDisplay(_INTL("{1} learned {2}!",pkmnName,moveName)) { pbSEPlay("Pkmn move learnt") }
+      pbDisplay(_INTL("{1} apprend {2}!",pkmnName,moveName)) { pbSEPlay("Pkmn move learnt") }
       battler.pbCheckFormOnMovesetChange if battler
       return
     end
     # pkmn already knows four moves, need to forget one to learn newMove
     loop do
-      pbDisplayPaused(_INTL("{1} wants to learn {2}, but it already knows four moves.",pkmnName,moveName))
-      if pbDisplayConfirm(_INTL("Forget a move to learn {1}?",moveName))
-        pbDisplayPaused(_INTL("Which move should be forgotten?"))
+      pbDisplayPaused(_INTL("{1} veut apprendre {2}, mais il a déjà 4 attaques.",pkmnName,moveName))
+      if pbDisplayConfirm(_INTL("Oublier une attaque pour apprendre {1}?",moveName))
+        pbDisplayPaused(_INTL("Oublier quelle attaque?"))
         forgetMove = @scene.pbForgetMove(pkmn,newMove)
         if forgetMove>=0
           oldMoveName = pkmn.moves[forgetMove].name
           pkmn.moves[forgetMove] = Pokemon::Move.new(newMove)   # Replaces current/total PP
           battler.moves[forgetMove] = PokeBattle_Move.from_pokemon_move(self, pkmn.moves[forgetMove]) if battler
-          pbDisplayPaused(_INTL("1, 2, and... ... ... Ta-da!"))
-          pbDisplayPaused(_INTL("{1} forgot how to use {2}. And...",pkmnName,oldMoveName))
-          pbDisplay(_INTL("{1} learned {2}!",pkmnName,moveName)) { pbSEPlay("Pkmn move learnt") }
+          pbDisplayPaused(_INTL("1, 2, &... ... ... Ta-da!"))
+          pbDisplayPaused(_INTL("{1} oublie comment utiliser {2}. Et...",pkmnName,oldMoveName))
+          pbDisplay(_INTL("{1} apprend {2}!",pkmnName,moveName)) { pbSEPlay("Pkmn move learnt") }
           battler.pbCheckFormOnMovesetChange if battler
           break
-        elsif pbDisplayConfirm(_INTL("Give up on learning {1}?",moveName))
-          pbDisplay(_INTL("{1} did not learn {2}.",pkmnName,moveName))
+        elsif pbDisplayConfirm(_INTL("Arrêter d'apprendre {1}?",moveName))
+          pbDisplay(_INTL("{1} n'a pas apppris {2}.",pkmnName,moveName))
           break
         end
-      elsif pbDisplayConfirm(_INTL("Give up on learning {1}?",moveName))
-        pbDisplay(_INTL("{1} did not learn {2}.",pkmnName,moveName))
+      elsif pbDisplayConfirm(_INTL("Arrêter d'apprendre {1}?",moveName))
+        pbDisplay(_INTL("{1} n'a pas apppris {2}.",pkmnName,moveName))
         break
       end
     end

@@ -587,7 +587,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
     next false if !move.bombMove?
     battle.pbShowAbilitySplash(target)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
     else
       battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
          target.pbThis,target.abilityName,move.name))
@@ -612,7 +612,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
       end
     else
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+        battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
       else
         battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
            target.pbThis,target.abilityName,move.name))
@@ -646,7 +646,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
     next false if !move.soundMove?
     battle.pbShowAbilitySplash(target)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
     else
       battle.pbDisplay(_INTL("{1}'s {2} blocks {3}!",target.pbThis,target.abilityName,move.name))
     end
@@ -698,7 +698,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
     next false if !type || Effectiveness.super_effective?(target.damageState.typeMod)
     battle.pbShowAbilitySplash(target)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
     else
       battle.pbDisplay(_INTL("{1} avoided damage with {2}!",target.pbThis,target.abilityName))
     end

@@ -9,7 +9,7 @@ class PokeBattle_Battler
        @battle.rules["alwaysflee"] && @battle.pbCanRun?(@index)
       pbBeginTurn(choice)
       pbSEPlay("Battle flee")
-      @battle.pbDisplay(_INTL("{1} fled from battle!",pbThis))
+      @battle.pbDisplay(_INTL("{1} s'enfuit!",pbThis))
       @battle.decision = 3
       pbEndTurn(choice)
       return true
@@ -303,7 +303,7 @@ class PokeBattle_Battler
       @lastMoveFailed = true   # Intentionally applies to self, not user
       @battle.pbDisplay(_INTL("{1} snatched {2}'s move!",user.pbThis,pbThis(true)))
     end
-    # "But it failed!" checks
+    # "Mais cela échoue!" checks
     if move.pbMoveFailed?(user,targets)
       PBDebug.log(sprintf("[Move failed] In function code %s's def pbMoveFailed?",move.function))
       user.lastMoveFailed = true

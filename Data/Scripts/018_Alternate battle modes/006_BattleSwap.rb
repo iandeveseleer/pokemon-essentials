@@ -50,7 +50,7 @@ class BattleSwapScene
 
   def pbInitSwapScreen
     commands=pbGetCommands(@currentPokemon,[])
-    commands.push(_INTL("CANCEL"))
+    commands.push(_INTL("ANNULER"))
     @sprites["help"].text=_INTL("Select Pokémon to swap.")
     @sprites["list"].commands=commands
     @sprites["list"].index=0
@@ -125,7 +125,7 @@ class BattleSwapScene
   def pbSwapChosen(_pkmnindex)
     commands=pbGetCommands(@newPokemon,[])
     commands.push(_INTL("PKMN FOR SWAP"))
-    commands.push(_INTL("CANCEL"))
+    commands.push(_INTL("ANNULER"))
     @sprites["help"].text=_INTL("Select Pokémon to accept.")
     @sprites["list"].commands=commands
     @sprites["list"].index=0

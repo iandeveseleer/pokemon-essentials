@@ -206,7 +206,7 @@ class Window_PokemonOption < Window_DrawableCommand
 
   def drawItem(index,_count,rect)
     rect = drawCursor(index,rect)
-    optionname = (index==@options.length) ? _INTL("Cancel") : @options[index].name
+    optionname = (index==@options.length) ? _INTL("ANNULER") : @options[index].name
     optionwidth = rect.width*9/20
     pbDrawShadowText(self.contents,rect.x,rect.y,optionwidth,rect.height,optionname,
        @nameBaseColor,@nameShadowColor)

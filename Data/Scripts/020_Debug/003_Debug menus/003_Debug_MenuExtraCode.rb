@@ -802,7 +802,7 @@ class PokemonDebugPartyScreen
     @messageBox.text    = text
     @messageBox.visible = true
     @helpWindow.visible = false
-    using(cmdwindow = Window_CommandPokemon.new([_INTL("Yes"),_INTL("No")])) {
+    using(cmdwindow = Window_CommandPokemon.new([_INTL("Oui"),_INTL("Non")])) {
       cmdwindow.visible = false
       pbBottomRight(cmdwindow)
       cmdwindow.y -= @messageBox.height

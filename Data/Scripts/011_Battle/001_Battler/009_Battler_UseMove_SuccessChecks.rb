@@ -403,14 +403,14 @@ class PokeBattle_Battler
     # Type immunity
     if move.pbDamagingMove? && Effectiveness.ineffective?(typeMod)
       PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
       return false
     end
     # Dark-type immunity to moves made faster by Prankster
     if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::Prankster] &&
        target.pbHasType?(:DARK) && target.opposes?(user)
       PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
       return false
     end
     # Airborne-based immunity to Ground moves
@@ -443,14 +443,14 @@ class PokeBattle_Battler
     if move.powderMove?
       if target.pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
         PBDebug.log("[Target immune] #{target.pbThis} is Grass-type and immune to powder-based moves")
-        @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
         return false
       end
       if Settings::MECHANICS_GENERATION >= 6
         if target.hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
           @battle.pbShowAbilitySplash(target)
           if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+            @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
           else
             @battle.pbDisplay(_INTL("It doesn't affect {1} because of its {2}.",target.pbThis(true),target.abilityName))
           end
@@ -459,7 +459,7 @@ class PokeBattle_Battler
         end
         if target.hasActiveItem?(:SAFETYGOGGLES)
           PBDebug.log("[Item triggered] #{target.pbThis} has Safety Goggles and is immune to powder-based moves")
-          @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+          @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
           return false
         end
       end

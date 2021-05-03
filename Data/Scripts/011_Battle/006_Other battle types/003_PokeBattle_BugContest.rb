@@ -46,11 +46,11 @@ class PokeBattle_BugContestBattle < PokeBattle_Battle
 
   def pbCommandMenu(idxBattler,_firstAction)
     return @scene.pbCommandMenuEx(idxBattler,[
-       _INTL("Sport Balls: {1}",@ballCount),
-       _INTL("Fight"),
+       _INTL("Compét'Balls: {1}",@ballCount),
+       _INTL("Attaquer"),
        _INTL("Ball"),
        _INTL("Pokémon"),
-       _INTL("Run")
+       _INTL("Fuire")
     ],4)
   end
 
@@ -61,13 +61,13 @@ class PokeBattle_BugContestBattle < PokeBattle_Battle
   def pbStorePokemon(pkmn)
     if pbBugContestState.lastPokemon
       lastPokemon = pbBugContestState.lastPokemon
-      pbDisplayPaused(_INTL("You already caught a {1}.",lastPokemon.name))
-      helptext = _INTL("STOCK POKéMON:\n {1} Lv.{2} MaxHP: {3}\nTHIS POKéMON:\n {4} Lv.{5} MaxHP: {6}",
+      pbDisplayPaused(_INTL("Tu as déjà attrapé un {1}.",lastPokemon.name))
+      helptext = _INTL("Pokémon en stock:\n {1} N.{2} PVMax: {3}\nCe Pokémon:\n {4} N.{5} PVMax: {6}",
          lastPokemon.name,lastPokemon.level,lastPokemon.totalhp,
          pkmn.name,pkmn.level,pkmn.totalhp
       )
       @scene.pbShowHelp(helptext)
-      if pbDisplayConfirm(_INTL("Switch Pokémon?"))
+      if pbDisplayConfirm(_INTL("Changer de Pokémon?"))
         pbBugContestState.lastPokemon = pkmn
         @scene.pbHideHelp
       else
@@ -77,7 +77,7 @@ class PokeBattle_BugContestBattle < PokeBattle_Battle
     else
       pbBugContestState.lastPokemon = pkmn
     end
-    pbDisplay(_INTL("Caught {1}!",pkmn.name))
+    pbDisplay(_INTL("{1} attrapé!",pkmn.name))
   end
 
   def pbEndOfRoundPhase

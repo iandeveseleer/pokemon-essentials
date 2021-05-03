@@ -3,7 +3,7 @@
 #===============================================================================
 ItemHandlers::CanUseInBattle.add(:GUARDSPEC,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !battler || battler.pbOwnSide.effects[PBEffects::Mist]>0
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -60,7 +60,7 @@ ItemHandlers::CanUseInBattle.addIf(proc { |item| GameData::Item.get(item).is_pok
 
 ItemHandlers::CanUseInBattle.add(:POTION,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !pokemon.able? || pokemon.hp==pokemon.totalhp
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -80,7 +80,7 @@ ItemHandlers::CanUseInBattle.copy(:AWAKENING,:CHESTOBERRY)
 
 ItemHandlers::CanUseInBattle.add(:BLUEFLUTE,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if battler && battler.hasActiveAbility?(:SOUNDPROOF)
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next pbBattleItemCanCureStatus?(:SLEEP, pokemon, scene, showMessages)
@@ -114,7 +114,7 @@ ItemHandlers::CanUseInBattle.add(:FULLHEAL,proc { |item,pokemon,battler,move,fir
   if !pokemon.able? ||
      (pokemon.status == :NONE &&
      (!battler || battler.effects[PBEffects::Confusion]==0))
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -129,7 +129,7 @@ ItemHandlers::CanUseInBattle.add(:FULLRESTORE,proc { |item,pokemon,battler,move,
   if !pokemon.able? ||
      (pokemon.hp == pokemon.totalhp && pokemon.status == :NONE &&
      (!battler || battler.effects[PBEffects::Confusion]==0))
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -137,7 +137,7 @@ ItemHandlers::CanUseInBattle.add(:FULLRESTORE,proc { |item,pokemon,battler,move,
 
 ItemHandlers::CanUseInBattle.add(:REVIVE,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if pokemon.able? || pokemon.egg?
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -149,7 +149,7 @@ ItemHandlers::CanUseInBattle.add(:ETHER,proc { |item,pokemon,battler,move,firstA
   if !pokemon.able? || move<0 ||
      pokemon.moves[move].total_pp<=0 ||
      pokemon.moves[move].pp==pokemon.moves[move].total_pp
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -159,7 +159,7 @@ ItemHandlers::CanUseInBattle.copy(:ETHER,:MAXETHER,:LEPPABERRY)
 
 ItemHandlers::CanUseInBattle.add(:ELIXIR,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !pokemon.able?
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   canRestore = false
@@ -170,7 +170,7 @@ ItemHandlers::CanUseInBattle.add(:ELIXIR,proc { |item,pokemon,battler,move,first
     break
   end
   if !canRestore
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -181,7 +181,7 @@ ItemHandlers::CanUseInBattle.copy(:ELIXIR,:MAXELIXIR)
 ItemHandlers::CanUseInBattle.add(:REDFLUTE,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !battler || battler.effects[PBEffects::Attract]<0 ||
      battler.hasActiveAbility?(:SOUNDPROOF)
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -189,7 +189,7 @@ ItemHandlers::CanUseInBattle.add(:REDFLUTE,proc { |item,pokemon,battler,move,fir
 
 ItemHandlers::CanUseInBattle.add(:PERSIMBERRY,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !battler || battler.effects[PBEffects::Confusion]==0
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -198,7 +198,7 @@ ItemHandlers::CanUseInBattle.add(:PERSIMBERRY,proc { |item,pokemon,battler,move,
 ItemHandlers::CanUseInBattle.add(:YELLOWFLUTE,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !battler || battler.effects[PBEffects::Confusion]==0 ||
      battler.hasActiveAbility?(:SOUNDPROOF)
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -244,7 +244,7 @@ ItemHandlers::CanUseInBattle.copy(:XACCURACY,:XACCURACY2,:XACCURACY3,:XACCURACY6
 
 ItemHandlers::CanUseInBattle.add(:DIREHIT,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !battler || battler.effects[PBEffects::FocusEnergy]>=1
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -252,7 +252,7 @@ ItemHandlers::CanUseInBattle.add(:DIREHIT,proc { |item,pokemon,battler,move,firs
 
 ItemHandlers::CanUseInBattle.add(:DIREHIT2,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !battler || battler.effects[PBEffects::FocusEnergy]>=2
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -260,7 +260,7 @@ ItemHandlers::CanUseInBattle.add(:DIREHIT2,proc { |item,pokemon,battler,move,fir
 
 ItemHandlers::CanUseInBattle.add(:DIREHIT3,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !battler || battler.effects[PBEffects::FocusEnergy]>=3
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -274,7 +274,7 @@ ItemHandlers::CanUseInBattle.add(:POKEFLUTE,proc { |item,pokemon,battler,move,fi
     break
   end
   if !anyAsleep
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true

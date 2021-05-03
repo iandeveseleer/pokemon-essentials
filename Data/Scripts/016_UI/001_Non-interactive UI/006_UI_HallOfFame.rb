@@ -277,9 +277,9 @@ class HallOfFame_Scene
     hour = totalsec / 60 / 60
     min = totalsec / 60 % 60
     pubid=sprintf("%05d",$Trainer.public_ID)
-    lefttext= _INTL("Name<r>{1}<br>",$Trainer.name)
-    lefttext+=_INTL("IDNo.<r>{1}<br>",pubid)
-    lefttext+=_ISPRINTF("Time<r>{1:02d}:{2:02d}<br>",hour,min)
+    lefttext= _INTL("Nom<r>{1}<br>",$Trainer.name)
+    lefttext+=_INTL("No.<r>{1}<br>",pubid)
+    lefttext+=_ISPRINTF("Temps de jeu<r>{1:02d}:{2:02d}<br>",hour,min)
     lefttext+=_INTL("Pokédex<r>{1}/{2}<br>",
         $Trainer.pokedex.owned_count,$Trainer.pokedex.seen_count)
     @sprites["messagebox"]=Window_AdvancedTextPokemon.new(lefttext)
@@ -287,7 +287,7 @@ class HallOfFame_Scene
     @sprites["messagebox"].width=192 if @sprites["messagebox"].width<192
     @sprites["msgwindow"]=pbCreateMessageWindow(@viewport)
     pbMessageDisplay(@sprites["msgwindow"],
-        _INTL("League champion!\nCongratulations!\\^"))
+        _INTL("Maître de la Ligue!\nFélicitations!\\^"))
   end
 
   def writePokemonData(pokemon,hallNumber=-1)
@@ -301,23 +301,23 @@ class HallOfFame_Scene
       speciesname+="♀"
     end
     pokename+="/"+speciesname
-    pokename=_INTL("Egg")+"/"+_INTL("Egg") if pokemon.egg?
+    pokename=_INTL("Oeuf")+"/"+_INTL("Oeuf") if pokemon.egg?
     idno=(pokemon.owner.name.empty? || pokemon.egg?) ? "?????" : sprintf("%05d",pokemon.owner.public_id)
-    dexnumber = _INTL("No. ???")
+    dexnumber = _INTL("N. ???")
     if !pokemon.egg?
       species_data = GameData::Species.get(pokemon.species)
-      dexnumber = _ISPRINTF("No. {1:03d}",species_data.id_number)
+      dexnumber = _ISPRINTF("N. {1:03d}",species_data.id_number)
     end
     textPositions=[
        [dexnumber,32,Graphics.height-86,0,BASECOLOR,SHADOWCOLOR],
        [pokename,Graphics.width-192,Graphics.height-86,2,BASECOLOR,SHADOWCOLOR],
-       [_INTL("Lv. {1}",pokemon.egg? ? "?" : pokemon.level),
+       [_INTL("N. {1}",pokemon.egg? ? "?" : pokemon.level),
            64,Graphics.height-54,0,BASECOLOR,SHADOWCOLOR],
-       [_INTL("IDNo.{1}",pokemon.egg? ? "?????" : idno),
+       [_INTL("ID.{1}",pokemon.egg? ? "?????" : idno),
            Graphics.width-192,Graphics.height-54,2,BASECOLOR,SHADOWCOLOR]
     ]
     if (hallNumber>-1)
-      textPositions.push([_INTL("Hall of Fame No."),Graphics.width/2-104,-6,0,BASECOLOR,SHADOWCOLOR])
+      textPositions.push([_INTL("Panthéon N."),Graphics.width/2-104,-6,0,BASECOLOR,SHADOWCOLOR])
       textPositions.push([hallNumber.to_s,Graphics.width/2+104,-6,1,BASECOLOR,SHADOWCOLOR])
     end
     pbDrawTextPositions(overlay,textPositions)
@@ -326,7 +326,7 @@ class HallOfFame_Scene
   def writeWelcome
     overlay=@sprites["overlay"].bitmap
     overlay.clear
-    pbDrawTextPositions(overlay,[[_INTL("Welcome to the Hall of Fame!"),
+    pbDrawTextPositions(overlay,[[_INTL("Bienvenue au Panthéon!"),
         Graphics.width/2,Graphics.height-80,-4,BASECOLOR,SHADOWCOLOR]])
   end
 
@@ -471,11 +471,11 @@ class HallOfFamePC
   end
 
   def name
-    return _INTL("Hall of Fame")
+    return _INTL("Panthéon")
   end
 
   def access
-    pbMessage(_INTL("\\se[PC access]Accessed the Hall of Fame."))
+    pbMessage(_INTL("\\se[PC access]Connexion à la session \"Panthéon\"."))
     pbHallOfFamePC
   end
 end

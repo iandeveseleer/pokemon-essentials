@@ -155,7 +155,7 @@ module Settings
 
   # The name of the person who created the Pokémon storage system.
   def self.storage_creator_name
-    return _INTL("Bill")
+    return _INTL("Léo")
   end
   # The number of boxes in Pokémon storage.
   NUM_STORAGE_BOXES = 30
@@ -165,14 +165,14 @@ module Settings
   # The names of each pocket of the Bag. Ignore the first entry ("").
   def self.bag_pocket_names
     return ["",
-      _INTL("Items"),
-      _INTL("Medicine"),
+      _INTL("Objets"),
+      _INTL("Médicaments"),
       _INTL("Poké Balls"),
-      _INTL("TMs & HMs"),
-      _INTL("Berries"),
-      _INTL("Mail"),
-      _INTL("Battle Items"),
-      _INTL("Key Items")
+      _INTL("CT & CS"),
+      _INTL("Baies"),
+      _INTL("Lettres"),
+      _INTL("Objets combats"),
+      _INTL("Objets clés")
     ]
   end
   # The maximum number of slots per pocket (-1 means infinite number). Ignore
@@ -203,9 +203,9 @@ module Settings
   # Dex list, no matter which region the player is currently in.
   def self.pokedex_names
     return [
-      [_INTL("Kanto Pokédex"), 0],
-      [_INTL("Johto Pokédex"), 1],
-      _INTL("National Pokédex")
+      [_INTL("Pokédex de Kanto"), 0],
+      [_INTL("Pokédex de Johto"), 1],
+      _INTL("Pokédex National")
     ]
   end
   # Whether all forms of a given species will be immediately available to view
@@ -394,10 +394,10 @@ module Settings
 
   # Available fonts, as selectable in the Options Screen.
   FONT_OPTIONS = [
-    "Power Green",
-    "Power Red and Blue",
-    "Power Red and Green",
-    "Power Clear"
+    # "Power Green",
+    # "Power Red and Blue",
+    "Power Red and Green"
+    # "Power Clear"
   ]
 end
 

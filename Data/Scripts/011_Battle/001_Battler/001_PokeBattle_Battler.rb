@@ -208,28 +208,28 @@ class PokeBattle_Battler
   def pbThis(lowerCase=false)
     if opposes?
       if @battle.trainerBattle?
-        return lowerCase ? _INTL("the opposing {1}",name) : _INTL("The opposing {1}",name)
+        return lowerCase ? _INTL("{1} ennemi",name) : _INTL("{1} ennemi",name)
       else
-        return lowerCase ? _INTL("the wild {1}",name) : _INTL("The wild {1}",name)
+        return lowerCase ? _INTL("{1} sauvage",name) : _INTL("{1} sauvage",name)
       end
     elsif !pbOwnedByPlayer?
-      return lowerCase ? _INTL("the ally {1}",name) : _INTL("The ally {1}",name)
+      return lowerCase ? _INTL("{1} allié",name) : _INTL("{1} allié",name)
     end
     return name
   end
 
   def pbTeam(lowerCase=false)
     if opposes?
-      return lowerCase ? _INTL("the opposing team") : _INTL("The opposing team")
+      return lowerCase ? _INTL("l'équipe adverse") : _INTL("L'équipe adverse")
     end
-    return lowerCase ? _INTL("your team") : _INTL("Your team")
+    return lowerCase ? _INTL("votre équipe") : _INTL("Votre équipe")
   end
 
   def pbOpposingTeam(lowerCase=false)
     if opposes?
-      return lowerCase ? _INTL("your team") : _INTL("Your team")
+      return lowerCase ? _INTL("votre équipe") : _INTL("Votre équipe")
     end
-    return lowerCase ? _INTL("the opposing team") : _INTL("The opposing team")
+    return lowerCase ? _INTL("l'équipe adverse") : _INTL("L'équipe adverse")
   end
 
   #=============================================================================
@@ -487,9 +487,9 @@ class PokeBattle_Battler
       if showMsg
         @battle.pbShowAbilitySplash(self)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} is unaffected!",pbThis))
+          @battle.pbDisplay(_INTL("Cela n'affecte pas {1}!",pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!",pbThis,abilityName))
+          @battle.pbDisplay(_INTL("{1} n'est pas affecté grâce à {2}!",pbThis,abilityName))
         end
         @battle.pbHideAbilitySplash(self)
       end
@@ -525,7 +525,7 @@ class PokeBattle_Battler
   def affectedByPowder?(showMsg=false)
     return false if fainted?
     if pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
-      @battle.pbDisplay(_INTL("{1} is unaffected!",pbThis)) if showMsg
+      @battle.pbDisplay(_INTL("Cela n'affecte pas {1}!",pbThis)) if showMsg
       return false
     end
     if Settings::MECHANICS_GENERATION >= 6
@@ -533,7 +533,7 @@ class PokeBattle_Battler
         if showMsg
           @battle.pbShowAbilitySplash(self)
           if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} is unaffected!",pbThis))
+            @battle.pbDisplay(_INTL("Cela n'affecte pas {1}!",pbThis))
           else
             @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!",pbThis,abilityName))
           end

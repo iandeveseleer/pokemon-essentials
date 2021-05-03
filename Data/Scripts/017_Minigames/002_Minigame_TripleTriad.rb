@@ -1101,7 +1101,7 @@ def pbBuyTriads
       cmdwindow.active = false
       cmdwindow.update
       if $Trainer.money<price
-        pbMessage(_INTL("You don't have enough money."))
+        pbMessage(_INTL("Tu n'as pas assez d'argent."))
         next
       end
       maxafford = (price<=0) ? 99 : $Trainer.money/price
@@ -1116,7 +1116,7 @@ def pbBuyTriads
       price *= quantity
       next if !pbConfirmMessage(_INTL("{1}, and you want {2}. That will be ${3}. OK?",itemname,quantity,price.to_s_formatted))
       if $Trainer.money<price
-        pbMessage(_INTL("You don't have enough money."))
+        pbMessage(_INTL("Tu n'as pas assez d'argent."))
         next
       end
       if !$PokemonGlobal.triads.pbCanStore?(item,quantity)
@@ -1145,7 +1145,7 @@ def pbSellTriads
     speciesname = GameData::Species.get(item[0]).name
     commands.push(_INTL("{1} x{2}", speciesname, item[1]))
   end
-  commands.push(_INTL("CANCEL"))
+  commands.push(_INTL("ANNULER"))
   if commands.length==1
     pbMessage(_INTL("You have no cards."))
     return
@@ -1225,7 +1225,7 @@ def pbSellTriads
               speciesname = GameData::Species.get(item[0]).name
               commands.push(_INTL("{1} x{2}",speciesname,item[1]))
             end
-            commands.push(_INTL("CANCEL"))
+            commands.push(_INTL("ANNULER"))
             cmdwindow.commands = commands
             break
           end
@@ -1249,7 +1249,7 @@ def pbTriadList
     speciesname = GameData::Species.get(item[0]).name
     commands.push(_INTL("{1} x{2}",speciesname,item[1]))
   end
-  commands.push(_INTL("CANCEL"))
+  commands.push(_INTL("ANNULER"))
   if commands.length==1
     pbMessage(_INTL("You have no cards."))
     return

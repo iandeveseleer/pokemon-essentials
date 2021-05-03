@@ -12,22 +12,22 @@ class PokeBattle_Battle
     return false if idxParty>=party.length
     return false if !party[idxParty]
     if party[idxParty].egg?
-      partyScene.pbDisplay(_INTL("An Egg can't battle!")) if partyScene
+      partyScene.pbDisplay(_INTL("Un Oeuf ne peut pas se battre!")) if partyScene
       return false
     end
     if !pbIsOwner?(idxBattler,idxParty)
       owner = pbGetOwnerFromPartyIndex(idxBattler,idxParty)
-      partyScene.pbDisplay(_INTL("You can't switch {1}'s Pokémon with one of yours!",
+      partyScene.pbDisplay(_INTL("Tu ne peut pas envoyer le Pokémon de {1}!",
         owner.name)) if partyScene
       return false
     end
     if party[idxParty].fainted?
-      partyScene.pbDisplay(_INTL("{1} has no energy left to battle!",
+      partyScene.pbDisplay(_INTL("{1} ne peut plus se battre!",
          party[idxParty].name)) if partyScene
       return false
     end
     if pbFindBattler(idxParty,idxBattler)
-      partyScene.pbDisplay(_INTL("{1} is already in battle!",
+      partyScene.pbDisplay(_INTL("{1} est déjà au combat!",
          party[idxParty].name)) if partyScene
       return false
     end
@@ -45,7 +45,7 @@ class PokeBattle_Battle
     # Pokémon
     eachSameSideBattler(idxBattler) do |b|
       next if choices[b.index][0]!=:SwitchOut || choices[b.index][1]!=idxParty
-      partyScene.pbDisplay(_INTL("{1} has already been selected.",
+      partyScene.pbDisplay(_INTL("{1} est déjà selectionné.",
          pbParty(idxBattler)[idxParty].name)) if partyScene
       return false
     end
@@ -70,7 +70,7 @@ class PokeBattle_Battle
        battler.effects[PBEffects::MeanLook]>=0 ||
        battler.effects[PBEffects::Ingrain] ||
        @field.effects[PBEffects::FairyLock]>0
-      partyScene.pbDisplay(_INTL("{1} can't be switched out!",battler.pbThis)) if partyScene
+      partyScene.pbDisplay(_INTL("{1} ne peut pas être remplacé!",battler.pbThis)) if partyScene
       return false
     end
     # Trapping abilities/items
@@ -172,7 +172,7 @@ class PokeBattle_Battle
               new_index = pbLastInTeam(idxBattler)
               idxPartyForName = new_index if new_index >= 0
             end
-            if pbDisplayConfirm(_INTL("{1} is about to send in {2}. Will you switch your Pokémon?",
+            if pbDisplayConfirm(_INTL("{1} est sur le point d'envoyer {2}. Voulez-vous envoyer un autre Pokémon?",
                opponent.full_name, enemyParty[idxPartyForName].name))
               idxPlayerPartyNew = pbSwitchInBetween(0,false,true)
               if idxPlayerPartyNew>=0
@@ -190,7 +190,7 @@ class PokeBattle_Battle
           switched.push(idxBattler)
         else   # Player's Pokémon has fainted in a wild battle
           switch = false
-          if !pbDisplayConfirm(_INTL("Use next Pokémon?"))
+          if !pbDisplayConfirm(_INTL("Utiliser le Pokémon suivant?"))
             switch = (pbRun(idxBattler,true)<=0)
           else
             switch = true
@@ -235,19 +235,19 @@ class PokeBattle_Battle
   def pbMessageOnRecall(battler)
     if battler.pbOwnedByPlayer?
       if battler.hp<=battler.totalhp/4
-        pbDisplayBrief(_INTL("Good job, {1}! Come back!",battler.name))
+        pbDisplayBrief(_INTL("Beau travail, {1}! Reviens!",battler.name))
       elsif battler.hp<=battler.totalhp/2
-        pbDisplayBrief(_INTL("OK, {1}! Come back!",battler.name))
+        pbDisplayBrief(_INTL("OK, {1}! Reviens!",battler.name))
       elsif battler.turnCount>=5
-        pbDisplayBrief(_INTL("{1}, that's enough! Come back!",battler.name))
+        pbDisplayBrief(_INTL("{1}, c'est assez! Reviens!",battler.name))
       elsif battler.turnCount>=2
-        pbDisplayBrief(_INTL("{1}, come back!",battler.name))
+        pbDisplayBrief(_INTL("{1}, reviens!",battler.name))
       else
-        pbDisplayBrief(_INTL("{1}, switch out! Come back!",battler.name))
+        pbDisplayBrief(_INTL("{1}, on change! Reviens!",battler.name))
       end
     else
       owner = pbGetOwnerName(battler.index)
-      pbDisplayBrief(_INTL("{1} withdrew {2}!",owner,battler.name))
+      pbDisplayBrief(_INTL("{1} retire {2}!",owner,battler.name))
     end
   end
 
@@ -262,17 +262,17 @@ class PokeBattle_Battle
     if pbOwnedByPlayer?(idxBattler)
       opposing = @battlers[idxBattler].pbDirectOpposing
       if opposing.fainted? || opposing.hp==opposing.totalhp
-        pbDisplayBrief(_INTL("You're in charge, {1}!",newPkmnName))
+        pbDisplayBrief(_INTL("Je compte sur toi, {1}!",newPkmnName))
       elsif opposing.hp>=opposing.totalhp/2
-        pbDisplayBrief(_INTL("Go for it, {1}!",newPkmnName))
+        pbDisplayBrief(_INTL("Allez, {1}!",newPkmnName))
       elsif opposing.hp>=opposing.totalhp/4
-        pbDisplayBrief(_INTL("Just a little more! Hang in there, {1}!",newPkmnName))
+        pbDisplayBrief(_INTL("Encore un peu! Vas-y, {1}!",newPkmnName))
       else
-        pbDisplayBrief(_INTL("Your opponent's weak! Get 'em, {1}!",newPkmnName))
+        pbDisplayBrief(_INTL("L'ennemi est faible! {1}, à toi de jouer!",newPkmnName))
       end
     else
       owner = pbGetOwnerFromBattlerIndex(idxBattler)
-      pbDisplayBrief(_INTL("{1} sent out {2}!",owner.full_name,newPkmnName))
+      pbDisplayBrief(_INTL("{1} envoi {2}!",owner.full_name,newPkmnName))
     end
   end
 
@@ -322,7 +322,7 @@ class PokeBattle_Battle
     # Introduce Shadow Pokémon
     if battler.opposes? && battler.shadowPokemon?
       pbCommonAnimation("Shadow",battler)
-      pbDisplay(_INTL("Oh!\nA Shadow Pokémon!"))
+      pbDisplay(_INTL("Oh!\nUn Pokémon Obscur!"))
     end
     # Record money-doubling effect of Amulet Coin/Luck Incense
     if !battler.opposes? && [:AMULETCOIN, :LUCKINCENSE].include?(battler.item_id)

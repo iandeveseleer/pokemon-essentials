@@ -162,7 +162,7 @@ class PokemonTilesetScene
            _INTL("Go to bottom"),
            _INTL("Go to top"),
            _INTL("Change tileset"),
-           _INTL("Cancel")
+           _INTL("ANNULER")
         ]
         case pbShowCommands(nil,commands,-1)
         when 0

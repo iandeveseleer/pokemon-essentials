@@ -228,7 +228,7 @@ class PokemonSummary_Scene
     ret = -1
     @sprites["messagebox"].text    = text
     @sprites["messagebox"].visible = true
-    using(cmdwindow = Window_CommandPokemon.new([_INTL("Yes"),_INTL("No")])) {
+    using(cmdwindow = Window_CommandPokemon.new([_INTL("Oui"),_INTL("Non")])) {
       cmdwindow.z       = @viewport.z+1
       cmdwindow.visible = false
       pbBottomRight(cmdwindow)
@@ -332,22 +332,22 @@ class PokemonSummary_Scene
     # Draw all images
     pbDrawImagePositions(overlay,imagepos)
     # Write various bits of text
-    pagename = [_INTL("INFO"),
-                _INTL("TRAINER MEMO"),
-                _INTL("SKILLS"),
-                _INTL("MOVES"),
-                _INTL("RIBBONS")][page-1]
+    pagename = [_INTL("INFOS"),
+                _INTL("MEMO DRESSEUR"),
+                _INTL("STATS"),
+                _INTL("CAPACITES"),
+                _INTL("RUBANS")][page-1]
     textpos = [
        [pagename,26,10,0,base,shadow],
        [@pokemon.name,46,56,0,base,shadow],
        [@pokemon.level.to_s,46,86,0,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Item"),66,312,0,base,shadow]
+       [_INTL("Objet"),66,312,0,base,shadow]
     ]
     # Write the held item's name
     if @pokemon.hasItem?
       textpos.push([@pokemon.item.name,16,346,0,Color.new(64,64,64),Color.new(176,176,176)])
     else
-      textpos.push([_INTL("None"),16,346,0,Color.new(192,200,208),Color.new(208,216,224)])
+      textpos.push([_INTL("Aucun"),16,346,0,Color.new(192,200,208),Color.new(208,216,224)])
     end
     # Write the gender symbol
     if @pokemon.male?
@@ -386,12 +386,12 @@ class PokemonSummary_Scene
     end
     # Write various bits of text
     textpos = [
-       [_INTL("Dex No."),238,74,0,base,shadow],
-       [_INTL("Species"),238,106,0,base,shadow],
+       [_INTL("N. Dex"),238,74,0,base,shadow],
+       [_INTL("Espèce"),238,106,0,base,shadow],
        [@pokemon.speciesName,435,106,2,Color.new(64,64,64),Color.new(176,176,176)],
        [_INTL("Type"),238,138,0,base,shadow],
-       [_INTL("OT"),238,170,0,base,shadow],
-       [_INTL("ID No."),238,202,0,base,shadow],
+       [_INTL("DO"),238,170,0,base,shadow],
+       [_INTL("ID N."),238,202,0,base,shadow],
     ]
     # Write the Regional/National Dex number
     dexnum = GameData::Species.get(@pokemon.species).id_number
@@ -493,15 +493,15 @@ class PokemonSummary_Scene
     pbDrawImagePositions(overlay,imagepos)
     # Write various bits of text
     textpos = [
-       [_INTL("TRAINER MEMO"),26,10,0,base,shadow],
+       [_INTL("MEMO DRESSEUR"),26,10,0,base,shadow],
        [@pokemon.name,46,56,0,base,shadow],
-       [_INTL("Item"),66,312,0,base,shadow]
+       [_INTL("Objet"),66,312,0,base,shadow]
     ]
     # Write the held item's name
     if @pokemon.hasItem?
       textpos.push([@pokemon.item.name,16,346,0,Color.new(64,64,64),Color.new(176,176,176)])
     else
-      textpos.push([_INTL("None"),16,346,0,Color.new(192,200,208),Color.new(208,216,224)])
+      textpos.push([_INTL("Aucun"),16,346,0,Color.new(192,200,208),Color.new(208,216,224)])
     end
     # Draw all text
     pbDrawTextPositions(overlay,textpos)
@@ -517,17 +517,17 @@ class PokemonSummary_Scene
     mapname = pbGetMapNameFromId(@pokemon.obtain_map)
     mapname = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
     if mapname && mapname != ""
-      memo += _INTL("<c3=404040,B0B0B0>A mysterious Pokémon Egg received from <c3=F83820,E09890>{1}<c3=404040,B0B0B0>.\n",mapname)
+      memo += _INTL("<c3=404040,B0B0B0>Un Oeuf Pokémon mystérieux reçu de <c3=F83820,E09890>{1}<c3=404040,B0B0B0>.\n",mapname)
     else
-      memo += _INTL("<c3=404040,B0B0B0>A mysterious Pokémon Egg.\n",mapname)
+      memo += _INTL("<c3=404040,B0B0B0>Un Oeuf Pokémon mystérieux.\n",mapname)
     end
     memo += "\n" # Empty line
     # Write Egg Watch blurb
-    memo += _INTL("<c3=404040,B0B0B0>\"The Egg Watch\"\n")
-    eggstate = _INTL("It looks like this Egg will take a long time to hatch.")
-    eggstate = _INTL("What will hatch from this? It doesn't seem close to hatching.") if @pokemon.steps_to_hatch < 10200
-    eggstate = _INTL("It appears to move occasionally. It may be close to hatching.") if @pokemon.steps_to_hatch < 2550
-    eggstate = _INTL("Sounds can be heard coming from inside! It will hatch soon!") if @pokemon.steps_to_hatch < 1275
+    memo += _INTL("<c3=404040,B0B0B0>\"Etat de l'Oeuf\"\n")
+    eggstate = _INTL("On dirait que cet oeuf va prendre beaucoup de temps à éclore.")
+    eggstate = _INTL("Qu'est-ce qui va éclore de ça ? Ça ne semble pas près d'éclore.") if @pokemon.steps_to_hatch < 10200
+    eggstate = _INTL("Il semble bouger de temps en temps. Il est peut-être proche de l'éclosion.") if @pokemon.steps_to_hatch < 2550
+    eggstate = _INTL("On peut entendre des sons venant de l'intérieur ! Il va bientôt éclore !") if @pokemon.steps_to_hatch < 1275
     memo += sprintf("<c3=404040,B0B0B0>%s\n",eggstate)
     # Draw all text
     drawFormattedTextEx(overlay,232,82,268,memo)
@@ -542,7 +542,7 @@ class PokemonSummary_Scene
     showNature = !@pokemon.shadowPokemon? || @pokemon.heartStage>3
     if showNature
       natureName = @pokemon.nature.name
-      memo += _INTL("<c3=F83820,E09890>{1}<c3=404040,B0B0B0> nature.\n",natureName)
+      memo += _INTL("<c3=F83820,E09890>{1}<c3=404040,B0B0B0> de nature.\n",natureName)
     end
     # Write date received
     if @pokemon.timeReceived
@@ -554,14 +554,14 @@ class PokemonSummary_Scene
     # Write map name Pokémon was received on
     mapname = pbGetMapNameFromId(@pokemon.obtain_map)
     mapname = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
-    mapname = _INTL("Faraway place") if !mapname || mapname==""
+    mapname = _INTL("Endroit Lointain") if !mapname || mapname==""
     memo += sprintf("<c3=F83820,E09890>%s\n",mapname)
     # Write how Pokémon was obtained
-    mettext = [_INTL("Met at Lv. {1}.",@pokemon.obtain_level),
-               _INTL("Egg received."),
-               _INTL("Traded at Lv. {1}.",@pokemon.obtain_level),
+    mettext = [_INTL("Recontré au niveau {1}.",@pokemon.obtain_level),
+               _INTL("Reçu en Oeuf."),
+               _INTL("Echangé au niveau {1}.",@pokemon.obtain_level),
                "",
-               _INTL("Had a fateful encounter at Lv. {1}.",@pokemon.obtain_level)
+               _INTL("Rencontré malheureusement au niveau {1}.",@pokemon.obtain_level)
               ][@pokemon.obtain_method]
     memo += sprintf("<c3=404040,B0B0B0>%s\n",mettext) if mettext && mettext!=""
     # If Pokémon was hatched, write when and where it hatched
@@ -573,9 +573,9 @@ class PokemonSummary_Scene
         memo += _INTL("<c3=404040,B0B0B0>{1} {2}, {3}\n",date,month,year)
       end
       mapname = pbGetMapNameFromId(@pokemon.hatched_map)
-      mapname = _INTL("Faraway place") if !mapname || mapname==""
+      mapname = _INTL("Endroit Lointain") if !mapname || mapname==""
       memo += sprintf("<c3=F83820,E09890>%s\n",mapname)
-      memo += _INTL("<c3=404040,B0B0B0>Egg hatched.\n")
+      memo += _INTL("<c3=404040,B0B0B0>Oeuf éclos.\n")
     else
       memo += "\n"   # Empty line
     end
@@ -593,36 +593,36 @@ class PokemonSummary_Scene
         end
       end
       characteristics = {
-        :HP              => [_INTL("Loves to eat."),
-                             _INTL("Takes plenty of siestas."),
-                             _INTL("Nods off a lot."),
-                             _INTL("Scatters things often."),
-                             _INTL("Likes to relax.")],
-        :ATTACK          => [_INTL("Proud of its power."),
-                             _INTL("Likes to thrash about."),
-                             _INTL("A little quick tempered."),
-                             _INTL("Likes to fight."),
-                             _INTL("Quick tempered.")],
-        :DEFENSE         => [_INTL("Sturdy body."),
-                             _INTL("Capable of taking hits."),
-                             _INTL("Highly persistent."),
-                             _INTL("Good endurance."),
-                             _INTL("Good perseverance.")],
-        :SPECIAL_ATTACK  => [_INTL("Highly curious."),
-                             _INTL("Mischievous."),
-                             _INTL("Thoroughly cunning."),
-                             _INTL("Often lost in thought."),
-                             _INTL("Very finicky.")],
-        :SPECIAL_DEFENSE => [_INTL("Strong willed."),
-                             _INTL("Somewhat vain."),
-                             _INTL("Strongly defiant."),
-                             _INTL("Hates to lose."),
-                             _INTL("Somewhat stubborn.")],
-        :SPEED           => [_INTL("Likes to run."),
-                             _INTL("Alert to sounds."),
-                             _INTL("Impetuous and silly."),
-                             _INTL("Somewhat of a clown."),
-                             _INTL("Quick to flee.")]
+        :HP              => [_INTL("Aime manger."),
+                             _INTL("Prend beaucoup de siestes."),
+                             _INTL("Hoche la tête souvent."),
+                             _INTL("Disperse souvent les choses."),
+                             _INTL("Aime se détendre.")],
+        :ATTACK          => [_INTL("Fier de sa puissance."),
+                             _INTL("Il aime s'agiter."),
+                             _INTL("Un peu colérique."),
+                             _INTL("Aime se battre."),
+                             _INTL("A le sang chaud.")],
+        :DEFENSE         => [_INTL("Corps robuste."),
+                             _INTL("Capable d'encaisser des coups."),
+                             _INTL("Hautement persistant."),
+                             _INTL("Bonne endurance."),
+                             _INTL("Bonne persévérance.")],
+        :SPECIAL_ATTACK  => [_INTL("Très curieux."),
+                             _INTL("Espiègle."),
+                             _INTL("Tout à fait astucieux."),
+                             _INTL("Souvent perdu dans ses pensées."),
+                             _INTL("Très pointilleux.")],
+        :SPECIAL_DEFENSE => [_INTL("Forte volonté."),
+                             _INTL("Un peu vaniteux."),
+                             _INTL("Fortement défiant."),
+                             _INTL("Il déteste perdre."),
+                             _INTL("Un peu têtu.")],
+        :SPEED           => [_INTL("Il aime courir."),
+                             _INTL("Alerte aux sons."),
+                             _INTL("Impétueux et stupide."),
+                               _INTL("Plus ou moins clown."),
+                             _INTL("Rapide à fuir.")]
       }
       memo += sprintf("<c3=404040,B0B0B0>%s\n", characteristics[best_stat][best_iv % 5])
     end
@@ -645,17 +645,17 @@ class PokemonSummary_Scene
     end
     # Write various bits of text
     textpos = [
-       [_INTL("HP"),292,70,2,base,statshadows[:HP]],
+       [_INTL("PV"),292,70,2,base,statshadows[:HP]],
        [sprintf("%d/%d",@pokemon.hp,@pokemon.totalhp),462,70,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Attack"),248,114,0,base,statshadows[:ATTACK]],
+       [_INTL("Attaque"),248,114,0,base,statshadows[:ATTACK]],
        [sprintf("%d",@pokemon.attack),456,114,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Defense"),248,146,0,base,statshadows[:DEFENSE]],
+       [_INTL("Défense"),248,146,0,base,statshadows[:DEFENSE]],
        [sprintf("%d",@pokemon.defense),456,146,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Sp. Atk"),248,178,0,base,statshadows[:SPECIAL_ATTACK]],
+       [_INTL("Atq. Spé."),248,178,0,base,statshadows[:SPECIAL_ATTACK]],
        [sprintf("%d",@pokemon.spatk),456,178,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Sp. Def"),248,210,0,base,statshadows[:SPECIAL_DEFENSE]],
+       [_INTL("Déf. Spé."),248,210,0,base,statshadows[:SPECIAL_DEFENSE]],
        [sprintf("%d",@pokemon.spdef),456,210,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Speed"),248,242,0,base,statshadows[:SPEED]],
+       [_INTL("Vitesse"),248,242,0,base,statshadows[:SPEED]],
        [sprintf("%d",@pokemon.speed),456,242,1,Color.new(64,64,64),Color.new(176,176,176)],
        [_INTL("Ability"),224,278,0,base,shadow]
     ]
@@ -750,10 +750,10 @@ class PokemonSummary_Scene
     end
     # Write various bits of text
     textpos = [
-       [_INTL("MOVES"),26,10,0,base,shadow],
-       [_INTL("CATEGORY"),20,116,0,base,shadow],
-       [_INTL("POWER"),20,148,0,base,shadow],
-       [_INTL("ACCURACY"),20,180,0,base,shadow]
+       [_INTL("CAPACITES"),26,10,0,base,shadow],
+       [_INTL("CATEGORIE"),20,116,0,base,shadow],
+       [_INTL("PUISSANCE"),20,148,0,base,shadow],
+       [_INTL("PRECISION"),20,180,0,base,shadow]
     ]
     imagepos = []
     # Write move names, types and PP amounts for each known move
@@ -839,7 +839,7 @@ class PokemonSummary_Scene
     @sprites["downarrow"].visible = false
     # Write various bits of text
     textpos = [
-       [_INTL("No. of Ribbons:"),234,326,0,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("Rubans:"),234,326,0,Color.new(64,64,64),Color.new(176,176,176)],
        [@pokemon.numRibbons.to_s,450,326,1,Color.new(64,64,64),Color.new(176,176,176)],
     ]
     # Draw all text
@@ -1089,9 +1089,9 @@ class PokemonSummary_Scene
           @sprites["markingoverlay"].bitmap.blt(300+58*(i%3),154+50*(i/3),@markingbitmap.bitmap,markrect)
         end
         textpos = [
-           [_INTL("Mark {1}",pokemon.name),366,90,2,base,shadow],
+           [_INTL("Marquer le {1}",pokemon.name),366,90,2,base,shadow],
            [_INTL("OK"),366,242,2,base,shadow],
-           [_INTL("Cancel"),366,292,2,base,shadow]
+           [_INTL("ANNULER"),366,292,2,base,shadow]
         ]
         pbDrawTextPositions(@sprites["markingoverlay"].bitmap,textpos)
         redraw = false
@@ -1178,12 +1178,12 @@ class PokemonSummary_Scene
     cmdPokedex  = -1
     cmdMark     = -1
     if !@pokemon.egg?
-      commands[cmdGiveItem = commands.length] = _INTL("Give item")
-      commands[cmdTakeItem = commands.length] = _INTL("Take item") if @pokemon.hasItem?
-      commands[cmdPokedex = commands.length]  = _INTL("View Pokédex") if $Trainer.has_pokedex
+      commands[cmdGiveItem = commands.length] = _INTL("Donner objet")
+      commands[cmdTakeItem = commands.length] = _INTL("Prendre objet") if @pokemon.hasItem?
+      commands[cmdPokedex = commands.length]  = _INTL("Voir dans le Pokédex") if $Trainer.has_pokedex
     end
-    commands[cmdMark = commands.length]       = _INTL("Mark")
-    commands[commands.length]                 = _INTL("Cancel")
+    commands[cmdMark = commands.length]       = _INTL("Marque")
+    commands[commands.length]                 = _INTL("ANNULER")
     command = pbShowCommands(commands)
     if cmdGiveItem>=0 && command==cmdGiveItem
       item = nil
@@ -1343,7 +1343,7 @@ class PokemonSummaryScreen
       ret = @scene.pbChooseMoveToForget(move_to_learn)
       break if ret < 0 || !move_to_learn
       break if $DEBUG || !party[partyindex].moves[ret].hidden_move?
-      pbMessage(_INTL("HM moves can't be forgotten now.")) { @scene.pbUpdate }
+      pbMessage(_INTL("Les CS ne peuvent pas être oubliées.")) { @scene.pbUpdate }
     end
     @scene.pbEndScene
     return ret
@@ -1356,7 +1356,7 @@ class PokemonSummaryScreen
     loop do
       ret = @scene.pbChooseMoveToForget(nil)
       break if ret >= 0
-      pbMessage(_INTL("You must choose a move!")) { @scene.pbUpdate }
+      pbMessage(_INTL("Choisis une capacité!")) { @scene.pbUpdate }
     end
     @scene.pbEndScene
     return ret

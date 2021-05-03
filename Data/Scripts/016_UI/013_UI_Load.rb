@@ -67,7 +67,7 @@ class PokemonLoadPanel < SpriteWrapper
         textpos.push([@trainer.badge_count.to_s,103*2,53*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
         textpos.push([_INTL("Pokédex:"),16*2,69*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         textpos.push([@trainer.pokedex.seen_count.to_s,103*2,69*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([_INTL("Time:"),16*2,85*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
+        textpos.push([_INTL("Temps de jeu:"),16*2,85*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         hour = @totalsec / 60 / 60
         min  = @totalsec / 60 % 60
         if hour>0
@@ -285,16 +285,16 @@ class PokemonLoadScreen
     cmd_quit         = -1
     show_continue = !@save_data.empty?
     if show_continue
-      commands[cmd_continue = commands.length] = _INTL('Continue')
+      commands[cmd_continue = commands.length] = _INTL('Continuer')
       if @save_data[:player].mystery_gift_unlocked
-        commands[cmd_mystery_gift = commands.length] = _INTL('Mystery Gift')
+        commands[cmd_mystery_gift = commands.length] = _INTL('Cadeau Mystère')
       end
     end
-    commands[cmd_new_game = commands.length]  = _INTL('New Game')
+    commands[cmd_new_game = commands.length]  = _INTL('Nouvelle partie')
     commands[cmd_options = commands.length]   = _INTL('Options')
-    commands[cmd_language = commands.length]  = _INTL('Language') if Settings::LANGUAGES.length >= 2
+    commands[cmd_language = commands.length]  = _INTL('Langue') if Settings::LANGUAGES.length >= 2
     commands[cmd_debug = commands.length]     = _INTL('Debug') if $DEBUG
-    commands[cmd_quit = commands.length]      = _INTL('Quit Game')
+    commands[cmd_quit = commands.length]      = _INTL('Quitter le jeu')
     map_id = show_continue ? @save_data[:map_factory].map.map_id : 0
     @scene.pbStartScene(commands, show_continue, @save_data[:player],
                         @save_data[:frame_count] || 0, map_id)

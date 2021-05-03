@@ -103,12 +103,12 @@ class PokemonEntryScene
     end
     if minlength==0
       @sprites["helpwindow"]=Window_UnformattedTextPokemon.newWithSize(
-         _INTL("Enter text using the keyboard. Press\nEnter to confirm, or Esc to cancel."),
+         _INTL("Saisir le texte à l'aide de votre clavier. Appuyer sur\nEntrée pour confirmer."),
          32,Graphics.height-96,Graphics.width-64,96,@viewport
       )
     else
       @sprites["helpwindow"]=Window_UnformattedTextPokemon.newWithSize(
-         _INTL("Enter text using the keyboard.\nPress Enter to confirm."),
+        _INTL("Saisir le texte à l'aide de votre clavier. Appuyer sur\nEntrée pour confirmer."),
          32,Graphics.height-96,Graphics.width-64,96,@viewport
       )
     end
@@ -262,9 +262,9 @@ end
 #===============================================================================
 class PokemonEntryScene2
   @@Characters = [
-     [("ABCDEFGHIJ ,."+"KLMNOPQRST '-"+"UVWXYZ     ♂♀"+"             "+"0123456789   ").scan(/./),_INTL("UPPER")],
-     [("abcdefghij ,."+"klmnopqrst '-"+"uvwxyz     ♂♀"+"             "+"0123456789   ").scan(/./),_INTL("lower")],
-     [(",.:;!?   ♂♀  "+"\"'()<>[]     "+"~@#%*&$      "+"+-=^_/\\|     "+"             ").scan(/./),_INTL("other")],
+     [("ABCDEFGHIJ ,."+"KLMNOPQRST '-"+"UVWXYZ     ♂♀"+"             "+"0123456789   ").scan(/./),_INTL("MAJ")],
+     [("abcdefghij ,."+"klmnopqrst '-"+"uvwxyz     ♂♀"+"             "+"0123456789   ").scan(/./),_INTL("min")],
+     [(",.:;!?   ♂♀  "+"\"'()<>[]     "+"~@#%*&$      "+"+-=^_/\\|     "+"             ").scan(/./),_INTL("autres")],
   ]
   ROWS    = 13
   COLUMNS = 5

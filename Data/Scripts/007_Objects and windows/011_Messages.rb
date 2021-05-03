@@ -823,7 +823,7 @@ def pbMessage(message,commands=nil,cmdIfCancel=0,skin=nil,defaultCmd=0,&block)
 end
 
 def pbConfirmMessage(message,&block)
-  return (pbMessage(message,[_INTL("Yes"),_INTL("No")],2,&block)==0)
+  return (pbMessage(message,[_INTL("Oui"),_INTL("Non")],2,&block)==0)
 end
 
 def pbConfirmMessageSerious(message,&block)

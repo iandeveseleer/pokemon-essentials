@@ -4,7 +4,7 @@ class PokeBattle_Battle
   #=============================================================================
   def pbCanUseItemOnPokemon?(item,pkmn,battler,scene,showMessages=true)
     if !pkmn || pkmn.egg?
-      scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+      scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
       return false
     end
     # Embargo
@@ -77,9 +77,9 @@ class PokeBattle_Battle
   def pbUseItemMessage(item,trainerName)
     itemName = GameData::Item.get(item).name
     if itemName.starts_with_vowel?
-      pbDisplayBrief(_INTL("{1} used an {2}.",trainerName,itemName))
+      pbDisplayBrief(_INTL("{1} utilise {2}.",trainerName,itemName))
     else
-      pbDisplayBrief(_INTL("{1} used a {2}.",trainerName,itemName))
+      pbDisplayBrief(_INTL("{1} utilise {2}.",trainerName,itemName))
     end
   end
 
@@ -95,7 +95,7 @@ class PokeBattle_Battle
       ch[1] = nil   # Delete item from choice
       return
     end
-    pbDisplay(_INTL("But it had no effect!"))
+    pbDisplay(_INTL("Mais cela n'a aucun effet!"))
     # Return unused item to Bag
     pbReturnUnusedItemToBag(item,userBattler.index)
   end
@@ -112,7 +112,7 @@ class PokeBattle_Battle
         ch[1] = nil   # Delete item from choice
         return
       else
-        pbDisplay(_INTL("But it had no effect!"))
+        pbDisplay(_INTL("Mais cela n'a aucun effet!"))
       end
     else
       pbDisplay(_INTL("But it's not where this item can be used!"))
@@ -141,7 +141,7 @@ class PokeBattle_Battle
       ch[1] = nil   # Delete item from choice
       return
     end
-    pbDisplay(_INTL("But it had no effect!"))
+    pbDisplay(_INTL("Mais cela n'a aucun effet!"))
     # Return unused item to Bag
     pbReturnUnusedItemToBag(item,userBattler.index)
   end

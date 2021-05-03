@@ -32,7 +32,7 @@ class Window_PokemonItemStorage < Window_DrawableCommand
     rect = drawCursor(index,rect)
     textpos = []
     if index==@bag.length
-      textpos.push([_INTL("CANCEL"),rect.x,rect.y-6,false,self.baseColor,self.shadowColor])
+      textpos.push([_INTL("ANNULER"),rect.x,rect.y-6,false,self.baseColor,self.shadowColor])
     else
       item     = @bag[index][0]
       itemname = @adapter.getDisplayName(item)
@@ -246,7 +246,7 @@ module UIHelper
     dw.text           = msg
     dw.visible        = true
     pbBottomLeftLines(dw,2)
-    commands = [_INTL("Yes"),_INTL("No")]
+    commands = [_INTL("Oui"),_INTL("Non")]
     cw = Window_CommandPokemon.new(commands)
     cw.index = 0
     cw.viewport = helpwindow.viewport

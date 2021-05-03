@@ -166,10 +166,10 @@ class PokemonPokedexInfo_Scene
     ret.each do |entry|
       if !entry[0] || entry[0].empty?   # Necessarily applies only to form 0
         case entry[1]
-        when 0 then entry[0] = _INTL("Male")
-        when 1 then entry[0] = _INTL("Female")
+        when 0 then entry[0] = _INTL("Mâle")
+        when 1 then entry[0] = _INTL("Femelle")
         else
-          entry[0] = (multiple_forms) ? _INTL("One Form") : _INTL("Genderless")
+          entry[0] = (multiple_forms) ? _INTL("1ère Forme") : _INTL("Non binaire")
         end
       end
       entry[1] = 0 if entry[1] == 2   # Genderless entries are treated as male
@@ -216,12 +216,12 @@ class PokemonPokedexInfo_Scene
     textpos = [
        [_INTL("{1}{2} {3}", indexText, " ", species_data.name),
           246, 36, 0, Color.new(248, 248, 248), Color.new(0, 0, 0)],
-       [_INTL("Height"), 314, 152, 0, base, shadow],
-       [_INTL("Weight"), 314, 184, 0, base, shadow]
+       [_INTL("Taille"), 314, 152, 0, base, shadow],
+       [_INTL("Poids"), 314, 184, 0, base, shadow]
     ]
     if $Trainer.owned?(@species)
       # Write the category
-      textpos.push([_INTL("{1} Pokémon", species_data.category), 246, 68, 0, base, shadow])
+      textpos.push([_INTL("Pokémon {1}", species_data.category), 246, 68, 0, base, shadow])
       # Write the height and weight
       height = species_data.height
       weight = species_data.weight
@@ -257,7 +257,7 @@ class PokemonPokedexInfo_Scene
       overlay.blt(396, 120, @typebitmap.bitmap, type2rect) if type1 != type2
     else
       # Write the category
-      textpos.push([_INTL("????? Pokémon"), 246, 68, 0, base, shadow])
+      textpos.push([_INTL("Pokémon ?????"), 246, 68, 0, base, shadow])
       # Write the height and weight
       if System.user_language[3..4] == "US"   # If the user is in the United States
         textpos.push([_INTL("???'??\""), 460, 152, 1, base, shadow])
@@ -350,10 +350,10 @@ class PokemonPokedexInfo_Scene
       pbDrawImagePositions(overlay,[
          [sprintf("Graphics/Pictures/Pokedex/overlay_areanone"),108,188]
       ])
-      textpos.push([_INTL("Area unknown"),Graphics.width/2,Graphics.height/2 - 6,2,base,shadow])
+      textpos.push([_INTL("Zone inconnue"),Graphics.width/2,Graphics.height/2 - 6,2,base,shadow])
     end
     textpos.push([pbGetMessage(MessageTypes::RegionNames,@region),414,38,2,base,shadow])
-    textpos.push([_INTL("{1}'s area",GameData::Species.get(@species).name),
+    textpos.push([_INTL("Zone de {1}",GameData::Species.get(@species).name),
        Graphics.width/2,346,2,base,shadow])
     pbDrawTextPositions(overlay,textpos)
   end

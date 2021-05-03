@@ -76,12 +76,12 @@ class PokemonStorage
   def allWallpapers
     return [
        # Basic wallpapers
-       _INTL("Forest"),_INTL("City"),_INTL("Desert"),_INTL("Savanna"),
-       _INTL("Crag"),_INTL("Volcano"),_INTL("Snow"),_INTL("Cave"),
-       _INTL("Beach"),_INTL("Seafloor"),_INTL("River"),_INTL("Sky"),
-       _INTL("Poké Center"),_INTL("Machine"),_INTL("Checks"),_INTL("Simple"),
+       _INTL("Forêt"),_INTL("Ville"),_INTL("Desert"),_INTL("Savanne"),
+       _INTL("Crag"),_INTL("Volcan"),_INTL("Neige"),_INTL("Grotte"),
+       _INTL("Plage"),_INTL("Littoral"),_INTL("Rivière"),_INTL("Ciel"),
+       _INTL("Centre Pokémon"),_INTL("Machines"),_INTL("Checks"),_INTL("Simple"),
        # Special wallpapers
-       _INTL("Space"),_INTL("Backyard"),_INTL("Nostalgic 1"),_INTL("Torchic"),
+       _INTL("Espace"),_INTL("Backyard"),_INTL("Nostalgic 1"),_INTL("Torchic"),
        _INTL("Trio 1"),_INTL("PikaPika 1"),_INTL("Legend 1"),_INTL("Team Galactic 1"),
        _INTL("Distortion"),_INTL("Contest"),_INTL("Nostalgic 2"),_INTL("Croagunk"),
        _INTL("Trio 2"),_INTL("PikaPika 2"),_INTL("Legend 2"),_INTL("Team Galactic 2"),

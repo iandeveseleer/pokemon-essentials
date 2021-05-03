@@ -532,7 +532,7 @@ def pbBattleMoveImmunityStatAbility(user,target,move,moveType,immuneType,stat,in
     end
   else
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
     else
       battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
          target.pbThis,target.abilityName,move.name))
@@ -556,7 +556,7 @@ def pbBattleMoveImmunityHealAbility(user,target,move,moveType,immuneType,battle)
     end
   else
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
     else
       battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
          target.pbThis,target.abilityName,move.name))

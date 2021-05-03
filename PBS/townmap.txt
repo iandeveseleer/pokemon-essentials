@@ -1,8 +1,8 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [0]
-Name = Essen
-Filename = mapRegion0.png
+Name = 
+Filename = map_kanto.png
 Point = 13,12,Lappet Town,Oak's Lab,2,8,8,
 Point = 13,11,Route 1,,,,,
 Point = 13,10,Cedolan City,Cedolan Dept. Store,7,47,11,
@@ -29,8 +29,11 @@ Point = 12,12,Safari Zone,,,,,
 Point = 13,13,Route 8,Diving area,,,,
 Point = 18,17,Berth Island,,,,,51
 Point = 22,16,Faraday Island,,,,,52
+Point = 5,10,Jadielle,,,,,
+Point = 5,12,Route 1,,,,,
+Point = 5,11,Route 1,,,,,
+Point = 5,13,Bourg Palette,,,,,
 #-------------------------------
 [1]
-Name = Tiall
-Filename = mapRegion1.png
-Point = 13,16,Here,,,,,
+Name = 
+Filename = map_johto.png

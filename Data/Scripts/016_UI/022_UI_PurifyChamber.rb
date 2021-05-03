@@ -479,7 +479,7 @@ class PurifyChamberScreen
           if !heldpkmn && curpkmn
             commands[cmdReplace=commands.length]=_INTL("REPLACE")
           end
-          commands.push(_INTL("CANCEL"))
+          commands.push(_INTL("ANNULER"))
           choice=@scene.pbShowCommands(
              _INTL("What shall I do with this {1}?",
              heldpkmn ? heldpkmn.name : curpkmn.name),commands)
@@ -645,7 +645,7 @@ class PurifyChamberScreen
         chamber.currentSet=set
         cmd=@scene.pbShowCommands(
            _INTL("What do you want to do?"),[
-           _INTL("EDIT"),_INTL("SWITCH"),_INTL("CANCEL")])
+           _INTL("EDIT"),_INTL("SWITCH"),_INTL("ANNULER")])
         if cmd==0 # edit
           if !pbOpenSetDetail()
             break

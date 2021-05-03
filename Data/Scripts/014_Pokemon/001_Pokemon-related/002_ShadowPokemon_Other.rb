@@ -236,7 +236,7 @@ end
 #===============================================================================
 def pbRaiseHappinessAndReduceHeart(pkmn, scene, heart_amount)
   if !pkmn.shadowPokemon? || (pkmn.happiness == 255 && pkmn.heart_gauge == 0)
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     return false
   end
   if pkmn.happiness == 255
@@ -271,7 +271,7 @@ ItemHandlers::UseOnPokemon.add(:VIVIDSCENT,proc { |item,pokemon,scene|
 
 ItemHandlers::UseOnPokemon.add(:TIMEFLUTE,proc { |item,pokemon,scene|
   if !pokemon.shadowPokemon? || pokemon.heart_gauge == 0
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet."))
     next false
   end
   pokemon.heart_gauge = 0
@@ -281,7 +281,7 @@ ItemHandlers::UseOnPokemon.add(:TIMEFLUTE,proc { |item,pokemon,scene|
 
 ItemHandlers::CanUseInBattle.add(:JOYSCENT,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !battler || !battler.shadowPokemon? || !battler.inHyperMode?
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("Cela n'aura aucun effet.")) if showMessages
     next false
   end
   next true
@@ -394,7 +394,7 @@ class PokeBattle_Move_12E < PokeBattle_Move
       break
     end
     if failed
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("Mais cela échoue!"))
       return true
     end
     return false

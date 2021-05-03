@@ -102,10 +102,10 @@ class PokemonEggHatch_Scene
     pbBGMStop()
     pbMEPlay("Evolution success")
     @pokemon.name = nil
-    pbMessage(_INTL("\\se[]{1} hatched from the Egg!\\wt[80]", @pokemon.name)) { update }
+    pbMessage(_INTL("\\se[]{1} a éclos de l'Oeuf!\\wt[80]", @pokemon.name)) { update }
     if pbConfirmMessage(
-        _INTL("Would you like to nickname the newly hatched {1}?", @pokemon.name)) { update }
-      nickname = pbEnterPokemonName(_INTL("{1}'s nickname?", @pokemon.name),
+        _INTL("Voulez-vous donner un surnom {1} nouveau né?", @pokemon.name)) { update }
+      nickname = pbEnterPokemonName(_INTL("Surnom de {1}?", @pokemon.name),
                                   0, Pokemon::MAX_NAME_SIZE, "", @pokemon, true)
       @pokemon.name = nickname
       @nicknamed = true
@@ -200,12 +200,12 @@ def pbHatch(pokemon)
   $Trainer.pokedex.set_owned(pokemon.species)
   pokemon.record_first_moves
   if !pbHatchAnimation(pokemon)
-    pbMessage(_INTL("Huh?\1"))
+    pbMessage(_INTL("Hein?\1"))
     pbMessage(_INTL("...\1"))
     pbMessage(_INTL("... .... .....\1"))
-    pbMessage(_INTL("{1} hatched from the Egg!", speciesname))
-    if pbConfirmMessage(_INTL("Would you like to nickname the newly hatched {1}?", speciesname))
-      nickname = pbEnterPokemonName(_INTL("{1}'s nickname?", speciesname),
+    pbMessage(_INTL("{1} a éclos de l'Oeuf!", speciesname))
+    if pbConfirmMessage(_INTL("Voulez-vous donner un surnom {1} nouveau né?", speciesname))
+      nickname = pbEnterPokemonName(_INTL("Surnom de {1}?", speciesname),
                                     0, Pokemon::MAX_NAME_SIZE, "", pokemon)
       pokemon.name = nickname
     end

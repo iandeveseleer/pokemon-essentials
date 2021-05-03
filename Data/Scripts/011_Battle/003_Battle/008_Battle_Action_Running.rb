@@ -50,10 +50,10 @@ class PokeBattle_Battle
           return 1
         end
       elsif @internalBattle
-        pbDisplayPaused(_INTL("No! There's no running from a Trainer battle!"))
-      elsif pbDisplayConfirm(_INTL("Would you like to forfeit the match and quit now?"))
+        pbDisplayPaused(_INTL("Non ! On ne peut pas fuir un combat de dresseurs!"))
+      elsif pbDisplayConfirm(_INTL("Voulez-vous renoncer au combat et abandonner maintenant?"))
         pbSEPlay("Battle flee")
-        pbDisplay(_INTL("{1} forfeited the match!",self.pbPlayer.name))
+        pbDisplay(_INTL("{1} a déclaré forfait!",self.pbPlayer.name))
         @decision = 3
         return 1
       end
@@ -62,18 +62,18 @@ class PokeBattle_Battle
     # Fleeing from wild battles
     if $DEBUG && Input.press?(Input::CTRL)
       pbSEPlay("Battle flee")
-      pbDisplayPaused(_INTL("You got away safely!"))
+      pbDisplayPaused(_INTL("Vous prenez la fuite!"))
       @decision = 3
       return 1
     end
     if !@canRun
-      pbDisplayPaused(_INTL("You can't escape!"))
+      pbDisplayPaused(_INTL("Impossible de fuir!"))
       return 0
     end
     if !duringBattle
       if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS
         pbSEPlay("Battle flee")
-        pbDisplayPaused(_INTL("You got away safely!"))
+        pbDisplayPaused(_INTL("Vous prenez la fuite!"))
         @decision = 3
         return 1
       end
@@ -83,7 +83,7 @@ class PokeBattle_Battle
           pbShowAbilitySplash(battler,true)
           pbHideAbilitySplash(battler)
           pbSEPlay("Battle flee")
-          pbDisplayPaused(_INTL("You got away safely!"))
+          pbDisplayPaused(_INTL("Vous prenez la fuite!"))
           @decision = 3
           return 1
         end
@@ -92,7 +92,7 @@ class PokeBattle_Battle
       if battler.itemActive?
         if BattleHandlers.triggerRunFromBattleItem(battler.item,battler)
           pbSEPlay("Battle flee")
-          pbDisplayPaused(_INTL("{1} fled using its {2}!",
+          pbDisplayPaused(_INTL("{1} fuit en utilisant {2}!",
              battler.pbThis,battler.itemName))
           @decision = 3
           return 1
@@ -103,21 +103,21 @@ class PokeBattle_Battle
          battler.effects[PBEffects::MeanLook]>=0 ||
          battler.effects[PBEffects::Ingrain] ||
          @field.effects[PBEffects::FairyLock]>0
-        pbDisplayPaused(_INTL("You can't escape!"))
+        pbDisplayPaused(_INTL("Impossible de fuir!"))
         return 0
       end
       # Trapping abilities/items
       eachOtherSideBattler(idxBattler) do |b|
         next if !b.abilityActive?
         if BattleHandlers.triggerTrappingTargetAbility(b.ability,battler,b,self)
-          pbDisplayPaused(_INTL("{1} prevents escape with {2}!",b.pbThis,b.abilityName))
+          pbDisplayPaused(_INTL("{1} empêche de fuire avec {2}!",b.pbThis,b.abilityName))
           return 0
         end
       end
       eachOtherSideBattler(idxBattler) do |b|
         next if !b.itemActive?
         if BattleHandlers.triggerTrappingTargetItem(b.item,battler,b,self)
-          pbDisplayPaused(_INTL("{1} prevents escape with {2}!",b.pbThis,b.itemName))
+          pbDisplayPaused(_INTL("{1} empêche de fuire avec {2}!",b.pbThis,b.itemName))
           return 0
         end
       end
@@ -141,11 +141,11 @@ class PokeBattle_Battle
     end
     if rate>=256 || @battleAI.pbAIRandom(256)<rate
       pbSEPlay("Battle flee")
-      pbDisplayPaused(_INTL("You got away safely!"))
+      pbDisplayPaused(_INTL("Vous prenez la fuite!"))
       @decision = 3
       return 1
     end
-    pbDisplayPaused(_INTL("You couldn't get away!"))
+    pbDisplayPaused(_INTL("Vous ne pouvez pas fuir!"))
     return -1
   end
 end

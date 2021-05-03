@@ -19,7 +19,7 @@ def pbEditMysteryGift(type,item,id=0,giftname="")
   begin
     if type==0   # Pokémon
       commands=[_INTL("Mystery Gift"),
-                _INTL("Faraway place")]
+                _INTL("Endroit Lointain")]
       commands.push(item.obtain_text) if item.obtain_text && !item.obtain_text.empty?
       commands.push(_INTL("[Custom]"))
       loop do
@@ -179,7 +179,7 @@ def pbManageMysteryGifts
               _INTL("Edit"),
               _INTL("Receive"),
               _INTL("Delete"),
-              _INTL("Cancel")]
+              _INTL("ANNULER")]
         cmd=pbMessage("\\ts[]"+commands[command],cmds,-1,nil,cmd)
         if cmd==-1 || cmd==cmds.length-1
           break
@@ -229,7 +229,7 @@ def pbRefreshMGCommands(master, online)
     commands.push(_INTL("{1} {2}: {3} ({4})", ontext, gift[0], gift[3], itemname))
   end
   commands.push(_INTL("Export selected to file"))
-  commands.push(_INTL("Cancel"))
+  commands.push(_INTL("ANNULER"))
   return commands
 end
 
@@ -264,7 +264,7 @@ def pbDownloadMysteryGift(trainer)
       loop do
         commands=[]
         for gift in pending; commands.push(gift[3]); end
-        commands.push(_INTL("Cancel"))
+        commands.push(_INTL("ANNULER"))
         pbMessageDisplay(sprites["msgwindow"],_INTL("Choose the gift you want to receive.\\wtnp[0]"))
         command=pbShowCommands(sprites["msgwindow"],commands,-1)
         if command==-1 || command==commands.length-1

@@ -63,8 +63,8 @@ end
 GameData::Stat.register({
   :id         => :HP,
   :id_number  => 0,
-  :name       => _INTL("HP"),
-  :name_brief => _INTL("HP"),
+  :name       => _INTL("PV"),
+  :name_brief => _INTL("PV"),
   :type       => :main,
   :pbs_order  => 0
 })
@@ -72,7 +72,7 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :ATTACK,
   :id_number  => 1,
-  :name       => _INTL("Attack"),
+  :name       => _INTL("Attaque"),
   :name_brief => _INTL("Atk"),
   :type       => :main_battle,
   :pbs_order  => 1
@@ -81,7 +81,7 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :DEFENSE,
   :id_number  => 2,
-  :name       => _INTL("Defense"),
+  :name       => _INTL("Défense"),
   :name_brief => _INTL("Def"),
   :type       => :main_battle,
   :pbs_order  => 2
@@ -108,7 +108,7 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :SPEED,
   :id_number  => 5,
-  :name       => _INTL("Speed"),
+  :name       => _INTL("Vitesse"),
   :name_brief => _INTL("Spd"),
   :type       => :main_battle,
   :pbs_order  => 3

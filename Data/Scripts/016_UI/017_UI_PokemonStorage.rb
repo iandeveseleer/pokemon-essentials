@@ -1317,7 +1317,7 @@ class PokemonStorageScene
         end
         textpos = [
            [_INTL("OK"),402,208,2,base,shadow,1],
-           [_INTL("Cancel"),402,272,2,base,shadow,1]
+           [_INTL("ANNULER"),402,272,2,base,shadow,1]
         ]
         pbDrawTextPositions(@sprites["markingoverlay"].bitmap,textpos)
         pbMarkingSetArrow(@sprites["arrow"],index)
@@ -1531,7 +1531,7 @@ class PokemonStorageScreen
             commands[cmdMark=commands.length]     = _INTL("Mark")
             commands[cmdRelease=commands.length]  = _INTL("Release")
             commands[cmdDebug=commands.length]    = _INTL("Debug") if $DEBUG
-            commands[cmdCancel=commands.length]   = _INTL("Cancel")
+            commands[cmdCancel=commands.length]   = _INTL("ANNULER")
             command=pbShowCommands(helptext,commands)
             if cmdMove>=0 && command==cmdMove   # Move/Shift/Place
               if @heldpkmn
@@ -1585,7 +1585,7 @@ class PokemonStorageScreen
              _INTL("Summary"),
              _INTL("Mark"),
              _INTL("Release"),
-             _INTL("Cancel")
+             _INTL("ANNULER")
           ])
           case command
           when 0 then pbWithdraw(selected, nil)
@@ -1617,7 +1617,7 @@ class PokemonStorageScreen
              _INTL("Summary"),
              _INTL("Mark"),
              _INTL("Release"),
-             _INTL("Cancel")
+             _INTL("ANNULER")
           ])
           case command
           when 0 then pbStore([-1, selected], nil)
@@ -1652,7 +1652,7 @@ class PokemonStorageScreen
   end
 
   def pbConfirm(str)
-    return pbShowCommands(str,[_INTL("Yes"),_INTL("No")])==0
+    return pbShowCommands(str,[_INTL("Oui"),_INTL("Non")])==0
   end
 
   def pbShowCommands(msg,commands,index=0)
@@ -1901,7 +1901,7 @@ class PokemonStorageScreen
        _INTL("Jump"),
        _INTL("Wallpaper"),
        _INTL("Name"),
-       _INTL("Cancel"),
+       _INTL("ANNULER"),
     ]
     command = pbShowCommands(
        _INTL("What do you want to do?"),commands)
@@ -1956,7 +1956,7 @@ class PokemonStorageScreen
            _INTL("Item"),
            _INTL("Mark")
         ]
-        commands.push(_INTL("Cancel"))
+        commands.push(_INTL("ANNULER"))
         commands[2] = _INTL("Store") if selected[0]==-1
         helptext = _INTL("{1} is selected.",pokemon.name)
         command = pbShowCommands(helptext,commands)

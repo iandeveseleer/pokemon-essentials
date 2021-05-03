@@ -117,7 +117,7 @@ def pbMissingTrainer(tr_type, tr_name, tr_version)
   else
     message = _INTL("Add new trainer ({1}, {2})?", tr_type.to_s, tr_name)
   end
-  cmd = pbMessage(message, [_INTL("Yes"), _INTL("No")], 2)
+  cmd = pbMessage(message, [_INTL("Oui"), _INTL("Non")], 2)
   pbNewTrainer(tr_type, tr_name, tr_version) if cmd == 0
   return cmd
 end

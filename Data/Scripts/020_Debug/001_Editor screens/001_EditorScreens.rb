@@ -61,7 +61,7 @@ def pbEncountersEditor
       end
     elsif ret > 0   # Edit an encounter set
       this_set = maps[ret - 1]
-      case pbShowCommands(nil, [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("Cancel")], 4)
+      case pbShowCommands(nil, [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("ANNULER")], 4)
       when 0   # Edit
         pbEncounterMapVersionEditor(GameData::Encounter.get(this_set[0], this_set[1]))
         need_refresh = true
@@ -205,7 +205,7 @@ def pbEncounterMapVersionEditor(enc_data)
       end
     elsif ret > 0   # Edit an encounter type (its step chance and slots)
       this_type = enc_types[ret - 2]
-      case pbShowCommands(nil, [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("Cancel")], 4)
+      case pbShowCommands(nil, [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("ANNULER")], 4)
       when 0   # Edit
         pbEncounterTypeEditor(enc_data, this_type)
         need_refresh = true
@@ -307,7 +307,7 @@ def pbEncounterTypeEditor(enc_data, enc_type)
         need_refresh = true
       end
     elsif ret > 0   # Edit a slot
-      case pbShowCommands(nil, [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("Cancel")], 4)
+      case pbShowCommands(nil, [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("ANNULER")], 4)
       when 0   # Edit
         old_slot_data = enc_data.types[enc_type][ret - 2]
         new_slot_data = EncounterSlotProperty.set(enc_type_name, old_slot_data.clone)
@@ -574,7 +574,7 @@ def pbTrainerBattleEditor
           ret = pbMessage(_INTL("First, define the new trainer's type."), [
              _INTL("Use existing type"),
              _INTL("Create new type"),
-             _INTL("Cancel")], 3)
+             _INTL("ANNULER")], 3)
           case ret
           when 0
             tr_type = pbListScreen(_INTL("TRAINER TYPE"), TrainerTypeLister.new(0, false))
@@ -1193,7 +1193,7 @@ def pbRegionalDexEditor(dex)
     when 0
       if cmd[1] >= 0   # Edit entry
         case pbMessage(_INTL("\\ts[]Do what with this entry?"),
-           [_INTL("Change species"), _INTL("Clear"), _INTL("Insert entry"), _INTL("Delete entry"), _INTL("Cancel")], 5)
+           [_INTL("Change species"), _INTL("Clear"), _INTL("Insert entry"), _INTL("Delete entry"), _INTL("ANNULER")], 5)
         when 0   # Change species
           species = pbChooseSpeciesList(dex[cmd[1]])
           if species
@@ -1219,7 +1219,7 @@ def pbRegionalDexEditor(dex)
         end
       else   # Cancel
         case pbMessage(_INTL("Save changes?"),
-           [_INTL("Yes"),_INTL("No"),_INTL("Cancel")],3)
+           [_INTL("Oui"),_INTL("Non"),_INTL("ANNULER")],3)
         when 0   # Save all changes to Dex
           dex.slice!(-1) while !dex[-1]
           ret = dex
@@ -1281,7 +1281,7 @@ def pbRegionalDexEditorMain
     when 0   # Clicked on a command/Dex
       if cmd[1] == 0   # Add new Dex
         case pbMessage(_INTL("Fill in this new Dex?"),
-           [_INTL("Leave blank"), _INTL("National Dex"), _INTL("Nat. Dex grouped families"), _INTL("Cancel")], 4)
+           [_INTL("Leave blank"), _INTL("National Dex"), _INTL("Nat. Dex grouped families"), _INTL("ANNULER")], 4)
         when 0   # Leave blank
           dex_lists.push([])
           refresh_list = true
@@ -1304,7 +1304,7 @@ def pbRegionalDexEditorMain
         end
       elsif cmd[1] > 0   # Edit a Dex
         case pbMessage(_INTL("\\ts[]Do what with this Dex?"),
-            [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("Cancel")], 4)
+            [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("ANNULER")], 4)
         when 0   # Edit
           dex_lists[cmd[1] - 1] = pbRegionalDexEditor(dex_lists[cmd[1] - 1])
           refresh_list = true
@@ -1320,7 +1320,7 @@ def pbRegionalDexEditorMain
         end
       else   # Cancel
         case pbMessage(_INTL("Save changes?"),
-           [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+           [_INTL("Oui"), _INTL("Non"), _INTL("ANNULER")], 3)
         when 0   # Save all changes to Dexes
           save_data(dex_lists, "Data/regional_dexes.dat")
           $PokemonTemp.regionalDexes = nil
@@ -1441,7 +1441,7 @@ def pbAnimationsOrganiser
       pbWait(Graphics.frame_rate*2/10)
     elsif cmd[0]==0
       cmd2 = pbMessage(_INTL("Save changes?"),
-          [_INTL("Yes"),_INTL("No"),_INTL("Cancel")],3)
+          [_INTL("Oui"),_INTL("Non"),_INTL("ANNULER")],3)
       if cmd2==0 || cmd2==1
         if cmd2==0
           # Save animations here

@@ -39,13 +39,13 @@ class PokemonSave_Scene
     min = totalsec / 60 % 60
     mapname=$game_map.name
     textColor = ["0070F8,78B8E8","E82010,F8A8B8","0070F8,78B8E8"][$Trainer.gender]
-    locationColor = "209808,90F090"   # green
+    locationColor = "c01a38,e28e8c"   # red
     loctext=_INTL("<ac><c3={1}>{2}</c3></ac>",locationColor,mapname)
-    loctext+=_INTL("Player<r><c3={1}>{2}</c3><br>",textColor,$Trainer.name)
+    loctext+=_INTL("Joueur<r><c3={1}>{2}</c3><br>",textColor,$Trainer.name)
     if hour>0
-      loctext+=_INTL("Time<r><c3={1}>{2}h {3}m</c3><br>",textColor,hour,min)
+      loctext+=_INTL("Temps de jeu<r><c3={1}>{2}h {3}m</c3><br>",textColor,hour,min)
     else
-      loctext+=_INTL("Time<r><c3={1}>{2}m</c3><br>",textColor,min)
+      loctext+=_INTL("Temps de jeu<r><c3={1}>{2}m</c3><br>",textColor,min)
     end
     loctext+=_INTL("Badges<r><c3={1}>{2}</c3><br>",textColor,$Trainer.badge_count)
     if $Trainer.has_pokedex
@@ -88,13 +88,12 @@ class PokemonSaveScreen
   def pbSaveScreen
     ret = false
     @scene.pbStartScreen
-    if pbConfirmMessage(_INTL('Would you like to save the game?'))
+    if pbConfirmMessage(_INTL('Voulez-vous sauvegarder votre progression?'))
       if SaveData.exists? && $PokemonTemp.begunNewGame
-        pbMessage(_INTL('WARNING!'))
-        pbMessage(_INTL('There is a different game file that is already saved.'))
-        pbMessage(_INTL("If you save now, the other file's adventure, including items and Pokémon, will be entirely lost."))
+        pbMessage(_INTL('ATTENTION!'))
+        pbMessage(_INTL('Une autre partie existe déjà.'))
         if !pbConfirmMessageSerious(
-            _INTL('Are you sure you want to save now and overwrite the other save file?'))
+            _INTL('Voulez-vous vraiment sauvegarder et écraser cette autre partie?'))
           pbSEPlay('GUI save choice')
           @scene.pbEndScreen
           return false
@@ -103,10 +102,10 @@ class PokemonSaveScreen
       $PokemonTemp.begunNewGame = false
       pbSEPlay('GUI save choice')
       if Game.save
-        pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
+        pbMessage(_INTL("\\se[]{1} sauvegarde sa progression.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
         ret = true
       else
-        pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
+        pbMessage(_INTL("\\se[]Echec de la sauvegarde.\\wtnp[30]"))
         ret = false
       end
     else

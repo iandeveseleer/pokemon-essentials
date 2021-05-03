@@ -163,23 +163,23 @@ class PokeBattle_Battle
       foeParty = pbParty(1)
       case foeParty.length
       when 1
-        pbDisplayPaused(_INTL("Oh! A wild {1} appeared!",foeParty[0].name))
+        pbDisplayPaused(_INTL("Un {1} sauvage apparaît!",foeParty[0].name))
       when 2
-        pbDisplayPaused(_INTL("Oh! A wild {1} and {2} appeared!",foeParty[0].name,
+        pbDisplayPaused(_INTL("Un {1} & un {2} apparaissent!",foeParty[0].name,
            foeParty[1].name))
       when 3
-        pbDisplayPaused(_INTL("Oh! A wild {1}, {2} and {3} appeared!",foeParty[0].name,
+        pbDisplayPaused(_INTL("Un {1}, un {2} et un {3} apparaissent",foeParty[0].name,
            foeParty[1].name,foeParty[2].name))
       end
     else   # Trainer battle
       case @opponent.length
       when 1
-        pbDisplayPaused(_INTL("You are challenged by {1}!",@opponent[0].full_name))
+        pbDisplayPaused(_INTL("Un combat est lancé par {1}!",@opponent[0].full_name))
       when 2
-        pbDisplayPaused(_INTL("You are challenged by {1} and {2}!",@opponent[0].full_name,
+        pbDisplayPaused(_INTL("Un combat est lancé par {1} & {2}!",@opponent[0].full_name,
            @opponent[1].full_name))
       when 3
-        pbDisplayPaused(_INTL("You are challenged by {1}, {2} and {3}!",
+        pbDisplayPaused(_INTL("Un combat est lancé par {1}, {2} & {3}!",
            @opponent[0].full_name,@opponent[1].full_name,@opponent[2].full_name))
       end
     end
@@ -196,12 +196,12 @@ class PokeBattle_Battle
         sent = sendOuts[side][i]
         case sent.length
         when 1
-          msg += _INTL("{1} sent out {2}!",t.full_name,@battlers[sent[0]].name)
+          msg += _INTL("{1} envoi {2}!",t.full_name,@battlers[sent[0]].name)
         when 2
-          msg += _INTL("{1} sent out {2} and {3}!",t.full_name,
+          msg += _INTL("{1} envoi {2} & {3}!",t.full_name,
              @battlers[sent[0]].name,@battlers[sent[1]].name)
         when 3
-          msg += _INTL("{1} sent out {2}, {3} and {4}!",t.full_name,
+          msg += _INTL("{1} envoi {2}, {3} & {4}!",t.full_name,
              @battlers[sent[0]].name,@battlers[sent[1]].name,@battlers[sent[2]].name)
         end
         toSendOut.concat(sent)
@@ -212,11 +212,11 @@ class PokeBattle_Battle
         sent = sendOuts[side][0]
         case sent.length
         when 1
-          msg += _INTL("Go! {1}!",@battlers[sent[0]].name)
+          msg += _INTL("Allez! {1}!",@battlers[sent[0]].name)
         when 2
-          msg += _INTL("Go! {1} and {2}!",@battlers[sent[0]].name,@battlers[sent[1]].name)
+          msg += _INTL("Allez! {1} & {2}!",@battlers[sent[0]].name,@battlers[sent[1]].name)
         when 3
-          msg += _INTL("Go! {1}, {2} and {3}!",@battlers[sent[0]].name,
+          msg += _INTL("Allez! {1}, {2} & {3}!",@battlers[sent[0]].name,
              @battlers[sent[1]].name,@battlers[sent[2]].name)
         end
         toSendOut.concat(sent)
@@ -349,7 +349,7 @@ class PokeBattle_Battle
       pbPlayer.money += tMoney
       moneyGained = pbPlayer.money-oldMoney
       if moneyGained>0
-        pbDisplayPaused(_INTL("You got ${1} for winning!",moneyGained.to_s_formatted))
+        pbDisplayPaused(_INTL("Vous remportez {1}$!",moneyGained.to_s_formatted))
       end
     end
     # Pick up money scattered by Pay Day
@@ -360,7 +360,7 @@ class PokeBattle_Battle
       pbPlayer.money += @field.effects[PBEffects::PayDay]
       moneyGained = pbPlayer.money-oldMoney
       if moneyGained>0
-        pbDisplayPaused(_INTL("You picked up ${1}!",moneyGained.to_s_formatted))
+        pbDisplayPaused(_INTL("Vous ramassez {1}$!",moneyGained.to_s_formatted))
       end
     end
   end
@@ -378,9 +378,9 @@ class PokeBattle_Battle
     moneyLost = oldMoney-pbPlayer.money
     if moneyLost>0
       if trainerBattle?
-        pbDisplayPaused(_INTL("You gave ${1} to the winner...",moneyLost.to_s_formatted))
+        pbDisplayPaused(_INTL("Vous donnez {1}$ au vainqueur...",moneyLost.to_s_formatted))
       else
-        pbDisplayPaused(_INTL("You panicked and dropped ${1}...",moneyLost.to_s_formatted))
+        pbDisplayPaused(_INTL("Vous paniquez et laissez tomber {1}$...",moneyLost.to_s_formatted))
       end
     end
   end
@@ -397,12 +397,12 @@ class PokeBattle_Battle
         @scene.pbTrainerBattleSuccess
         case @opponent.length
         when 1
-          pbDisplayPaused(_INTL("You defeated {1}!",@opponent[0].full_name))
+          pbDisplayPaused(_INTL("Vous avez battu {1}!",@opponent[0].full_name))
         when 2
-          pbDisplayPaused(_INTL("You defeated {1} and {2}!",@opponent[0].full_name,
+          pbDisplayPaused(_INTL("Vous avez battu {1} & {2}!",@opponent[0].full_name,
              @opponent[1].full_name))
         when 3
-          pbDisplayPaused(_INTL("You defeated {1}, {2} and {3}!",@opponent[0].full_name,
+          pbDisplayPaused(_INTL("Vous avez battu {1}, {2} & {3}!",@opponent[0].full_name,
              @opponent[1].full_name,@opponent[2].full_name))
         end
         @opponent.each_with_index do |_t,i|
@@ -421,22 +421,22 @@ class PokeBattle_Battle
       PBDebug.log("***Player lost***") if @decision==2
       PBDebug.log("***Player drew with opponent***") if @decision==5
       if @internalBattle
-        pbDisplayPaused(_INTL("You have no more Pokémon that can fight!"))
+        pbDisplayPaused(_INTL("Vous n'avez plus de Pokémon qui peuvent se battre!"))
         if trainerBattle?
           case @opponent.length
           when 1
-            pbDisplayPaused(_INTL("You lost against {1}!",@opponent[0].full_name))
+            pbDisplayPaused(_INTL("Vous avez perdu contre {1}!",@opponent[0].full_name))
           when 2
-            pbDisplayPaused(_INTL("You lost against {1} and {2}!",
+            pbDisplayPaused(_INTL("Vous avez perdu contre {1} & {2}!",
                @opponent[0].full_name,@opponent[1].full_name))
           when 3
-            pbDisplayPaused(_INTL("You lost against {1}, {2} and {3}!",
+            pbDisplayPaused(_INTL("Vous avez perdu contre {1}, {2} & {3}!",
                @opponent[0].full_name,@opponent[1].full_name,@opponent[2].full_name))
           end
         end
         # Lose money from losing a battle
         pbLoseMoney
-        pbDisplayPaused(_INTL("You blacked out!")) if !@canLose
+        pbDisplayPaused(_INTL("Vous êtes hors-jeu!")) if !@canLose
       elsif @decision==2
         if @opponent
           @opponent.each_with_index do |_t,i|

@@ -10,7 +10,7 @@ class PokeBattle_Scene
        _INTL("Fight"),
        _INTL("Bag"),
        _INTL("Pokémon"),
-       (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("Cancel")
+       (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("ANNULER")
     ]
     ret = pbCommandMenuEx(idxBattler,cmds,(shadowTrainer) ? 2 : (firstAction) ? 0 : 1)
     ret = 4 if ret==3 && shadowTrainer   # Convert "Run" to "Call"
@@ -166,7 +166,7 @@ class PokeBattle_Scene
       commands = []
       commands[cmdSwitch  = commands.length] = _INTL("Switch In") if modParty[idxParty].able?
       commands[cmdSummary = commands.length] = _INTL("Summary")
-      commands[commands.length]              = _INTL("Cancel")
+      commands[commands.length]              = _INTL("ANNULER")
       command = scene.pbShowCommands(_INTL("Do what with {1}?",modParty[idxParty].name),commands)
       if cmdSwitch>=0 && command==cmdSwitch        # Switch In
         idxPartyRet = -1
@@ -216,7 +216,7 @@ class PokeBattle_Scene
       cmdUse = -1
       commands = []
       commands[cmdUse = commands.length] = _INTL("Use") if useType && useType!=0
-      commands[commands.length]          = _INTL("Cancel")
+      commands[commands.length]          = _INTL("ANNULER")
       command = itemScene.pbShowCommands(_INTL("{1} is selected.",itemName),commands)
       next unless cmdUse>=0 && command==cmdUse   # Use
       # Use types:

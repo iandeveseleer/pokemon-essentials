@@ -976,7 +976,7 @@ module MovePoolProperty
             end
           else   # Edit existing move
             case pbMessage(_INTL("\\ts[]Do what with this move?"),
-               [_INTL("Change level"), _INTL("Change move"), _INTL("Delete"), _INTL("Cancel")], 4)
+               [_INTL("Change level"), _INTL("Change move"), _INTL("Delete"), _INTL("ANNULER")], 4)
             when 0   # Change level
               params = ChooseNumberParams.new
               params.setRange(0, GameData::GrowthRate.max_level)
@@ -1024,7 +1024,7 @@ module MovePoolProperty
           end
         else   # Cancel/quit
           case pbMessage(_INTL("Save changes?"),
-             [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+             [_INTL("Oui"), _INTL("Non"), _INTL("ANNULER")], 3)
           when 0
             for i in 0...realcmds.length
               realcmds[i].pop   # Remove name
@@ -1100,7 +1100,7 @@ module EggMovesProperty
           end
         else   # Edit move
           case pbMessage(_INTL("\\ts[]Do what with this move?"),
-             [_INTL("Change move"), _INTL("Delete"), _INTL("Cancel")], 3)
+             [_INTL("Change move"), _INTL("Delete"), _INTL("ANNULER")], 3)
           when 0   # Change move
             newmove = pbChooseMoveList(entry[0])
             if newmove
@@ -1123,7 +1123,7 @@ module EggMovesProperty
         end
       else   # Cancel/quit
         case pbMessage(_INTL("Save changes?"),
-           [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+           [_INTL("Oui"), _INTL("Non"), _INTL("ANNULER")], 3)
         when 0
           for i in 0...realcmds.length
             realcmds[i] = realcmds[i][0]
@@ -1276,7 +1276,7 @@ class EvolutionsProperty
           else   # Edit evolution
             case pbMessage(_INTL("\\ts[]Do what with this evolution?"),
                [_INTL("Change species"),_INTL("Change method"),
-                _INTL("Change parameter"),_INTL("Delete"),_INTL("Cancel")],5)
+                _INTL("Change parameter"),_INTL("Delete"),_INTL("ANNULER")],5)
             when 0   # Change species
               newspecies = pbChooseSpeciesList(entry[0])
               if newspecies
@@ -1351,7 +1351,7 @@ class EvolutionsProperty
           end
         else
           cmd2 = pbMessage(_INTL("Save changes?"),
-             [_INTL("Yes"),_INTL("No"),_INTL("Cancel")],3)
+             [_INTL("Oui"),_INTL("Non"),_INTL("ANNULER")],3)
           if cmd2==0 || cmd2==1
             if cmd2==0
               for i in 0...realcmds.length
@@ -1514,7 +1514,7 @@ def pbPropertyList(title,data,properties,saveprompt=false)
     end
     if selectedmap==-1 && saveprompt
       cmd = pbMessage(_INTL("Save changes?"),
-         [_INTL("Yes"),_INTL("No"),_INTL("Cancel")],3)
+         [_INTL("Oui"),_INTL("Non"),_INTL("ANNULER")],3)
       if cmd==2
         selectedmap = list.index
       else

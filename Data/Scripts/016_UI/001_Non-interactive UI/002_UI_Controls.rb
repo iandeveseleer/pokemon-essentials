@@ -18,8 +18,8 @@ class ButtonEventScene < EventScene
 
     addImageForScreen(1, 44, 122, "Graphics/Pictures/Controls help/help_f1")
     addImageForScreen(1, 44, 252, "Graphics/Pictures/Controls help/help_f8")
-    addLabelForScreen(1, 134, 84, 352, _INTL("Opens the Key Bindings window, where you can choose which keyboard keys to use for each control."))
-    addLabelForScreen(1, 134, 244, 352, _INTL("Take a screenshot. It is put in the same folder as the save file."))
+    addLabelForScreen(1, 134, 84, 352, _INTL("Ouvre la fenêtre de configuration des contrôles."))
+    addLabelForScreen(1, 134, 244, 352, _INTL("Prend une capture d'écran."))
 
     addImageForScreen(2, 16, 158, "Graphics/Pictures/Controls help/help_arrows")
     addLabelForScreen(2, 134, 100, 352, _INTL("Use the Arrow keys to move the main character.\r\n\r\nYou can also use the Arrow keys to select entries and navigate menus."))

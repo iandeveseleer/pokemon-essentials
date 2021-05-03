@@ -942,7 +942,7 @@ module Compiler
                 push_text(newEvents,_INTL("\\GYou have no room left in the Bag."),oldIndent+2)
                 push_branch_end(newEvents,oldIndent+2)
                 push_else(newEvents,oldIndent+1)
-                push_text(newEvents,_INTL("\\GYou don't have enough money."),oldIndent+1)
+                push_text(newEvents,_INTL("\\GTu n'as pas assez d'argent."),oldIndent+1)
                 push_branch_end(newEvents,oldIndent+1)
               end
               list[i,0] = newEvents   # insert 'newEvents' at index 'i'
