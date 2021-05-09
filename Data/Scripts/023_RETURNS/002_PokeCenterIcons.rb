@@ -79,7 +79,7 @@ def pbPokemonCenterIcons(xcoord=nil,ycoord=nil,scale=nil)
   scale = 0.45 if !scale #Sets the icon size. Default is used if undefined.
   currentIndex = 0
   arrayindex = 0
-  totalpkmn = $Trainer.pokemonCount  #Gets and stores the party size.
+  totalpkmn = $Trainer.pokemon_count  #Gets and stores the party size.
   pbSet(1,28347)  #Sets temp var 1 to a random number to use in messagebox checks.
   $pkmncentermonitor_soundchecktype = 0  #Global used in sound name checking.
 

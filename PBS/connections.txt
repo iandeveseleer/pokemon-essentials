@@ -38,7 +38,9 @@
 47,East,8,52,West,0
 # Route 8 (69) - Safari Zone (66)
 69,North,0,66,South,10
-# Jadielle (84) - Route 1 (82)
-84,South,0,82,North,26
+# Route 1 (82) - Jadielle (84)
+82,North,26,84,South,0
+# Route 2 (93) - Jadielle (84)
+93,South,0,84,North,5
 # Bourg Palette (43) - Route 1 (82)
 43,North,0,82,South,0

@@ -6,11 +6,11 @@ class PokeBattle_Scene
   def pbCommandMenu(idxBattler,firstAction)
     shadowTrainer = (GameData::Type.exists?(:SHADOW) && @battle.trainerBattle?)
     cmds = [
-       _INTL("What will\n{1} do?",@battle.battlers[idxBattler].name),
-       _INTL("Fight"),
-       _INTL("Bag"),
+       _INTL("Que dois\nfaire {1}?",@battle.battlers[idxBattler].name),
+       _INTL("Attaquer"),
+       _INTL("Sac"),
        _INTL("Pokémon"),
-       (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("ANNULER")
+       (shadowTrainer) ? _INTL("Forfait") : (firstAction) ? _INTL("Fuire") : _INTL("ANNULER")
     ]
     ret = pbCommandMenuEx(idxBattler,cmds,(shadowTrainer) ? 2 : (firstAction) ? 0 : 1)
     ret = 4 if ret==3 && shadowTrainer   # Convert "Run" to "Call"
@@ -255,12 +255,12 @@ class PokeBattle_Scene
         # Start party screen
         pkmnScene = PokemonParty_Scene.new
         pkmnScreen = PokemonPartyScreen.new(pkmnScene,modParty)
-        pkmnScreen.pbStartScene(_INTL("Use on which Pokémon?"),@battle.pbNumPositions(0,0))
+        pkmnScreen.pbStartScene(_INTL("Utiliser sur quel Pokémon?"),@battle.pbNumPositions(0,0))
         idxParty = -1
         # Loop while in party screen
         loop do
           # Select a Pokémon
-          pkmnScene.pbSetHelpText(_INTL("Use on which Pokémon?"))
+          pkmnScene.pbSetHelpText(_INTL("Utiliser sur quel Pokémon?"))
           idxParty = pkmnScreen.pbChoosePokemon
           break if idxParty<0
           idxPartyRet = -1

@@ -720,7 +720,7 @@ def pbItemBall(item,quantity=1)
     else
       pbMessage(_INTL("\\me[{1}]{3} trouve \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
     end
-    pbMessage(_INTL("{1} range {2} dans la <icon=bagPocket{3}>\\c[1]Poche à {4}\\c[0].",
+    pbMessage(_INTL("{1} range {2} dans la <icon=bagPocket{3}> \\c[1]Poche à {4}\\c[0].",
                     $Trainer.name,itemname,pocket,PokemonBag.pocketNames()[pocket]))
     return true
   end
@@ -755,16 +755,16 @@ def pbReceiveItem(item,quantity=1)
   if item == :LEFTOVERS
     pbMessage(_INTL("\\me[{1}]{3} obtient quelques \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
   elsif item.is_machine?   # TM or HM
-    pbMessage(_INTL("\\me[{1}]{3} obtient \\c[1]{2} {3}\\c[0]!\\wtnp[30]",meName,itemname,GameData::Move.get(move).name,$Trainer.name))
+    pbMessage(_INTL("\\me[{1}]{4} obtient \\c[1]{2}\\c[0], elle contient \\c[1]{3}\\c[0]!\\wtnp[30]",meName,itemname,GameData::Move.get(move).name,$Trainer.name))
   elsif quantity>1
-    pbMessage(_INTL("\\me[{1}]{3} obtient {2} \\c[1]{3}\\c[0]!\\wtnp[30]",meName,quantity,itemname,$Trainer.name))
+    pbMessage(_INTL("\\me[{1}]{4} obtient {2} \\c[1]{3}\\c[0]!\\wtnp[30]",meName,quantity,itemname,$Trainer.name))
   elsif itemname.starts_with_vowel?
     pbMessage(_INTL("\\me[{1}]{3} obtient \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
   else
     pbMessage(_INTL("\\me[{1}]{3} obtient \\c[1]{2}\\c[0]!\\wtnp[30]",meName,itemname,$Trainer.name))
   end
   if $PokemonBag.pbStoreItem(item,quantity)   # If item can be added
-    pbMessage(_INTL("{1} range {2} dans la <icon=bagPocket{3}>\\c[1]Poche à {4}\\c[0].",
+    pbMessage(_INTL("{1} range \\c[1]{2}\\c[0] dans la <icon=bagPocket{3}> \\c[1]Poche à {4}\\c[0].",
                     $Trainer.name,itemname,pocket,PokemonBag.pocketNames()[pocket]))
     return true
   end

@@ -434,6 +434,8 @@ ShowArea = true
 Bicycle = true
 BicycleAlways = false
 MapPosition = 0,5,12
+MapSize = 0,
+Environment = Grass
 #-------------------------------
 [083]
 # Route 1
@@ -481,3 +483,19 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 MapPosition = 1,18,10
+#-------------------------------
+[093]
+# Route 2
+Outdoor = true
+ShowArea = true
+Bicycle = true
+BicycleAlways = false
+MapPosition = 0,5,9
+#-------------------------------
+[095]
+# Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+BicycleAlways = false
+MapPosition = 1,18,9

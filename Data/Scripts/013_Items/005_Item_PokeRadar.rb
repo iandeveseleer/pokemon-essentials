@@ -17,12 +17,12 @@ def pbCanUsePokeRadar?
   # Can't use Radar if not in tall grass
   terrain = $game_map.terrain_tag($game_player.x,$game_player.y)
   if !terrain.land_wild_encounters || !terrain.shows_grass_rustle
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("Impossible d'utiliser cela ici."))
     return false
   end
   # Can't use Radar if map has no grass-based encounters (ignoring Bug Contest)
   if !$PokemonEncounters.has_normal_land_encounters?
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("Impossible d'utiliser cela ici."))
     return false
   end
   # Can't use Radar while cycling

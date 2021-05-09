@@ -464,7 +464,7 @@ def pbBerryPlant
       else
         pbMessage(_INTL("Vous cueillez une \\c[1]{1}\\c[0].\\wtnp[30]",itemname))
       end
-      pbMessage(_INTL("{1} range \\c[1]{2}\\c[0] dans la <icon=bagPocket{3}>\\c[1] Poche à {4}\\c[0].\1",
+      pbMessage(_INTL("{1} range \\c[1]{2}\\c[0] dans la <icon=bagPocket{3}> \\c[1]Poche à {4}\\c[0].\1",
          $Trainer.name,itemname,pocket,PokemonBag.pocketNames()[pocket]))
       if Settings::NEW_BERRY_PLANTS
         pbMessage(_INTL("Le sol retrouve son état meuble."))
@@ -527,7 +527,7 @@ def pbPickBerry(berry, qty = 1)
       pbMessage(_INTL("\\me[Berry_Get]Vous ramassez \\c[1]{1}\\c[0].\\wtnp[30]",itemname))
     end
     pocket = berry.pocket
-    pbMessage(_INTL("{1} range \\c[1]{2}\\c[0] dans la <icon=bagPocket{3}>\\c[1]Poche à {4}\\c[0].\1",
+    pbMessage(_INTL("{1} range \\c[1]{2}\\c[0] dans la <icon=bagPocket{3}> \\c[1]Poche à {4}\\c[0].\1",
        $Trainer.name,itemname,pocket,PokemonBag.pocketNames()[pocket]))
     if Settings::NEW_BERRY_PLANTS
       pbMessage(_INTL("Le sol retrouve son état meuble."))

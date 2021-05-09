@@ -394,10 +394,10 @@ module Settings
 
   # Available fonts, as selectable in the Options Screen.
   FONT_OPTIONS = [
-    # "Power Green",
-    # "Power Red and Blue",
-    "Power Red and Green"
-    # "Power Clear"
+     "Power Green",
+    "Power Red and Blue",
+    "Power Red and Green",
+    "Power Clear"
   ]
 end
 

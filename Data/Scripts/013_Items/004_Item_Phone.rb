@@ -11,7 +11,7 @@ def pbPhoneRegisterNPC(ident,name,mapid,showmessage=true)
     phonenum = [true,ident,name,mapid]
     $PokemonGlobal.phoneNumbers.push(phonenum)
   end
-  pbMessage(_INTL("\\me[Register phone]Registered {1} in the Pokégear.",name)) if showmessage
+  pbMessage(_INTL("\\me[Register phone]\\c[1]{1}\\c[0] est enregistré dans les contacts.\\wtnp[30]",name)) if showmessage
 end
 
 def pbPhoneRegister(event,trainertype,trainername)
@@ -45,7 +45,7 @@ def pbPhoneRegisterBattle(message,event,trainertype,trainername,maxbattles)
   trainertype = GameData::TrainerType.get(trainertype)
   contact = pbFindPhoneTrainer(trainertype,trainername)
   return if contact && contact[0]              # Existing contact and is visible
-  message = _INTL("Let me register you.") if !message
+  message = _INTL("Prends mon numéro, pour un prochain combat!") if !message
   return if !pbConfirmMessage(message)
   displayname = _INTL("{1} {2}", GameData::TrainerType.get(trainertype).name,
      pbGetMessageFromHash(MessageTypes::TrainerNames,trainername))
@@ -55,7 +55,7 @@ def pbPhoneRegisterBattle(message,event,trainertype,trainername,maxbattles)
     pbPhoneRegister(event,trainertype,trainername)
     pbPhoneIncrement(trainertype,trainername,maxbattles)
   end
-  pbMessage(_INTL("\\me[Register phone]Registered {1} in the Pokégear.",displayname))
+  pbMessage(_INTL("\\me[Register phone]\\c[1]{1}\\c[0] est enregistré dans les contacts.\\wtnp[30]",displayname))
 end
 
 #===============================================================================

@@ -1825,7 +1825,7 @@ class PokemonStorageScreen
       pbDisplay(_INTL("That's your last Pokémon!"))
       return
     end
-    command = pbShowCommands(_INTL("Release this Pokémon?"),[_INTL("No"),_INTL("Yes")])
+    command = pbShowCommands(_INTL("Relacher ce Pokémon?"),[_INTL("Non"),_INTL("Oui")])
     if command==1
       pkmnname = pokemon.name
       @scene.pbRelease(selected,heldpoke)

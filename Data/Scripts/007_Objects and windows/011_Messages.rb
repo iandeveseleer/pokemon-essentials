@@ -552,6 +552,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   text.gsub!(/\\pog/i,"\\r") if $Trainer && $Trainer.male?
   text.gsub!(/\\pog/i,"\\b") if $Trainer && $Trainer.female?
   text.gsub!(/\\pg/i,"")
+  text.gsub!(/\\mn/i,pbGetMapNameFromId($game_map.map_id)) if $game_map && $game_map.map_id != nil
   text.gsub!(/\\pog/i,"")
   text.gsub!(/\\b/i,"<c3=3050C8,D0D0C8>")
   text.gsub!(/\\r/i,"<c3=E00808,D0D0C8>")
@@ -827,7 +828,7 @@ def pbConfirmMessage(message,&block)
 end
 
 def pbConfirmMessageSerious(message,&block)
-  return (pbMessage(message,[_INTL("No"),_INTL("Yes")],1,&block)==1)
+  return (pbMessage(message,[_INTL("Non"),_INTL("Oui")],1,&block)==1)
 end
 
 def pbMessageChooseNumber(message,params,&block)

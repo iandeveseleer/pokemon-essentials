@@ -631,3 +631,4 @@
 631,NSOLARIZER,N-Solarizer,N-Solarizers,8,0,"A machine to fuse Necrozma, which needs light, and Solgaleo.",5,0,6,
 632,NLUNARIZER,N-Lunarizer,N-Lunarizers,8,0,"A machine to fuse Necrozma, which needs light, and Lunala.",5,0,6,
 633,MEGARING,Mega Ring,Mega Rings,8,0,"This ring contains an untold power that somehow enables Pokémon carrying Mega Stones to Mega Evolve.",0,0,6,
+634,COLIS,Colis du Prof. Chen,Colis du Prof. Chen,8,0,"Un colis de la Boutique Pokémon de Jadielle, à destination du Professeur Chen.",0,0,6,

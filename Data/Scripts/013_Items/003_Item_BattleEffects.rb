@@ -12,12 +12,12 @@ ItemHandlers::CanUseInBattle.add(:GUARDSPEC,proc { |item,pokemon,battler,move,fi
 ItemHandlers::CanUseInBattle.add(:POKEDOLL,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !battle.wildBattle?
     if showMessages
-      scene.pbDisplay(_INTL("Oak's words echoed... There's a time and place for everything! But not now."))
+      scene.pbDisplay(_INTL("Il y a un temps et un lieu pour ça! Sauf maintenant."))
     end
     next false
   end
   if !battle.canRun
-    scene.pbDisplay(_INTL("You can't escape!")) if showMessages
+    scene.pbDisplay(_INTL("Impossible de fuir!")) if showMessages
     next false
   end
   next true

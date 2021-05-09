@@ -14,7 +14,7 @@ module PokeBattle_BattleCommon
     currentBox = @peer.pbCurrentBox
     storedBox  = @peer.pbStorePokemon(pbPlayer,pkmn)
     if storedBox<0
-      pbDisplayPaused(_INTL("{1} has been added to your party.",pkmn.name))
+      pbDisplayPaused(_INTL("{1} rejoint votre équipe.",pkmn.name))
       @initialItems[0][pbPlayer.party.length-1] = pkmn.item_id if @initialItems
       return
     end
@@ -24,18 +24,18 @@ module PokeBattle_BattleCommon
     boxName    = @peer.pbBoxName(storedBox)
     if storedBox!=currentBox
       if creator
-        pbDisplayPaused(_INTL("Box \"{1}\" on {2}'s PC was full.",curBoxName,creator))
+        pbDisplayPaused(_INTL("La Boîte \"{1}\" est pleine.",curBoxName,creator))
       else
-        pbDisplayPaused(_INTL("Box \"{1}\" on someone's PC was full.",curBoxName))
+        pbDisplayPaused(_INTL("La Boîte \"{1}\" est pleine.",curBoxName))
       end
-      pbDisplayPaused(_INTL("{1} was transferred to box \"{2}\".",pkmn.name,boxName))
+      pbDisplayPaused(_INTL("{1} est envoyé dans la Boîte \"{2}\".",pkmn.name,boxName))
     else
       if creator
-        pbDisplayPaused(_INTL("{1} was transferred to {2}'s PC.",pkmn.name,creator))
+        pbDisplayPaused(_INTL("{1} est envoyé au système de stockage de Pokémons.",pkmn.name,creator))
       else
-        pbDisplayPaused(_INTL("{1} was transferred to someone's PC.",pkmn.name))
+        pbDisplayPaused(_INTL("{1} est envoyé au système de stockage de Pokémons.",pkmn.name))
       end
-      pbDisplayPaused(_INTL("It was stored in box \"{1}\".",boxName))
+      pbDisplayPaused(_INTL("Il est envoyé dans la Boîte \"{1}\".",boxName))
     end
   end
 
@@ -47,7 +47,7 @@ module PokeBattle_BattleCommon
       if !pbPlayer.owned?(pkmn.species)
         pbPlayer.pokedex.set_owned(pkmn.species)
         if $Trainer.has_pokedex
-          pbDisplayPaused(_INTL("{1}'s data was added to the Pokédex.",pkmn.name))
+          pbDisplayPaused(_INTL("Les données du {1} sont ajoutées au Pokédex.",pkmn.name))
           pbPlayer.pokedex.register_last_seen(pkmn)
           @scene.pbShowPokedex(pkmn.species)
         end
@@ -81,23 +81,23 @@ module PokeBattle_BattleCommon
     itemName = GameData::Item.get(ball).name
     if battler.fainted?
       if itemName.starts_with_vowel?
-        pbDisplay(_INTL("{1} threw an {2}!",pbPlayer.name,itemName))
+        pbDisplay(_INTL("{1} utilise une {2}!",pbPlayer.name,itemName))
       else
-        pbDisplay(_INTL("{1} threw a {2}!",pbPlayer.name,itemName))
+        pbDisplay(_INTL("{1} utilise une {2}!",pbPlayer.name,itemName))
       end
-      pbDisplay(_INTL("But there was no target..."))
+      pbDisplay(_INTL("Mais il n'y a pas de cible..."))
       return
     end
     if itemName.starts_with_vowel?
-      pbDisplayBrief(_INTL("{1} threw an {2}!",pbPlayer.name,itemName))
+      pbDisplayBrief(_INTL("{1} utilise une {2}!",pbPlayer.name,itemName))
     else
-      pbDisplayBrief(_INTL("{1} threw a {2}!",pbPlayer.name,itemName))
+      pbDisplayBrief(_INTL("{1} utilise une {2}!",pbPlayer.name,itemName))
     end
     # Animation of opposing trainer blocking Poké Balls (unless it's a Snag Ball
     # at a Shadow Pokémon)
     if trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?)
       @scene.pbThrowAndDeflect(ball,1)
-      pbDisplay(_INTL("The Trainer blocked your Poké Ball! Don't be a thief!"))
+      pbDisplay(_INTL("Le dresseur a bloqué ta Poké Ball!"))
       return
     end
     # Calculate the number of shakes (4=capture)
@@ -110,19 +110,19 @@ module PokeBattle_BattleCommon
     # Outcome message
     case numShakes
     when 0
-      pbDisplay(_INTL("Oh no! The Pokémon broke free!"))
+      pbDisplay(_INTL("Oh non! Le Pokémon est sorti de la Ball!"))
       BallHandlers.onFailCatch(ball,self,battler)
     when 1
-      pbDisplay(_INTL("Aww! It appeared to be caught!"))
+      pbDisplay(_INTL("Ah! Raté!"))
       BallHandlers.onFailCatch(ball,self,battler)
     when 2
-      pbDisplay(_INTL("Aargh! Almost had it!"))
+      pbDisplay(_INTL("Ahhh! Presque!"))
       BallHandlers.onFailCatch(ball,self,battler)
     when 3
-      pbDisplay(_INTL("Gah! It was so close, too!"))
+      pbDisplay(_INTL("Aargh! C'était si près!"))
       BallHandlers.onFailCatch(ball,self,battler)
     when 4
-      pbDisplayBrief(_INTL("Gotcha! {1} was caught!",pkmn.name))
+      pbDisplayBrief(_INTL("Et hop! {1} est capturé!",pkmn.name))
       @scene.pbThrowSuccess   # Play capture success jingle
       pbRemoveFromParty(battler.index,battler.pokemonIndex)
       # Gain Exp

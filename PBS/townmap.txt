@@ -1,7 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [0]
-Name = 
+Name = Kanto
 Filename = map_kanto.png
 Point = 13,12,Lappet Town,Oak's Lab,2,8,8,
 Point = 13,11,Route 1,,,,,
@@ -35,5 +35,9 @@ Point = 5,11,Route 1,,,,,
 Point = 5,13,Bourg Palette,,,,,
 #-------------------------------
 [1]
-Name = 
+Name = Johto
 Filename = map_johto.png
+#-------------------------------
+[2]
+Name = Hoenn
+Filename = map_hoenn.png

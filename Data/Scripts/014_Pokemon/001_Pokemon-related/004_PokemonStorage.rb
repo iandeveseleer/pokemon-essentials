@@ -62,7 +62,7 @@ class PokemonStorage
   def initialize(maxBoxes = Settings::NUM_STORAGE_BOXES, maxPokemon = PokemonBox::BOX_SIZE)
     @boxes = []
     for i in 0...maxBoxes
-      @boxes[i] = PokemonBox.new(_INTL("Box {1}",i+1),maxPokemon)
+      @boxes[i] = PokemonBox.new(_INTL("Boîte {1}",i+1),maxPokemon)
       @boxes[i].background = i % BASICWALLPAPERQTY
     end
     @currentBox = 0
@@ -77,16 +77,16 @@ class PokemonStorage
     return [
        # Basic wallpapers
        _INTL("Forêt"),_INTL("Ville"),_INTL("Desert"),_INTL("Savanne"),
-       _INTL("Crag"),_INTL("Volcan"),_INTL("Neige"),_INTL("Grotte"),
+       _INTL("Montagne"),_INTL("Volcan"),_INTL("Neige"),_INTL("Grotte"),
        _INTL("Plage"),_INTL("Littoral"),_INTL("Rivière"),_INTL("Ciel"),
-       _INTL("Centre Pokémon"),_INTL("Machines"),_INTL("Checks"),_INTL("Simple"),
+       _INTL("Centre Pokémon"),_INTL("Machines"),_INTL("Picnic"),_INTL("Simple"),
        # Special wallpapers
-       _INTL("Espace"),_INTL("Backyard"),_INTL("Nostalgic 1"),_INTL("Torchic"),
-       _INTL("Trio 1"),_INTL("PikaPika 1"),_INTL("Legend 1"),_INTL("Team Galactic 1"),
-       _INTL("Distortion"),_INTL("Contest"),_INTL("Nostalgic 2"),_INTL("Croagunk"),
-       _INTL("Trio 2"),_INTL("PikaPika 2"),_INTL("Legend 2"),_INTL("Team Galactic 2"),
-       _INTL("Heart"),_INTL("Soul"),_INTL("Big Brother"),_INTL("Pokéathlon"),
-       _INTL("Trio 3"),_INTL("Spiky Pika"),_INTL("Kimono Girl"),_INTL("Revival")
+       _INTL("Espace"),_INTL("Jardin"),_INTL("Nostalgique 1"),_INTL("Torchic"),
+       _INTL("Trio 1"),_INTL("PikaPika 1"),_INTL("Légende 1"),_INTL("Team Galaxy 1"),
+       _INTL("Monde Distortion"),_INTL("Concours"),_INTL("Nostalgique 2"),_INTL("Croagunk"),
+       _INTL("Trio 2"),_INTL("PikaPika 2"),_INTL("Légende 2"),_INTL("Team Galaxy 2"),
+       _INTL("Ho-Oh"),_INTL("Lugia"),_INTL("Grand frère"),_INTL("Pokéathlon"),
+       _INTL("Trio 3"),_INTL("Pichu"),_INTL("Fille Kimono"),_INTL("Team Rocket")
     ]
   end
 

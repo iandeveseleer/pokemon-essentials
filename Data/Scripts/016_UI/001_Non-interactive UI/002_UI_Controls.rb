@@ -22,17 +22,17 @@ class ButtonEventScene < EventScene
     addLabelForScreen(1, 134, 244, 352, _INTL("Prend une capture d'écran."))
 
     addImageForScreen(2, 16, 158, "Graphics/Pictures/Controls help/help_arrows")
-    addLabelForScreen(2, 134, 100, 352, _INTL("Use the Arrow keys to move the main character.\r\n\r\nYou can also use the Arrow keys to select entries and navigate menus."))
+    addLabelForScreen(2, 134, 100, 352, _INTL("Utilisez les flèches du clavier pour déplacer le personnage principal.\r\n\r\nVous pouvez également utiliser les flèches pour sélectionner et naviguer dans les menus."))
 
     addImageForScreen(3, 16, 106, "Graphics/Pictures/Controls help/help_usekey")
     addImageForScreen(3, 16, 236, "Graphics/Pictures/Controls help/help_backkey")
-    addLabelForScreen(3, 134, 84, 352, _INTL("Used to confirm a choice, interact with people and things, and move through text. (Default: C)"))
-    addLabelForScreen(3, 134, 212, 352, _INTL("Used to exit, cancel a choice, and cancel a mode. Also used to open the Pause Menu. (Default: X)"))
+    addLabelForScreen(3, 134, 84, 352, _INTL("Utilisé pour confirmer un choix, interagir avec les personnes et les objets, et se déplacer dans le texte. (Défaut : C)"))
+    addLabelForScreen(3, 134, 212, 352, _INTL("Utilisé pour quitter, annuler un choix et annuler un mode. Également utilisé pour ouvrir le menu Pause. (Défaut : X)"))
 
     addImageForScreen(4, 16, 90, "Graphics/Pictures/Controls help/help_actionkey")
     addImageForScreen(4, 16, 252, "Graphics/Pictures/Controls help/help_specialkey")
-    addLabelForScreen(4, 134, 52, 352, _INTL("Has various functions depending on context. While moving around, hold to move at a different speed. (Default: Z)"))
-    addLabelForScreen(4, 134, 212, 352, _INTL("Press to open the Ready Menu, where registered items and available field moves can be used. (Default: D)"))
+    addLabelForScreen(4, 134, 52, 352, _INTL("A diverses fonctions selon le contexte. Lorsque vous vous déplacez, maintenez la pour vous déplacer plus vite. (Defaut: Z)"))
+    addLabelForScreen(4, 134, 212, 352, _INTL("Appuyez sur cette touche pour ouvrir le menu Rapide, où les objets enregistrés et les CS disponibles peuvent être utilisés. (Defaut: D)"))
 
     set_up_screen(@current_screen)
     Graphics.transition(20)

@@ -312,8 +312,8 @@ class PokemonEntryScene2
         @sprite.y=120
         @cursortype=2
       elsif value>=0
-        @sprite.x=52+32*(value%PokemonEntryScene2::ROWS)
-        @sprite.y=180+38*(value/PokemonEntryScene2::ROWS)
+        @sprite.x=50+32*(value%PokemonEntryScene2::ROWS)
+        @sprite.y=176+38*(value/PokemonEntryScene2::ROWS)
         @cursortype=0
       end
     end
@@ -385,7 +385,7 @@ class PokemonEntryScene2
       for y in 0...COLUMNS
         for x in 0...ROWS
           textPos.push([@@Characters[i][0][pos],44+x*32,12+y*38,2,
-             Color.new(16,24,32), Color.new(160,160,160)])
+             Color.new(240,240,240), Color.new(120,120,120)])
           pos+=1
         end
       end

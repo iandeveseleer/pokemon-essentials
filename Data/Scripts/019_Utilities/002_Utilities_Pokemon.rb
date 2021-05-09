@@ -7,16 +7,16 @@ end
 
 def pbNickname(pkmn)
   species_name = pkmn.speciesName
-  if pbConfirmMessage(_INTL("Would you like to give a nickname to {1}?", species_name))
-    pkmn.name = pbEnterPokemonName(_INTL("{1}'s nickname?", species_name),
+  if pbConfirmMessage(_INTL("Voulez-vous donner un surnom à {1}?", species_name))
+    pkmn.name = pbEnterPokemonName(_INTL("Surnom de {1}?", species_name),
                                    0, Pokemon::MAX_NAME_SIZE, "", pkmn)
   end
 end
 
 def pbStorePokemon(pkmn)
   if pbBoxesFull?
-    pbMessage(_INTL("There's no more room for Pokémon!\1"))
-    pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
+    pbMessage(_INTL("Ton équipe est pleine!\1"))
+    pbMessage(_INTL("Et les boîtes Pokémons le sont aussi!"))
     return
   end
   pkmn.record_first_moves
@@ -29,18 +29,18 @@ def pbStorePokemon(pkmn)
     creator = pbGetStorageCreator if $Trainer.seen_storage_creator
     if storedbox != oldcurbox
       if creator
-        pbMessage(_INTL("Box \"{1}\" on {2}'s PC was full.\1", curboxname, creator))
+        pbMessage(_INTL("La boîte \"{1}\" sur le PC de {2} est pleine.\1", curboxname, creator))
       else
-        pbMessage(_INTL("Box \"{1}\" on someone's PC was full.\1", curboxname))
+        pbMessage(_INTL("La boîte \"{1}\" sur le PC de ??? est pleine.\1", curboxname))
       end
-      pbMessage(_INTL("{1} was transferred to box \"{2}.\"", pkmn.name, boxname))
+      pbMessage(_INTL("{1} est envoyé dans la boîte \"{2}.\"", pkmn.name, boxname))
     else
       if creator
-        pbMessage(_INTL("{1} was transferred to {2}'s PC.\1", pkmn.name, creator))
+        pbMessage(_INTL("{1} est transféré sur le PC de {2}.\1", pkmn.name, creator))
       else
-        pbMessage(_INTL("{1} was transferred to someone's PC.\1", pkmn.name))
+        pbMessage(_INTL("{1} est transféré sur le PC de ???.\1", pkmn.name))
       end
-      pbMessage(_INTL("It was stored in box \"{1}.\"", boxname))
+      pbMessage(_INTL("Il est envoyé dans la boîte \"{1}.\"", boxname))
     end
   else
     $Trainer.party[$Trainer.party.length] = pkmn
@@ -49,8 +49,8 @@ end
 
 def pbNicknameAndStore(pkmn)
   if pbBoxesFull?
-    pbMessage(_INTL("There's no more room for Pokémon!\1"))
-    pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
+    pbMessage(_INTL("Ton équipe est pleine!\1"))
+    pbMessage(_INTL("Et les boîtes Pokémons le sont aussi!"))
     return
   end
   $Trainer.pokedex.set_seen(pkmn.species)
@@ -65,13 +65,13 @@ end
 def pbAddPokemon(pkmn, level = 1, see_form = true)
   return false if !pkmn
   if pbBoxesFull?
-    pbMessage(_INTL("There's no more room for Pokémon!\1"))
-    pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
+    pbMessage(_INTL("Ton équipe est pleine!\1"))
+    pbMessage(_INTL("Et les boîtes Pokémons le sont aussi!"))
     return false
   end
   pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
   species_name = pkmn.speciesName
-  pbMessage(_INTL("{1} obtained {2}!\\me[Pkmn get]\\wtnp[80]\1", $Trainer.name, species_name))
+  pbMessage(_INTL("{1} obtient {2}!\\me[Pkmn get]\\wtnp[80]\1", $Trainer.name, species_name))
   pbNicknameAndStore(pkmn)
   $Trainer.pokedex.register(pkmn) if see_form
   return true
@@ -98,7 +98,7 @@ def pbAddToParty(pkmn, level = 1, see_form = true)
   return false if !pkmn || $Trainer.party_full?
   pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
   species_name = pkmn.speciesName
-  pbMessage(_INTL("{1} obtained {2}!\\me[Pkmn get]\\wtnp[80]\1", $Trainer.name, species_name))
+  pbMessage(_INTL("{1} obtient {2}!\\me[Pkmn get]\\wtnp[80]\1", $Trainer.name, species_name))
   pbNicknameAndStore(pkmn)
   $Trainer.pokedex.register(pkmn) if see_form
   return true
@@ -124,9 +124,9 @@ def pbAddForeignPokemon(pkmn, level = 1, owner_name = nil, nickname = nil, owner
   # Recalculate stats
   pkmn.calc_stats
   if owner_name
-    pbMessage(_INTL("\\me[Pkmn get]{1} received a Pokémon from {2}.\1", $Trainer.name, owner_name))
+    pbMessage(_INTL("\\me[Pkmn get]{1} reçoit un Pokémon de la part de {2}.\1", $Trainer.name, owner_name))
   else
-    pbMessage(_INTL("\\me[Pkmn get]{1} received a Pokémon.\1", $Trainer.name))
+    pbMessage(_INTL("\\me[Pkmn get]{1} reçoit un Pokémon.\1", $Trainer.name))
   end
   pbStorePokemon(pkmn)
   $Trainer.pokedex.register(pkmn) if see_form
@@ -138,7 +138,7 @@ def pbGenerateEgg(pkmn, text = "")
   return false if !pkmn || $Trainer.party_full?
   pkmn = Pokemon.new(pkmn, Settings::EGG_LEVEL) if !pkmn.is_a?(Pokemon)
   # Set egg's details
-  pkmn.name           = _INTL("Egg")
+  pkmn.name           = _INTL("Oeuf")
   pkmn.steps_to_hatch = pkmn.species_data.hatch_steps
   pkmn.obtain_text    = text
   pkmn.calc_stats

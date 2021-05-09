@@ -24,13 +24,13 @@ ItemHandlers::UseFromBag.add(:HONEY,proc { |item|
 
 ItemHandlers::UseFromBag.add(:ESCAPEROPE,proc { |item|
   if $game_player.pbHasDependentEvents?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
+    pbMessage(_INTL("Impossible d'utiliser cela quand quelqu'un vous accompagne."))
     next 0
   end
   if ($PokemonGlobal.escapePoint rescue false) && $PokemonGlobal.escapePoint.length>0
     next 4   # End screen and consume item
   end
-  pbMessage(_INTL("Can't use that here."))
+  pbMessage(_INTL("Impossible d'utiliser cela ici."))
   next 0
 })
 
@@ -43,7 +43,7 @@ ItemHandlers::UseFromBag.copy(:BICYCLE,:MACHBIKE,:ACROBIKE)
 ItemHandlers::UseFromBag.add(:OLDROD,proc { |item|
   notCliff = $game_map.passable?($game_player.x,$game_player.y,$game_player.direction,$game_player)
   next 2 if $game_player.pbFacingTerrainTag.can_fish && ($PokemonGlobal.surfing || notCliff)
-  pbMessage(_INTL("Can't use that here."))
+  pbMessage(_INTL("Impossible d'utiliser cela ici."))
   next 0
 })
 
@@ -65,11 +65,11 @@ ItemHandlers::UseFromBag.copy(:ITEMFINDER,:DOWSINGMCHN,:DOWSINGMACHINE)
 ItemHandlers::ConfirmUseInField.add(:ESCAPEROPE,proc { |item|
   escape = ($PokemonGlobal.escapePoint rescue nil)
   if !escape || escape==[]
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("Impossible d'utiliser cela ici."))
     next false
   end
   if $game_player.pbHasDependentEvents?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
+    pbMessage(_INTL("Impossible d'utiliser cela quand quelqu'un vous accompagne."))
     next false
   end
   mapname = pbGetMapNameFromId(escape[0])
@@ -158,11 +158,11 @@ ItemHandlers::UseInField.add(:HONEY,proc { |item|
 ItemHandlers::UseInField.add(:ESCAPEROPE,proc { |item|
   escape = ($PokemonGlobal.escapePoint rescue nil)
   if !escape || escape==[]
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("Impossible d'utiliser cela ici."))
     next 0
   end
   if $game_player.pbHasDependentEvents?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
+    pbMessage(_INTL("Impossible d'utiliser cela quand quelqu'un vous accompagne."))
     next 0
   end
   pbUseItemMessage(item)
@@ -182,7 +182,7 @@ ItemHandlers::UseInField.add(:ESCAPEROPE,proc { |item|
 
 ItemHandlers::UseInField.add(:SACREDASH,proc { |item|
   if $Trainer.pokemon_count == 0
-    pbMessage(_INTL("There is no Pokémon."))
+    pbMessage(_INTL("Il n'y a aucun Pokémon."))
     next 0
   end
   canrevive = false
@@ -232,7 +232,7 @@ ItemHandlers::UseInField.copy(:BICYCLE,:MACHBIKE,:ACROBIKE)
 ItemHandlers::UseInField.add(:OLDROD,proc { |item|
   notCliff = $game_map.passable?($game_player.x,$game_player.y,$game_player.direction,$game_player)
   if !$game_player.pbFacingTerrainTag.can_fish || (!$PokemonGlobal.surfing && !notCliff)
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("Impossible d'utiliser cela ici."))
     next 0
   end
   encounter = $PokemonEncounters.has_encounter_type?(:OldRod)
@@ -245,7 +245,7 @@ ItemHandlers::UseInField.add(:OLDROD,proc { |item|
 ItemHandlers::UseInField.add(:GOODROD,proc { |item|
   notCliff = $game_map.passable?($game_player.x,$game_player.y,$game_player.direction,$game_player)
   if !$game_player.pbFacingTerrainTag.can_fish || (!$PokemonGlobal.surfing && !notCliff)
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("Impossible d'utiliser cela ici."))
     next 0
   end
   encounter = $PokemonEncounters.has_encounter_type?(:GoodRod)
@@ -258,7 +258,7 @@ ItemHandlers::UseInField.add(:GOODROD,proc { |item|
 ItemHandlers::UseInField.add(:SUPERROD,proc { |item|
   notCliff = $game_map.passable?($game_player.x,$game_player.y,$game_player.direction,$game_player)
   if !$game_player.pbFacingTerrainTag.can_fish || (!$PokemonGlobal.surfing && !notCliff)
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("Impossible d'utiliser cela ici."))
     next 0
   end
   encounter = $PokemonEncounters.has_encounter_type?(:SuperRod)

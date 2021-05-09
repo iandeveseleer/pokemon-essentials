@@ -494,7 +494,7 @@ class PokemonBagScreen
         next
       elsif cmdGive>=0 && command==cmdGive   # Give item to Pokémon
         if $Trainer.pokemon_count == 0
-          @scene.pbDisplay(_INTL("There is no Pokémon."))
+          @scene.pbDisplay(_INTL("Il n'y a aucun Pokémon."))
         elsif itm.is_important?
           @scene.pbDisplay(_INTL("The {1} can't be held.",itemname))
         else
