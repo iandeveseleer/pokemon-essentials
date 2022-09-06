@@ -13,6 +13,7 @@ class PokemonLoadPanel < SpriteWrapper
 
   def initialize(index,title,isContinue,trainer,framecount,mapid,viewport=nil)
     super(viewport)
+    pbBGMPlay("Load.ogg")
     @index = index
     @title = title
     @isContinue = isContinue
@@ -63,11 +64,11 @@ class PokemonLoadPanel < SpriteWrapper
       textpos = []
       if @isContinue
         textpos.push([@title,16*2,2*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([_INTL("Badges:"),16*2,53*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
+        textpos.push([_INTL("Badges:    "),16*2,53*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         textpos.push([@trainer.badge_count.to_s,103*2,53*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([_INTL("Pokédex:"),16*2,69*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
+        textpos.push([_INTL("Pokédex:    "),16*2,69*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         textpos.push([@trainer.pokedex.seen_count.to_s,103*2,69*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([_INTL("Temps de jeu:"),16*2,85*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
+        textpos.push([_INTL("Temps de jeu:    "),16*2,85*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         hour = @totalsec / 60 / 60
         min  = @totalsec / 60 % 60
         if hour>0
@@ -303,6 +304,7 @@ class PokemonLoadScreen
     loop do
       command = @scene.pbChoose(commands)
       pbPlayDecisionSE if command != cmd_quit
+      pbBGMStop(1.0)
       case command
       when cmd_continue
         @scene.pbEndScene

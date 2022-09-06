@@ -80,7 +80,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:EMERGENCYEXIT,
       battle.pbShowAbilitySplash(battler,true)
       battle.pbHideAbilitySplash(battler)
       pbSEPlay("Battle flee")
-      battle.pbDisplay(_INTL("{1} fled from battle!",battler.pbThis))
+      battle.pbDisplay(_INTL("{1} fuit le combat!",battler.pbThis))
       battle.decision = 3   # Escaped
       next true
     end
@@ -91,9 +91,9 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:EMERGENCYEXIT,
     battle.pbShowAbilitySplash(battler,true)
     battle.pbHideAbilitySplash(battler)
     if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s {2} activated!",battler.pbThis,battler.abilityName))
+      battle.pbDisplay(_INTL("{2} de {1} activé!",battler.pbThis,battler.abilityName))
     end
-    battle.pbDisplay(_INTL("{1} went back to {2}!",
+    battle.pbDisplay(_INTL("{1} est renvoyé à {2}!",
        battler.pbThis,battle.pbGetOwnerName(battler.index)))
     if battle.endOfRound   # Just switch out
       battle.scene.pbRecall(battler.index) if !battler.fainted?
@@ -216,7 +216,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} poisoned {3}!",battler.pbThis,battler.abilityName,user.pbThis(true))
+          msg = _INTL("{2} de {1} empoisonne {3}!",battler.pbThis,battler.abilityName,user.pbThis(true))
         end
         user.pbPoison(nil,msg,(battler.statusCount>0))
         battler.battle.pbHideAbilitySplash(battler)
@@ -226,7 +226,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} burned {3}!",battler.pbThis,battler.abilityName,user.pbThis(true))
+          msg = _INTL("{2} de {1} brûle {3}!",battler.pbThis,battler.abilityName,user.pbThis(true))
         end
         user.pbBurn(nil,msg)
         battler.battle.pbHideAbilitySplash(battler)
@@ -236,7 +236,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} paralyzed {3}! It may be unable to move!",
+          msg = _INTL("{2} de {1} paralyse {3}! Il pourrait ne pas pouvoir attaquer!",
              battler.pbThis,battler.abilityName,user.pbThis(true))
         end
         user.pbParalyze(nil,msg)
@@ -256,7 +256,7 @@ BattleHandlers::StatusCureAbility.add(:IMMUNITY,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
     if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1}'s {2} cured its poisoning!",battler.pbThis,battler.abilityName))
+      battler.battle.pbDisplay(_INTL("{2} de {1} le soigne de son empoisonnement!",battler.pbThis,battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
   }
@@ -268,7 +268,7 @@ BattleHandlers::StatusCureAbility.add(:INSOMNIA,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
     if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1}'s {2} woke it up!",battler.pbThis,battler.abilityName))
+      battler.battle.pbDisplay(_INTL("{2} de {1} le réveille!",battler.pbThis,battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
   }
@@ -282,7 +282,7 @@ BattleHandlers::StatusCureAbility.add(:LIMBER,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
     if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1}'s {2} cured its paralysis!",battler.pbThis,battler.abilityName))
+      battler.battle.pbDisplay(_INTL("{2} de {1} le soigne de sa paralysie!",battler.pbThis,battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
   }
@@ -294,7 +294,7 @@ BattleHandlers::StatusCureAbility.add(:MAGMAARMOR,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
     if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1}'s {2} defrosted it!",battler.pbThis,battler.abilityName))
+      battler.battle.pbDisplay(_INTL("{2} de {1} le dégèle!",battler.pbThis,battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
   }
@@ -433,9 +433,9 @@ BattleHandlers::StatLossImmunityAbility.add(:KEENEYE,
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s {2} cannot be lowered!",battler.pbThis,GameData::Stat.get(stat).name))
+        battle.pbDisplay(_INTL("Les stats de {1} ne peuvent être baissées!",battler.pbThis,GameData::Stat.get(stat).name))
       else
-        battle.pbDisplay(_INTL("{1}'s {2} prevents {3} loss!",battler.pbThis,
+        battle.pbDisplay(_INTL("{2} de {1} previent la baisse des stats de {3}!",battler.pbThis,
            battler.abilityName,GameData::Stat.get(stat).name))
       end
       battle.pbHideAbilitySplash(battler)
@@ -453,9 +453,9 @@ BattleHandlers::StatLossImmunityAbilityNonIgnorable.add(:FULLMETALBODY,
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s stats cannot be lowered!",battler.pbThis))
+        battle.pbDisplay(_INTL("Les stats de {1} ne peuvent être baissées!",battler.pbThis))
       else
-        battle.pbDisplay(_INTL("{1}'s {2} prevents stat loss!",battler.pbThis,battler.abilityName))
+        battle.pbDisplay(_INTL("{2} de {1} previent la baisse des stats!",battler.pbThis,battler.abilityName))
       end
       battle.pbHideAbilitySplash(battler)
     end
@@ -473,9 +473,9 @@ BattleHandlers::StatLossImmunityAllyAbility.add(:FLOWERVEIL,
     if showMessages
       battle.pbShowAbilitySplash(bearer)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s stats cannot be lowered!",battler.pbThis))
+        battle.pbDisplay(_INTL("Les stats de {1} ne peuvent être baissées!",battler.pbThis))
       else
-        battle.pbDisplay(_INTL("{1}'s {2} prevents {3}'s stat loss!",
+        battle.pbDisplay(_INTL("{2} de {1} previent la baisse des stats de {3}!",
            bearer.pbThis,bearer.abilityName,battler.pbThis(true)))
       end
       battle.pbHideAbilitySplash(bearer)
@@ -589,7 +589,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
     else
-      battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
+      battle.pbDisplay(_INTL("{2} de {1} rend {3} inefficace!",
          target.pbThis,target.abilityName,move.name))
     end
     battle.pbHideAbilitySplash(target)
@@ -605,16 +605,16 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
     if !target.effects[PBEffects::FlashFire]
       target.effects[PBEffects::FlashFire] = true
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("The power of {1}'s Fire-type moves rose!",target.pbThis(true)))
+        battle.pbDisplay(_INTL("La puissance des attaques Feu de {1} augmente!",target.pbThis(true)))
       else
-        battle.pbDisplay(_INTL("The power of {1}'s Fire-type moves rose because of its {2}!",
+        battle.pbDisplay(_INTL("La puissance des attaques Feu de {1} augmente grâce à {2}!",
            target.pbThis(true),target.abilityName))
       end
     else
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
       else
-        battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
+        battle.pbDisplay(_INTL("{2} de {1} rend {3} inefficace!",
            target.pbThis,target.abilityName,move.name))
       end
     end
@@ -648,7 +648,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
     else
-      battle.pbDisplay(_INTL("{1}'s {2} blocks {3}!",target.pbThis,target.abilityName,move.name))
+      battle.pbDisplay(_INTL("{2} de {1} bloque {3}!",target.pbThis,target.abilityName,move.name))
     end
     battle.pbHideAbilitySplash(target)
     next true
@@ -700,7 +700,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
     else
-      battle.pbDisplay(_INTL("{1} avoided damage with {2}!",target.pbThis,target.abilityName))
+      battle.pbDisplay(_INTL("{1} esquive les dégats grâce à {2}!",target.pbThis,target.abilityName))
     end
     battle.pbHideAbilitySplash(target)
     next true
@@ -1316,9 +1316,9 @@ BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
     target.stages[:ATTACK] = 6
     battle.pbCommonAnimation("StatUp",target)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} maxed its {2}!",target.pbThis,GameData::Stat.get(:ATTACK).name))
+      battle.pbDisplay(_INTL("{1} augmente son {2} au max!",target.pbThis,GameData::Stat.get(:ATTACK).name))
     else
-      battle.pbDisplay(_INTL("{1}'s {2} maxed its {3}!",
+      battle.pbDisplay(_INTL("{2} de {1} augmente son {3} au max!",
          target.pbThis,target.abilityName,GameData::Stat.get(:ATTACK).name))
     end
     battle.pbHideAbilitySplash(target)
@@ -1342,9 +1342,9 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
       user.effects[PBEffects::Disable]     = 3
       user.effects[PBEffects::DisableMove] = regularMove.id
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s {2} was disabled!",user.pbThis,regularMove.name))
+        battle.pbDisplay(_INTL("{2} de {1} est entravée!",user.pbThis,regularMove.name))
       else
-        battle.pbDisplay(_INTL("{1}'s {2} was disabled by {3}'s {4}!",
+        battle.pbDisplay(_INTL("{2} de {1} est entravée par {4} de {3}!",
            user.pbThis,regularMove.name,target.pbThis(true),target.abilityName))
       end
       battle.pbHideAbilitySplash(target)
@@ -1364,7 +1364,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CUTECHARM,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} made {3} fall in love!",target.pbThis,
+        msg = _INTL("{2} de {1} rend {3} amoureux!",target.pbThis,
            target.abilityName,user.pbThis(true))
       end
       user.pbAttract(target,msg)
@@ -1392,7 +1392,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
         if user.pbCanSleep?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
           msg = nil
           if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            msg = _INTL("{1}'s {2} made {3} fall asleep!",target.pbThis,
+            msg = _INTL("{2} de {1} endort {3}!",target.pbThis,
                target.abilityName,user.pbThis(true))
           end
           user.pbSleep(msg)
@@ -1401,7 +1401,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
         if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
           msg = nil
           if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            msg = _INTL("{1}'s {2} poisoned {3}!",target.pbThis,
+            msg = _INTL("{2} de {1} empoisonne {3}!",target.pbThis,
                target.abilityName,user.pbThis(true))
           end
           user.pbPoison(target,msg)
@@ -1410,7 +1410,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
         if user.pbCanParalyze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
           msg = nil
           if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            msg = _INTL("{1}'s {2} paralyzed {3}! It may be unable to move!",
+            msg = _INTL("{2} de {1} paralyse {3}! Il pourrait ne pas pouvoir attaquer!",
                target.pbThis,target.abilityName,user.pbThis(true))
           end
           user.pbParalyze(target,msg)
@@ -1430,7 +1430,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} burned {3}!",target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{2} de {1} brûle {3}!",target.pbThis,target.abilityName,user.pbThis(true))
       end
       user.pbBurn(target,msg)
     end
@@ -1466,9 +1466,9 @@ BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
       battle.scene.pbDamageAnimation(user)
       user.pbReduceHP(target.damageState.hpLost,false)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
+        battle.pbDisplay(_INTL("{1} est blessé!",user.pbThis))
       else
-        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
+        battle.pbDisplay(_INTL("{1} est blessé par {3} de {2}!",user.pbThis,
            target.pbThis(true),target.abilityName))
       end
     end
@@ -1485,9 +1485,9 @@ BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
       battle.scene.pbDamageAnimation(user)
       user.pbReduceHP(user.totalhp/8,false)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
+        battle.pbDisplay(_INTL("{1} est blessé!",user.pbThis))
       else
-        battle.pbDisplay(_INTL("{1} is hurt by {2}'s {3}!",user.pbThis,
+        battle.pbDisplay(_INTL("{1} est blessé par {3} de {2}!",user.pbThis,
            target.pbThis(true),target.abilityName))
       end
     end
@@ -1538,7 +1538,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} poisoned {3}!",target.pbThis,target.abilityName,user.pbThis(true))
+        msg = _INTL("{2} de {1} empoisonne {3}!",target.pbThis,target.abilityName,user.pbThis(true))
       end
       user.pbPoison(target,msg)
     end
@@ -1568,7 +1568,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} paralyzed {3}! It may be unable to move!",
+        msg = _INTL("{2} de {1} paralyse {3}! Il pourrait ne pas pouvoir attaquer!",
            target.pbThis,target.abilityName,user.pbThis(true))
       end
       user.pbParalyze(target,msg)
@@ -1615,7 +1615,7 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
     elsif target.pbCanPoison?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        msg = _INTL("{1}'s {2} poisoned {3}!",user.pbThis,user.abilityName,target.pbThis(true))
+        msg = _INTL("{2} de {1} empoisonne {3}!",user.pbThis,user.abilityName,target.pbThis(true))
       end
       target.pbPoison(user,msg)
     end

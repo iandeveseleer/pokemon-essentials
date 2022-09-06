@@ -11,11 +11,7 @@ class PokegearButton < SpriteWrapper
     @image = command[0]
     @name  = command[1]
     @selected = false
-    if $Trainer.female? && pbResolveBitmap(sprintf("Graphics/Pictures/Pokegear/icon_button_f"))
-      @button = AnimatedBitmap.new("Graphics/Pictures/Pokegear/icon_button_f")
-    else
-      @button = AnimatedBitmap.new("Graphics/Pictures/Pokegear/icon_button")
-    end
+    @button = AnimatedBitmap.new("Graphics/Pictures/Pokegear/icon_button")
     @contents = BitmapWrapper.new(@button.width,@button.height)
     self.bitmap = @contents
     self.x = x
@@ -70,11 +66,7 @@ class PokemonPokegear_Scene
     @viewport.z = 99999
     @sprites = {}
     @sprites["background"] = IconSprite.new(0,0,@viewport)
-    if $Trainer.female? && pbResolveBitmap(sprintf("Graphics/Pictures/Pokegear/bg_f"))
-      @sprites["background"].setBitmap("Graphics/Pictures/Pokegear/bg_f")
-    else
-      @sprites["background"].setBitmap("Graphics/Pictures/Pokegear/bg")
-    end
+    @sprites["background"].setBitmap("Graphics/Pictures/Pokegear/bg")
     for i in 0...@commands.length
       y = 196 - (@commands.length*24) + (i*48)
       @sprites["button#{i}"] = PokegearButton.new(@commands[i],118,y,@viewport)
@@ -128,11 +120,11 @@ class PokemonPokegearScreen
     cmdMap     = -1
     cmdPhone   = -1
     cmdJukebox = -1
-    commands[cmdMap = commands.length]     = ["map",_INTL("Map")]
+    commands[cmdMap = commands.length]     = ["map",_INTL("Maps")]
     if $PokemonGlobal.phoneNumbers && $PokemonGlobal.phoneNumbers.length>0
-      commands[cmdPhone = commands.length] = ["phone",_INTL("Phone")]
+      commands[cmdPhone = commands.length] = ["phone",_INTL("Contacts")]
     end
-    commands[cmdJukebox = commands.length] = ["jukebox",_INTL("Jukebox")]
+    commands[cmdJukebox = commands.length] = ["jukebox",_INTL("Streaming")]
     @scene.pbStartScene(commands)
     loop do
       cmd = @scene.pbScene

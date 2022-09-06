@@ -246,7 +246,7 @@ MultipleForms.register(:ROTOM,{
           new_move_name = pkmn.moves[move_index].name
           pbMessage(_INTL("1,\\wt[16] 2, et\\wt[16]...\\wt[16] ...\\wt[16] ... Ta-da!\\se[Battle ball drop]\1"))
           pbMessage(_INTL("{1} oublie comment utiliser {2}.\\nEt...\1", pkmn.name, old_move_name))
-          pbMessage(_INTL("\\se[]{1} apprend {2}!\\se[Pkmn move learnt]", pkmn.name, new_move_name))
+          pbMessage(_INTL("\\{1} apprend {2}!\\me[Niveau]", pkmn.name, new_move_name))
         else
           pkmn.forget_move_at_index(move_index)
           pbMessage(_INTL("{1} forgot {2}...", pkmn.name, old_move_name))

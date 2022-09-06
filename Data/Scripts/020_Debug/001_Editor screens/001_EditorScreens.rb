@@ -655,11 +655,11 @@ module TrainerPokemonProperty
     ])
     max_level = GameData::GrowthRate.max_level
     pkmn_properties = [
-       [_INTL("Species"),   SpeciesProperty,                         _INTL("Species of the Pokémon.")],
-       [_INTL("Level"),     NonzeroLimitProperty.new(max_level),     _INTL("Level of the Pokémon (1-{1}).", max_level)],
-       [_INTL("Name"),      StringProperty,                          _INTL("Name of the Pokémon.")],
-       [_INTL("Form"),      LimitProperty2.new(999),                 _INTL("Form of the Pokémon.")],
-       [_INTL("Gender"),    GenderProperty,                          _INTL("Gender of the Pokémon.")],
+       [_INTL("Espece"),   SpeciesProperty,                         _INTL("Species of the Pokémon.")],
+       [_INTL("Niveau"),     NonzeroLimitProperty.new(max_level),     _INTL("Level of the Pokémon (1-{1}).", max_level)],
+       [_INTL("Nom"),      StringProperty,                          _INTL("Name of the Pokémon.")],
+       [_INTL("Forme"),      LimitProperty2.new(999),                 _INTL("Form of the Pokémon.")],
+       [_INTL("Genre"),    GenderProperty,                          _INTL("Gender of the Pokémon.")],
        [_INTL("Shiny"),     BooleanProperty2,                        _INTL("If set to true, the Pokémon is a different-colored Pokémon.")],
        [_INTL("Shadow"),    BooleanProperty2,                        _INTL("If set to true, the Pokémon is a Shadow Pokémon.")]
     ]
@@ -667,12 +667,12 @@ module TrainerPokemonProperty
       pkmn_properties.push([_INTL("Move {1}", i + 1), MovePropertyForSpecies.new(oldsetting), _INTL("A move known by the Pokémon. Leave all moves blank (use Z key to delete) for a wild moveset.")])
     end
     pkmn_properties.concat([
-       [_INTL("Ability"),   LimitProperty2.new(99),                  _INTL("Ability flag. 0=first ability, 1=second ability, 2-5=hidden ability.")],
-       [_INTL("Held item"), ItemProperty,                            _INTL("Item held by the Pokémon.")],
+       [_INTL("Talent"),   LimitProperty2.new(99),                  _INTL("Ability flag. 0=first ability, 1=second ability, 2-5=hidden ability.")],
+       [_INTL("Objet tenu"), ItemProperty,                            _INTL("Item held by the Pokémon.")],
        [_INTL("Nature"),    GameDataProperty.new(:Nature),           _INTL("Nature of the Pokémon.")],
        [_INTL("IVs"),       IVsProperty.new(Pokemon::IV_STAT_LIMIT), _INTL("Individual values for each of the Pokémon's stats.")],
        [_INTL("EVs"),       EVsProperty.new(Pokemon::EV_STAT_LIMIT), _INTL("Effort values for each of the Pokémon's stats.")],
-       [_INTL("Happiness"), LimitProperty2.new(255),                 _INTL("Happiness of the Pokémon (0-255).")],
+       [_INTL("Bonheur"), LimitProperty2.new(255),                 _INTL("Happiness of the Pokémon (0-255).")],
        [_INTL("Poké Ball"), BallProperty.new(oldsetting),            _INTL("The kind of Poké Ball the Pokémon is kept in.")]
     ])
     pbPropertyList(settingname, oldsetting, pkmn_properties, false)

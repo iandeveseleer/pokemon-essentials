@@ -98,9 +98,39 @@ Pokemon = MUDKIP,5
 [RIVAL1,Blue,2]
 Pokemon = CHIKORITA,5
 #-------------------------------
-[YOUNGSTER,Kévin]
+[GAMIN_K,Kévin]
 LoseText = "Owh, je doit changer de short.."
 Pokemon = RATTATA,5
+#-------------------------------
+[ROCKET_M,Sheldon]
+LoseText = "J'suis le pire agent de la Team Rocket.."
+Pokemon = WOBBUFFET,8
+#-------------------------------
+[MONTAGNARD_K,Ben]
+LoseText = "Apparemment tu t'es bien préparé.."
+Pokemon = GEODUDE,7
+#-------------------------------
+[GAMIN_J,Julien]
+LoseText = "Ils avaient tous l'air solide pourtant.."
+Pokemon = GEODUDE,7
+Pokemon = GEODUDE,8
+#-------------------------------
+[MONTAGNARD_J,Ken]
+LoseText = "Aïe, mon humérus!"
+Pokemon = GEODUDE,10
+#-------------------------------
+[CHAMPION_Pierre,Pierre]
+Items = POTION,POTION
+LoseText = "Félicitations, tu m'as bien eu."
+Pokemon = GEODUDE,12
+    Gender = male
+Pokemon = ONIX,14
+    Gender = male
+    Item = SITRUSBERRY
+#-------------------------------
+[GAMIN_J,Sam]
+LoseText = "C'est pas juste sa mère!"
+Pokemon = ZIGZAGOON,8
 #-------------------------------
 [CHAMPION,Blue]
 LoseText = "A good battle indeed!"

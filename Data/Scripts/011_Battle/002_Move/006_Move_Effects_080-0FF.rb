@@ -1004,7 +1004,7 @@ class PokeBattle_Move_0A7 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     target.effects[PBEffects::Foresight] = true
-    @battle.pbDisplay(_INTL("{1} was identified!",target.pbThis))
+    @battle.pbDisplay(_INTL("{1} est identifié!",target.pbThis))
   end
 end
 
@@ -1019,7 +1019,7 @@ class PokeBattle_Move_0A8 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     target.effects[PBEffects::MiracleEye] = true
-    @battle.pbDisplay(_INTL("{1} was identified!",target.pbThis))
+    @battle.pbDisplay(_INTL("{1} est identifié!",target.pbThis))
   end
 end
 
@@ -2292,24 +2292,24 @@ class PokeBattle_Move_0CF < PokeBattle_Move
     target.effects[PBEffects::TrappingMove] = @id
     target.effects[PBEffects::TrappingUser] = user.index
     # Message
-    msg = _INTL("{1} was trapped in the vortex!",target.pbThis)
+    msg = _INTL("{1} est pris dans le tourbillon!",target.pbThis)
     case @id
     when :BIND
-      msg = _INTL("{1} was squeezed by {2}!",target.pbThis,user.pbThis(true))
+      msg = _INTL("{1} est ligoté par {2}!",target.pbThis,user.pbThis(true))
     when :CLAMP
-      msg = _INTL("{1} clamped {2}!",user.pbThis,target.pbThis(true))
+      msg = _INTL("{1} écrase {2}!",user.pbThis,target.pbThis(true))
     when :FIRESPIN
-      msg = _INTL("{1} was trapped in the fiery vortex!",target.pbThis)
+      msg = _INTL("{1} est piégé par un tourbillon de flammes!",target.pbThis)
     when :INFESTATION
       msg = _INTL("{1} has been afflicted with an infestation by {2}!",target.pbThis,user.pbThis(true))
     when :MAGMASTORM
-      msg = _INTL("{1} became trapped by Magma Storm!",target.pbThis)
+      msg = _INTL("{1} est piégé par un tourbillon de magma!",target.pbThis)
     when :SANDTOMB
-      msg = _INTL("{1} became trapped by Sand Tomb!",target.pbThis)
+      msg = _INTL("{1} est piégé dans une tempête de sable!",target.pbThis)
     when :WHIRLPOOL
-      msg = _INTL("{1} became trapped in the vortex!",target.pbThis)
+      msg = _INTL("{1} est pris dans le tourbillon!",target.pbThis)
     when :WRAP
-      msg = _INTL("{1} was wrapped by {2}!",target.pbThis,user.pbThis(true))
+      msg = _INTL("{1} est ligoté par {2}!",target.pbThis,user.pbThis(true))
     end
     @battle.pbDisplay(msg)
   end

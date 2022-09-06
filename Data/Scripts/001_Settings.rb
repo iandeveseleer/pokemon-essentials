@@ -205,6 +205,7 @@ module Settings
     return [
       [_INTL("Pokédex de Kanto"), 0],
       [_INTL("Pokédex de Johto"), 1],
+      [_INTL("Pokédex de Hoenn"), 2],
       _INTL("Pokédex National")
     ]
   end

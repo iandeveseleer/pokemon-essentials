@@ -492,7 +492,7 @@ def pbBerryPlant
           end
         end
         interp.setVariable(berryData)
-        pbMessage(_INTL("\\me[Berry_Get]{1} arrose la plante.\\wtnp[40]",$Trainer.name))
+        pbMessage(_INTL("\\me[Baie]{1} arrose la plante.\\wtnp[40]",$Trainer.name))
         if Settings::NEW_BERRY_PLANTS
           pbMessage(_INTL("La graine semble se développer !"))
         else
@@ -522,9 +522,9 @@ def pbPickBerry(berry, qty = 1)
     end
     $PokemonBag.pbStoreItem(berry,qty)
     if qty>1
-      pbMessage(_INTL("\\me[Berry_Get]Vous ramassez {1} \\c[1]{2}\\c[0].\\wtnp[30]",qty,itemname))
+      pbMessage(_INTL("\\me[Baie]Vous ramassez {1} \\c[1]{2}\\c[0].\\wtnp[30]",qty,itemname))
     else
-      pbMessage(_INTL("\\me[Berry_Get]Vous ramassez \\c[1]{1}\\c[0].\\wtnp[30]",itemname))
+      pbMessage(_INTL("\\me[Baie]Vous ramassez \\c[1]{1}\\c[0].\\wtnp[30]",itemname))
     end
     pocket = berry.pocket
     pbMessage(_INTL("{1} range \\c[1]{2}\\c[0] dans la <icon=bagPocket{3}> \\c[1]Poche à {4}\\c[0].\1",

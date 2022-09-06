@@ -544,6 +544,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
     }
   end
   text.gsub!(/\\pn/i,$Trainer.name) if $Trainer
+  text.gsub!(/\\prn/i,$game_variables[12].to_s) if $game_variables && $game_variables[12] != nil
   text.gsub!(/\\pm/i,_INTL("${1}",$Trainer.money.to_s_formatted)) if $Trainer
   text.gsub!(/\\n/i,"\n")
   text.gsub!(/\\\[([0-9a-f]{8,8})\]/i) { "<c2="+$1+">" }

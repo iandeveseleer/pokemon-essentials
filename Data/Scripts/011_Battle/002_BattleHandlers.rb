@@ -491,9 +491,9 @@ def pbBattleConfusionBerry(battler,battle,item,forced,flavor,confuseMsg)
   if amt>0
     if forced
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+      battle.pbDisplay(_INTL("PV de {1} restaurés.",battler.pbThis))
     else
-      battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,itemName))
+      battle.pbDisplay(_INTL("{1} restaure ses PV grâce à {2}!",battler.pbThis,itemName))
     end
   end
   flavor_stat = [:ATTACK, :DEFENSE, :SPEED, :SPECIAL_ATTACK, :SPECIAL_DEFENSE][flavor]

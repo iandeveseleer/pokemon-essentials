@@ -33,7 +33,13 @@ class PokemonSave_Scene
   def pbStartScreen
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=99999
+    @background=Viewport.new(0,0,Graphics.width,Graphics.height)
+    @background.z=99998
     @sprites={}
+    @sprites["backshade"] = Sprite.new(@viewport)
+    @sprites["backshade"].bitmap = Bitmap.new(Graphics.width,Graphics.height)
+    @sprites["backshade"].bitmap.fill_rect(0,0,Graphics.width,Graphics.height,Color.new(-30,-30,-30,130))
+    @sprites["backshade"].z = -10
     totalsec = Graphics.frame_count / Graphics.frame_rate
     hour = totalsec / 60 / 60
     min = totalsec / 60 % 60
@@ -62,6 +68,7 @@ class PokemonSave_Scene
   def pbEndScreen
     pbDisposeSpriteHash(@sprites)
     @viewport.dispose
+    @background.dispose
   end
 end
 

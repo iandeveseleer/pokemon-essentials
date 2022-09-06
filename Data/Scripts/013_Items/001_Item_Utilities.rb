@@ -407,7 +407,7 @@ def pbLearnMove(pkmn,move,ignoreifknown=false,bymachine=false,&block)
   end
   if pkmn.numMoves<Pokemon::MAX_MOVES
     pkmn.learn_move(move)
-    pbMessage(_INTL("\\se[]{1} apprend {2}!\\se[Pkmn move learnt]",pkmnname,movename),&block)
+    pbMessage(_INTL("\\se[]{1} apprend {2}!\\me[Niveau]",pkmnname,movename),&block)
     return true
   end
   loop do
@@ -423,7 +423,7 @@ def pbLearnMove(pkmn,move,ignoreifknown=false,bymachine=false,&block)
       end
       pbMessage(_INTL("1,\\wt[16] 2, &\\wt[16]...\\wt[16] ...\\wt[16] ... Ta-da!\\se[Battle ball drop]\1"),&block)
       pbMessage(_INTL("{1} oublie {2}.\\nEt...\1",pkmnname,oldmovename),&block)
-      pbMessage(_INTL("\\se[]{1} apprend {2}!\\se[Pkmn move learnt]",pkmnname,movename),&block)
+      pbMessage(_INTL("\\se[]{1} apprend {2}!\\me[Niveau]",pkmnname,movename),&block)
       pkmn.changeHappiness("machine") if bymachine
       return true
     elsif pbConfirmMessage(_INTL("Arrêter d'apprendre {1}?",movename),&block)

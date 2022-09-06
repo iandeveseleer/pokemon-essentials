@@ -34,13 +34,49 @@
 41,North,0,40,South,0
 # Route 5 (41) - Route 6 (45)
 41,South,6,45,North,0
+# Bourg Palette (43) - Route 1 (82)
+43,North,0,82,South,0
 # Route 7 (47) - Battle Frontier (52)
 47,East,8,52,West,0
 # Route 8 (69) - Safari Zone (66)
 69,North,0,66,South,10
 # Route 1 (82) - Jadielle (84)
 82,North,26,84,South,0
-# Route 2 (93) - Jadielle (84)
-93,South,0,84,North,5
-# Bourg Palette (43) - Route 1 (82)
-43,North,0,82,South,0
+# Jadielle (84) - Route 2 (93)
+84,North,5,93,South,0
+# Route 2 (94) - Route 2 (93)
+94,South,0,93,North,1
+# Doublon-Tunnel (106) - Doublon-Tunnel (100)
+106,North,0,100,South,0
+# Doublon-Tunnel (113) - Doublon-Tunnel (100)
+113,West,0,100,East,0
+# Doublon-Tunnel (113) - Doublon-Tunnel (106)
+113,West,24,106,East,0
+# Bonaugure (127) - Route 201 (143)
+127,0,0,143,0,28
+# Route 115 (130) - Mérouville (133)
+130,South,7,133,North,0
+# Route 115 (131) - Route 115 (130)
+131,West,0,130,East,0
+# Mérouville (133) - Mérouville (132)
+133,South,0,132,North,4
+# Route 33 (140) - Route 36 (146)
+140,West,0,146,East,138
+# Mauville (145) - Route 36 (146)
+145,West,0,146,East,0
+# Ecorcia (139) - Route 33 (140)
+139,East,2,140,West,0
+# Route 32 (144) - Route 33 (140)
+144,South,4,140,North,0
+# Mauville (145) - Ecorcia (139)
+145,West,136,139,East,0
+# Doublonville (137) - Route 34 (105)
+137,South,18,105,North,0
+# Doublonville (90) - Doublonville (137)
+90,South,0,137,North,0
+# Route 49 (110) - Doublonville (137)
+110,West,39,137,East,0
+# Route 49 (110) - Doublonville (90)
+110,West,13,90,East,0
+# Route 32 (144) - Mauville (145)
+144,North,4,145,South,0

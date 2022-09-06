@@ -207,7 +207,7 @@ class PokeBattle_Battle
       pkmn.calc_stats
       battler.pbUpdate(false) if battler
       @scene.pbRefreshOne(battler.index) if battler
-      pbDisplayPaused(_INTL("{1} monte au niveau {2}!",pkmn.name,curLevel))
+      pbDisplayPaused(_INTL("{1} monte au niveau {2}!",pkmn.name,curLevel)) { pbMEPlay("Niveau") }
       @scene.pbLevelUp(pkmn,battler,oldTotalHP,oldAttack,oldDefense,
                                     oldSpAtk,oldSpDef,oldSpeed)
       # Learn all moves learned at this level
@@ -230,7 +230,7 @@ class PokeBattle_Battle
     # Pokémon has space for the new move; just learn it
     if pkmn.moves.length < Pokemon::MAX_MOVES
       pkmn.moves.push(Pokemon::Move.new(newMove))
-      pbDisplay(_INTL("{1} apprend {2}!",pkmnName,moveName)) { pbSEPlay("Pkmn move learnt") }
+      pbDisplay(_INTL("{1} apprend {2}!",pkmnName,moveName)) { pbMEPlay("Niveau") }
       if battler
         battler.moves.push(PokeBattle_Move.from_pokemon_move(self, pkmn.moves.last))
         battler.pbCheckFormOnMovesetChange
@@ -249,7 +249,7 @@ class PokeBattle_Battle
           battler.moves[forgetMove] = PokeBattle_Move.from_pokemon_move(self, pkmn.moves[forgetMove]) if battler
           pbDisplayPaused(_INTL("1, 2, &... ... ... Ta-da!"))
           pbDisplayPaused(_INTL("{1} oublie comment utiliser {2}. Et...",pkmnName,oldMoveName))
-          pbDisplay(_INTL("{1} apprend {2}!",pkmnName,moveName)) { pbSEPlay("Pkmn move learnt") }
+          pbDisplay(_INTL("{1} apprend {2}!",pkmnName,moveName)) { pbMEPlay("Niveau") }
           battler.pbCheckFormOnMovesetChange if battler
           break
         elsif pbDisplayConfirm(_INTL("Arrêter d'apprendre {1}?",moveName))

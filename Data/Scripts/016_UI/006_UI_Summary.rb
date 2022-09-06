@@ -446,9 +446,9 @@ class PokemonSummary_Scene
       drawFormattedTextEx(overlay,234,304,264,memo)
     else
       endexp = @pokemon.growth_rate.minimum_exp_for_level(@pokemon.level + 1)
-      textpos.push([_INTL("Exp. Points"),238,234,0,base,shadow])
+      textpos.push([_INTL("Points d'expérience"),238,234,0,base,shadow])
       textpos.push([@pokemon.exp.to_s_formatted,488,266,1,Color.new(64,64,64),Color.new(176,176,176)])
-      textpos.push([_INTL("To Next Lv."),238,298,0,base,shadow])
+      textpos.push([_INTL("Prochain N."),238,298,0,base,shadow])
       textpos.push([(endexp-@pokemon.exp).to_s_formatted,488,330,1,Color.new(64,64,64),Color.new(176,176,176)])
     end
     # Draw all text
@@ -657,7 +657,7 @@ class PokemonSummary_Scene
        [sprintf("%d",@pokemon.spdef),456,210,1,Color.new(64,64,64),Color.new(176,176,176)],
        [_INTL("Vitesse"),248,242,0,base,statshadows[:SPEED]],
        [sprintf("%d",@pokemon.speed),456,242,1,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Ability"),224,278,0,base,shadow]
+       [_INTL("Talent"),224,278,0,base,shadow]
     ]
     # Draw ability name and description
     ability = @pokemon.ability
@@ -1089,7 +1089,7 @@ class PokemonSummary_Scene
           @sprites["markingoverlay"].bitmap.blt(300+58*(i%3),154+50*(i/3),@markingbitmap.bitmap,markrect)
         end
         textpos = [
-           [_INTL("Marquer le {1}",pokemon.name),366,90,2,base,shadow],
+           [_INTL("Marquer {1}",pokemon.name),366,90,2,base,shadow],
            [_INTL("OK"),366,242,2,base,shadow],
            [_INTL("ANNULER"),366,292,2,base,shadow]
         ]
@@ -1182,7 +1182,7 @@ class PokemonSummary_Scene
       commands[cmdTakeItem = commands.length] = _INTL("Prendre objet") if @pokemon.hasItem?
       commands[cmdPokedex = commands.length]  = _INTL("Voir dans le Pokédex") if $Trainer.has_pokedex
     end
-    commands[cmdMark = commands.length]       = _INTL("Marque")
+    commands[cmdMark = commands.length]       = _INTL("Marquer")
     commands[commands.length]                 = _INTL("ANNULER")
     command = pbShowCommands(commands)
     if cmdGiveItem>=0 && command==cmdGiveItem

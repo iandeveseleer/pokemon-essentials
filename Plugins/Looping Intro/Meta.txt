@@ -1,0 +1,4 @@
+Name      = Looping Trainer Intro as BGM
+Version   = 1.0
+Website   = https://reliccastle.com/resources/657/
+Credits   = Boonzeet,DarrylBD99

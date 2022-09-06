@@ -89,9 +89,9 @@ def pbStartOver(gameover=false)
   $Trainer.heal_party
   if $PokemonGlobal.pokecenterMapId && $PokemonGlobal.pokecenterMapId>=0
     if gameover
-      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]After the unfortunate defeat, you scurry back to a Pokémon Center."))
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]Après cette malheureuse défaite, vous vous précipitez vers un Centre Pokémon."))
     else
-      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]You scurry back to a Pokémon Center, protecting your exhausted Pokémon from any further harm..."))
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]Vous vous précipitez vers un Centre Pokémon, protégeant vos Pokémon exténués de tout autre danger..."))
     end
     pbCancelVehicles
     pbRemoveDependencies
@@ -112,9 +112,9 @@ def pbStartOver(gameover=false)
       return
     end
     if gameover
-      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]After the unfortunate defeat, you scurry back home."))
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]Après cette malheureuse défaite, vous vous précipitez vers la maison."))
     else
-      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]You scurry back home, protecting your exhausted Pokémon from any further harm..."))
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]Vous vous précipitez à la maison, protégeant vos Pokémon exténués de tout autre danger..."))
     end
     if homedata
       pbCancelVehicles

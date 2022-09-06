@@ -1,13 +1,13 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [000]
-Home = 3,7,5,8
-WildBattleBGM = Battle wild.mid
-TrainerBattleBGM = Battle.mid
-WildVictoryME = Battle victory wild.ogg
-TrainerVictoryME = Battle victory trainer.ogg
-SurfBGM = Surfing.mid
-BicycleBGM = Bicycle.mid
+Home = 48,36,9,2
+WildBattleBGM = Battle Wild.ogg
+TrainerBattleBGM = Battle.ogg
+WildVictoryME = Battle Victory Wild.ogg
+TrainerVictoryME = Victory.ogg
+SurfBGM = Surf.ogg
+BicycleBGM = Velo.ogg
 PlayerA = POKEMONTRAINER_Red,trchar000,boy_bike,boy_surf,boy_run,boy_surf,boy_fish_offset,boy_fish_offset
 PlayerB = POKEMONTRAINER_Leaf,trchar001,girl_bike,girl_surf,girl_run,girl_surf,girl_fish_offset,girl_fish_offset
 #-------------------------------
@@ -452,7 +452,7 @@ BicycleAlways = false
 MapPosition = 0,5,10
 #-------------------------------
 [085]
-# Jadielle
+# Centre Pokémon de Jadielle
 Outdoor = false
 ShowArea = false
 MapPosition = 0,5,10
@@ -478,7 +478,7 @@ BicycleAlways = false
 MapPosition = 1,18,10
 #-------------------------------
 [091]
-# Doublonville
+# Centre Pokémon de Doublonville
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -492,10 +492,270 @@ Bicycle = true
 BicycleAlways = false
 MapPosition = 0,5,9
 #-------------------------------
+[094]
+# Route 2
+Outdoor = true
+ShowArea = true
+MapPosition = 0,5,7
+Environment = Grass
+#-------------------------------
 [095]
+# Gare de Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+BicycleAlways = false
+MapPosition = 1,18,9
+#-------------------------------
+[098]
+# Casino de Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 1,18,10
+#-------------------------------
+[099]
+# Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 1,18,9
+#-------------------------------
+[100]
+# Doublon-Tunnel
+MapPosition = 1,18,9
+#-------------------------------
+[101]
+# Doublon-Tunnel
+Outdoor = false
+ShowArea = false
+Bicycle = false
+BicycleAlways = false
+MapPosition = 1,18,9
+Environment = None
+#-------------------------------
+[102]
+# Doublon-Tunnel
+Outdoor = false
+ShowArea = false
+Bicycle = false
+BicycleAlways = false
+MapPosition = 1,18,10
+Environment = None
+#-------------------------------
+[103]
+# Centre Pokémon de Mérouville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 2,1,8
+#-------------------------------
+[104]
+# Mérouville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 2,1,8
+#-------------------------------
+[105]
+# Route 34
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 1,18,11
+#-------------------------------
+[106]
+# Doublon-Tunnel
+Outdoor = false
+ShowArea = false
+Bicycle = false
+BicycleAlways = false
+MapPosition = 1,18,10
+Environment = None
+#-------------------------------
+[107]
+# Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 1,18,10
+#-------------------------------
+[108]
+# Arène de Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 1,18,9
+Environment = Rock
+#-------------------------------
+[110]
+# Route 49
+Outdoor = true
+ShowArea = true
+Bicycle = true
+BicycleAlways = false
+MapPosition = 1,19,9
+#-------------------------------
+[112]
+# Doublon-Tunnel
+Outdoor = false
+ShowArea = false
+MapPosition = 1,19,9
+#-------------------------------
+[113]
+# Doublon-Tunnel
+Outdoor = false
+ShowArea = false
+Bicycle = false
+BicycleAlways = false
+MapPosition = 1,19,9
+#-------------------------------
+[114]
+# Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+BicycleAlways = false
+MapPosition = 1,18,10
+#-------------------------------
+[116]
+# Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 1,18,10
+#-------------------------------
+[117]
+# Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 1,18,10
+#-------------------------------
+[118]
+# Doublonville
+Outdoor = false
+ShowArea = false
+MapPosition = 1,18,10
+#-------------------------------
+[119]
+# Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 1,18,10
+#-------------------------------
+[120]
+# Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 1,18,10
+#-------------------------------
+[121]
+# Aéroport de Doublonville
+Outdoor = false
+ShowArea = false
+Bicycle = false
+MapPosition = 1,18,10
+#-------------------------------
+[122]
 # Doublonville
 Outdoor = false
 ShowArea = false
 Bicycle = false
 BicycleAlways = false
 MapPosition = 1,18,9
+#-------------------------------
+[127]
+# Bonaugure
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 3,5,19
+#-------------------------------
+[130]
+# Route 115
+Outdoor = true
+ShowArea = true
+Bicycle = true
+BicycleAlways = false
+MapPosition = 2,1,6
+#-------------------------------
+[131]
+# Route 115
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 2,2,6
+#-------------------------------
+[132]
+# Mérouville
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 2,1,8
+#-------------------------------
+[133]
+# Mérouville
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 2,1,7
+#-------------------------------
+[137]
+# Doublonville
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 1,18,10
+#-------------------------------
+[138]
+# Bois aux Chênes
+Outdoor = true
+ShowArea = true
+MapPosition = 1,18,14
+Environment = Forest
+#-------------------------------
+[139]
+# Ecorcia
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 1,20,14
+#-------------------------------
+[140]
+# Route 33
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 1,21,14
+#-------------------------------
+[143]
+# Route 201
+Outdoor = true
+ShowArea = true
+Bicycle = true
+BicycleAlways = false
+MapPosition = 3,5,18
+#-------------------------------
+[144]
+# Route 32
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 1,22,10
+#-------------------------------
+[145]
+# Mauville
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 1,22,6
+#-------------------------------
+[146]
+# Route 36
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 1,21,6

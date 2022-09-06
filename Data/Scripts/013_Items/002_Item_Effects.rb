@@ -2,7 +2,7 @@
 # UseText handlers
 #===============================================================================
 ItemHandlers::UseText.add(:BICYCLE,proc { |item|
-  next ($PokemonGlobal.bicycle) ? _INTL("Walk") : _INTL("Use")
+  next ($PokemonGlobal.bicycle) ? _INTL("Marcher") : _INTL("Utiliser")
 })
 
 ItemHandlers::UseText.copy(:BICYCLE,:MACHBIKE,:ACROBIKE)

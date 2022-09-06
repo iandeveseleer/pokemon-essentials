@@ -73,7 +73,7 @@ GameData::Stat.register({
   :id         => :ATTACK,
   :id_number  => 1,
   :name       => _INTL("Attaque"),
-  :name_brief => _INTL("Atk"),
+  :name_brief => _INTL("Atq"),
   :type       => :main_battle,
   :pbs_order  => 1
 })
@@ -90,8 +90,8 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :SPECIAL_ATTACK,
   :id_number  => 3,
-  :name       => _INTL("Special Attack"),
-  :name_brief => _INTL("SpAtk"),
+  :name       => _INTL("Attaque Spéciale"),
+  :name_brief => _INTL("AtqSpe"),
   :type       => :main_battle,
   :pbs_order  => 4
 })
@@ -99,8 +99,8 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :SPECIAL_DEFENSE,
   :id_number  => 4,
-  :name       => _INTL("Special Defense"),
-  :name_brief => _INTL("SpDef"),
+  :name       => _INTL("Défense Spéciale"),
+  :name_brief => _INTL("DefSpe"),
   :type       => :main_battle,
   :pbs_order  => 5
 })
@@ -109,7 +109,7 @@ GameData::Stat.register({
   :id         => :SPEED,
   :id_number  => 5,
   :name       => _INTL("Vitesse"),
-  :name_brief => _INTL("Spd"),
+  :name_brief => _INTL("Vit"),
   :type       => :main_battle,
   :pbs_order  => 3
 })
@@ -117,15 +117,15 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :ACCURACY,
   :id_number  => 6,
-  :name       => _INTL("accuracy"),
-  :name_brief => _INTL("Acc"),
+  :name       => _INTL("Précision"),
+  :name_brief => _INTL("Pré"),
   :type       => :battle
 })
 
 GameData::Stat.register({
   :id         => :EVASION,
   :id_number  => 7,
-  :name       => _INTL("evasiveness"),
-  :name_brief => _INTL("Eva"),
+  :name       => _INTL("Esquive"),
+  :name_brief => _INTL("Esq"),
   :type       => :battle
 })

@@ -19,6 +19,7 @@ module GameData
     attr_reader :shows_reflections
     attr_reader :must_walk
     attr_reader :ignore_passability
+    attr_reader :can_headbutt
 
     DATA = {}
 
@@ -58,6 +59,7 @@ module GameData
       @shows_reflections      = hash[:shows_reflections]      || false
       @must_walk              = hash[:must_walk]              || false
       @ignore_passability     = hash[:ignore_passability]     || false
+      @can_headbutt           = hash[:can_headbutt]     || false
     end
 
     def can_surf_freely
@@ -191,4 +193,10 @@ GameData::TerrainTag.register({
   :id_number              => 16,
   :battle_environment     => :Puddle,
   :shows_reflections      => true
+})
+
+GameData::TerrainTag.register({
+  :id                     => :Headbutt,
+  :id_number              => 17,
+  :can_headbutt      => true
 })

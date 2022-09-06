@@ -150,11 +150,11 @@ class PokeBattle_Scene
     # Start party screen
     scene = PokemonParty_Scene.new
     switchScreen = PokemonPartyScreen.new(scene,modParty)
-    switchScreen.pbStartScene(_INTL("Choose a Pokémon."),@battle.pbNumPositions(0,0))
+    switchScreen.pbStartScene(_INTL("Choisir un Pokémon."),@battle.pbNumPositions(0,0))
     # Loop while in party screen
     loop do
       # Select a Pokémon
-      scene.pbSetHelpText(_INTL("Choose a Pokémon."))
+      scene.pbSetHelpText(_INTL("Choisir un Pokémon."))
       idxParty = switchScreen.pbChoosePokemon
       if idxParty<0
         next if !canCancel
@@ -164,10 +164,10 @@ class PokeBattle_Scene
       cmdSwitch  = -1
       cmdSummary = -1
       commands = []
-      commands[cmdSwitch  = commands.length] = _INTL("Switch In") if modParty[idxParty].able?
-      commands[cmdSummary = commands.length] = _INTL("Summary")
+      commands[cmdSwitch  = commands.length] = _INTL("Envoyer") if modParty[idxParty].able?
+      commands[cmdSummary = commands.length] = _INTL("Sommaire")
       commands[commands.length]              = _INTL("ANNULER")
-      command = scene.pbShowCommands(_INTL("Do what with {1}?",modParty[idxParty].name),commands)
+      command = scene.pbShowCommands(_INTL("Que faire avec {1}?",modParty[idxParty].name),commands)
       if cmdSwitch>=0 && command==cmdSwitch        # Switch In
         idxPartyRet = -1
         partyPos.each_with_index do |pos,i|
@@ -215,9 +215,9 @@ class PokeBattle_Scene
       useType = item.battle_use
       cmdUse = -1
       commands = []
-      commands[cmdUse = commands.length] = _INTL("Use") if useType && useType!=0
+      commands[cmdUse = commands.length] = _INTL("Utiliser") if useType && useType!=0
       commands[commands.length]          = _INTL("ANNULER")
-      command = itemScene.pbShowCommands(_INTL("{1} is selected.",itemName),commands)
+      command = itemScene.pbShowCommands(_INTL("{1} est selectionné.",itemName),commands)
       next unless cmdUse>=0 && command==cmdUse   # Use
       # Use types:
       # 0 = not usable in battle
@@ -274,7 +274,7 @@ class PokeBattle_Scene
           next if !pkmn || pkmn.egg?
           idxMove = -1
           if useType==2 || useType==7   # Use on Pokémon's move
-            idxMove = pkmnScreen.pbChooseMove(pkmn,_INTL("Restore which move?"))
+            idxMove = pkmnScreen.pbChooseMove(pkmn,_INTL("Restaurer quelle attaque?"))
             next if idxMove<0
           end
           break if yield item.id, useType, idxPartyRet, idxMove, pkmnScene
