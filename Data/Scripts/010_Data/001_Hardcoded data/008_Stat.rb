@@ -1,5 +1,3 @@
-# The id_number value determines which order the stats are iterated through by
-# the "each" methods.
 # The pbs_order value determines the order in which the stats are written in
 # several PBS files, where base stats/IVs/EVs/EV yields are defined. Only stats
 # which are yielded by the "each_main" method can have stat numbers defined in
@@ -8,7 +6,6 @@
 module GameData
   class Stat
     attr_reader :id
-    attr_reader :id_number
     attr_reader :real_name
     attr_reader :real_name_brief
     attr_reader :type
@@ -16,7 +13,7 @@ module GameData
 
     DATA = {}
 
-    extend ClassMethods
+    extend ClassMethodsSymbols
     include InstanceMethods
 
     def self.load; end
@@ -39,7 +36,6 @@ module GameData
 
     def initialize(hash)
       @id              = hash[:id]
-      @id_number       = hash[:id_number]  || -1
       @real_name       = hash[:name]       || "Unnamed"
       @real_name_brief = hash[:name_brief] || "None"
       @type            = hash[:type]       || :none

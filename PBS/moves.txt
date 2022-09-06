@@ -1,4 +1,4 @@
-﻿1,MEGAHORN,Mégacorne,000,120,BUG,Physical,85,10,0,NearOther,0,abef,"Le lanceur utilise ses gigantesques cornes pour charger l'ennemi."
+1,MEGAHORN,Mégacorne,000,120,BUG,Physical,85,10,0,NearOther,0,abef,"Le lanceur utilise ses gigantesques cornes pour charger l'ennemi."
 2,ATTACKORDER,Appel Attaque,000,90,BUG,Physical,100,15,0,NearOther,0,befh,"Le lanceur appelle ses sous-fifres pour frapper l'ennemi. Taux de critiques élevé."
 3,BUGBUZZ,Bourdon,046,90,STEEL,Special,100,10,10,NearOther,0,befk,"Le lanceur fait vibrer son corps pour lancer une vague sonique. Peut aussi baisser la Défense Spéciale de l'ennemi."
 4,XSCISSOR,Plaie Croix,000,80,BUG,Physical,100,15,0,NearOther,0,abef,"Le lanceur taillade l'ennemi en utilisant ses faux ou ses griffes comme une paire de ciseaux."

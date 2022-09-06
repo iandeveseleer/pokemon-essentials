@@ -11,7 +11,7 @@ class PokeBattle_Battler
     # Disable
     if @effects[PBEffects::DisableMove]==move.id && !specialUsage
       if showMessages
-        msg = _INTL("{2} de {1} est entravée!",pbThis,move.name)
+        msg = _INTL("{1}'s {2} is disabled!",pbThis,move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -127,13 +127,13 @@ class PokeBattle_Battler
     @effects[PBEffects::Rage] = false
     # Do nothing if using Snore/Sleep Talk
     if @status == :SLEEP && move.usableWhenAsleep?
-      @battle.pbDisplay(_INTL("{1} refuse les ordres et dort toujours!",pbThis))
+      @battle.pbDisplay(_INTL("{1} ignored orders and kept sleeping!",pbThis))
       return false
     end
     b = ((@level+badgeLevel)*@battle.pbRandom(256)/256).floor
     # Use another move
     if b<badgeLevel
-      @battle.pbDisplay(_INTL("{1} refuse les ordres!",pbThis))
+      @battle.pbDisplay(_INTL("{1} ignored orders!",pbThis))
       return false if !@battle.pbCanShowFightMenu?(@index)
       otherMoves = []
       eachMoveWithIndex do |_m,i|
@@ -151,21 +151,21 @@ class PokeBattle_Battler
     r = @battle.pbRandom(256)
     # Fall asleep
     if r<c && pbCanSleep?(self,false)
-      pbSleepSelf(_INTL("{1} tape une sieste!",pbThis))
+      pbSleepSelf(_INTL("{1} began to nap!",pbThis))
       return false
     end
     # Hurt self in confusion
     r -= c
     if r < c && @status != :SLEEP
-      pbConfusionDamage(_INTL("{1} ne veut pas obéir! Il se blesse dans sa confusion!",pbThis))
+      pbConfusionDamage(_INTL("{1} won't obey! It hurt itself in its confusion!",pbThis))
       return false
     end
     # Show refusal message and do nothing
     case @battle.pbRandom(4)
-    when 0 then @battle.pbDisplay(_INTL("{1} ne veut pas obéir!",pbThis))
-    when 1 then @battle.pbDisplay(_INTL("{1} tourne le dos!",pbThis))
-    when 2 then @battle.pbDisplay(_INTL("{1} flâne dans les environs!",pbThis))
-    when 3 then @battle.pbDisplay(_INTL("{1} fait comme si il n'avait pas compris!",pbThis))
+    when 0 then @battle.pbDisplay(_INTL("{1} won't obey!",pbThis))
+    when 1 then @battle.pbDisplay(_INTL("{1} turned away!",pbThis))
+    when 2 then @battle.pbDisplay(_INTL("{1} is loafing around!",pbThis))
+    when 3 then @battle.pbDisplay(_INTL("{1} pretended not to notice!",pbThis))
     end
     return false
   end
@@ -189,11 +189,11 @@ class PokeBattle_Battler
       return false
     end
     if @effects[PBEffects::HyperBeam]>0   # Intentionally before Truant
-      @battle.pbDisplay(_INTL("{1} doit recharger!",pbThis))
+      @battle.pbDisplay(_INTL("{1} must recharge!",pbThis))
       return false
     end
     if choice[1]==-2   # Battle Palace
-      @battle.pbDisplay(_INTL("{1} semble incapable d'utiliser son pouvoir!",pbThis))
+      @battle.pbDisplay(_INTL("{1} appears incapable of using its power!",pbThis))
       return false
     end
     # Skip checking all applied effects that could make self fail doing something
@@ -229,7 +229,7 @@ class PokeBattle_Battler
       @effects[PBEffects::Truant] = !@effects[PBEffects::Truant]
       if !@effects[PBEffects::Truant]   # True means loafing, but was just inverted
         @battle.pbShowAbilitySplash(self)
-        @battle.pbDisplay(_INTL("{1} flâne dans les environs!",pbThis))
+        @battle.pbDisplay(_INTL("{1} is loafing around!",pbThis))
         @lastMoveFailed = true
         @battle.pbHideAbilitySplash(self)
         return false
@@ -237,7 +237,7 @@ class PokeBattle_Battler
     end
     # Flinching
     if @effects[PBEffects::Flinch]
-      @battle.pbDisplay(_INTL("{1} a peur et ne peut attaquer!",pbThis))
+      @battle.pbDisplay(_INTL("{1} flinched and couldn't move!",pbThis))
       if abilityActive?
         BattleHandlers.triggerAbilityOnFlinch(self.ability,self,@battle)
       end
@@ -249,13 +249,13 @@ class PokeBattle_Battler
       @effects[PBEffects::Confusion] -= 1
       if @effects[PBEffects::Confusion]<=0
         pbCureConfusion
-        @battle.pbDisplay(_INTL("{1} sort de sa confusion.",pbThis))
+        @battle.pbDisplay(_INTL("{1} snapped out of its confusion.",pbThis))
       else
         @battle.pbCommonAnimation("Confusion",self)
-        @battle.pbDisplay(_INTL("{1} est confus!",pbThis))
+        @battle.pbDisplay(_INTL("{1} is confused!",pbThis))
         threshold = (Settings::MECHANICS_GENERATION >= 7) ? 33 : 50   # % chance
         if @battle.pbRandom(100)<threshold
-          pbConfusionDamage(_INTL("Il se blesse dans sa confusion!"))
+          pbConfusionDamage(_INTL("It hurt itself in its confusion!"))
           @lastMoveFailed = true
           return false
         end
@@ -272,10 +272,10 @@ class PokeBattle_Battler
     # Infatuation
     if @effects[PBEffects::Attract]>=0
       @battle.pbCommonAnimation("Attract",self)
-      @battle.pbDisplay(_INTL("{1} est entiché de {2}!",pbThis,
+      @battle.pbDisplay(_INTL("{1} is in love with {2}!",pbThis,
          @battle.battlers[@effects[PBEffects::Attract]].pbThis(true)))
       if @battle.pbRandom(100)<50
-        @battle.pbDisplay(_INTL("{1} est immobilisé par l'amour!",pbThis))
+        @battle.pbDisplay(_INTL("{1} is immobilized by love!",pbThis))
         @lastMoveFailed = true
         return false
       end
@@ -304,7 +304,7 @@ class PokeBattle_Battler
     if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index &&
        move.statusMove? && !move.pbTarget(user).targets_all
       @battle.pbCommonAnimation("CraftyShield",target)
-      @battle.pbDisplay(_INTL("Vigilance protège {1}!",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("Crafty Shield protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
       @battle.successStates[user.index].protected = true
       return false
@@ -314,7 +314,7 @@ class PokeBattle_Battler
        move.pbTarget(user).num_targets > 1 &&
        (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?)
       @battle.pbCommonAnimation("WideGuard",target)
-      @battle.pbDisplay(_INTL("Garde Large protège {1}!",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("Wide Guard protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
       @battle.successStates[user.index].protected = true
       return false
@@ -324,7 +324,7 @@ class PokeBattle_Battler
       if target.pbOwnSide.effects[PBEffects::QuickGuard] &&
          @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
         @battle.pbCommonAnimation("QuickGuard",target)
-        @battle.pbDisplay(_INTL("Prévention protège {1}!",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("Quick Guard protected {1}!",target.pbThis(true)))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         return false
@@ -332,7 +332,7 @@ class PokeBattle_Battler
       # Protect
       if target.effects[PBEffects::Protect]
         @battle.pbCommonAnimation("Protect",target)
-        @battle.pbDisplay(_INTL("{1} se protège!",target.pbThis))
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         return false
@@ -340,7 +340,7 @@ class PokeBattle_Battler
       # King's Shield
       if target.effects[PBEffects::KingsShield] && move.damagingMove?
         @battle.pbCommonAnimation("KingsShield",target)
-        @battle.pbDisplay(_INTL("{1} se protège!",target.pbThis))
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         if move.pbContactMove?(user) && user.affectedByContactEffect?
@@ -353,13 +353,13 @@ class PokeBattle_Battler
       # Spiky Shield
       if target.effects[PBEffects::SpikyShield]
         @battle.pbCommonAnimation("SpikyShield",target)
-        @battle.pbDisplay(_INTL("{1} se protège!",target.pbThis))
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         if move.pbContactMove?(user) && user.affectedByContactEffect?
           @battle.scene.pbDamageAnimation(user)
           user.pbReduceHP(user.totalhp/8,false)
-          @battle.pbDisplay(_INTL("{1} est blessé!",user.pbThis))
+          @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
           user.pbItemHPHealCheck
         end
         return false
@@ -367,7 +367,7 @@ class PokeBattle_Battler
       # Baneful Bunker
       if target.effects[PBEffects::BanefulBunker]
         @battle.pbCommonAnimation("BanefulBunker",target)
-        @battle.pbDisplay(_INTL("{1} se protège!",target.pbThis))
+        @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
         if move.pbContactMove?(user) && user.affectedByContactEffect?
@@ -403,14 +403,14 @@ class PokeBattle_Battler
     # Type immunity
     if move.pbDamagingMove? && Effectiveness.ineffective?(typeMod)
       PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
-      @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
       return false
     end
     # Dark-type immunity to moves made faster by Prankster
     if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::Prankster] &&
        target.pbHasType?(:DARK) && target.opposes?(user)
       PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
-      @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
       return false
     end
     # Airborne-based immunity to Ground moves
@@ -419,9 +419,9 @@ class PokeBattle_Battler
       if target.hasActiveAbility?(:LEVITATE) && !@battle.moldBreaker
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} a évité l'attaque!",target.pbThis))
+          @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} a évité l'attaque grâce à {2}!",target.pbThis,target.abilityName))
+          @battle.pbDisplay(_INTL("{1} avoided the attack with {2}!",target.pbThis,target.abilityName))
         end
         @battle.pbHideAbilitySplash(target)
         return false
@@ -443,23 +443,23 @@ class PokeBattle_Battler
     if move.powderMove?
       if target.pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
         PBDebug.log("[Target immune] #{target.pbThis} is Grass-type and immune to powder-based moves")
-        @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
         return false
       end
       if Settings::MECHANICS_GENERATION >= 6
         if target.hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
           @battle.pbShowAbilitySplash(target)
           if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
+            @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
           else
-            @battle.pbDisplay(_INTL("{1} n'est pas affecté grâce à {2}.",target.pbThis(true),target.abilityName))
+            @battle.pbDisplay(_INTL("It doesn't affect {1} because of its {2}.",target.pbThis(true),target.abilityName))
           end
           @battle.pbHideAbilitySplash(target)
           return false
         end
         if target.hasActiveItem?(:SAFETYGOGGLES)
           PBDebug.log("[Item triggered] #{target.pbThis} has Safety Goggles and is immune to powder-based moves")
-          @battle.pbDisplay(_INTL("Cela n'affecte pas {1}...",target.pbThis(true)))
+          @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
           return false
         end
       end
@@ -468,7 +468,7 @@ class PokeBattle_Battler
     if target.effects[PBEffects::Substitute]>0 && move.statusMove? &&
        !move.ignoresSubstitute?(user) && user.index!=target.index
       PBDebug.log("[Target immune] #{target.pbThis} is protected by its Substitute")
-      @battle.pbDisplay(_INTL("{1} évite l'attaque!",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis(true)))
       return false
     end
     return true
@@ -528,11 +528,11 @@ class PokeBattle_Battler
   #=============================================================================
   def pbMissMessage(move,user,target)
     if move.pbTarget(user).num_targets > 1
-      @battle.pbDisplay(_INTL("{1} a évité l'attaque!",target.pbThis))
+      @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
     elsif target.effects[PBEffects::TwoTurnAttack]
-      @battle.pbDisplay(_INTL("{1} évite l'attaque!",target.pbThis))
+      @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
     elsif !move.pbMissMessage(user,target)
-      @battle.pbDisplay(_INTL("L'attaque du {1} échoue!",user.pbThis))
+      @battle.pbDisplay(_INTL("{1}'s attack missed!",user.pbThis))
     end
   end
 end

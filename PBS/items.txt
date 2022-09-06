@@ -1,4 +1,4 @@
-﻿1,REPEL,Repousse,Repousses,1,350,"Repousse les Pokémon sauvages faibles pendant 100 pas.",2,0,0,
+1,REPEL,Repousse,Repousses,1,350,"Repousse les Pokémon sauvages faibles pendant 100 pas.",2,0,0,
 2,SUPERREPEL,Super Repousse,Super Repousses,1,500,"Repousse les Pokémon sauvages faibles pendant 200 pas.",2,0,0,
 3,MAXREPEL,Max Repousse,Max Repousses,1,700,"Repousse les Pokémon sauvages faibles pendant 250 pas.",2,0,0,
 4,BLACKFLUTE,Flûte Noire,Flûtes Noires,1,400,"Jouet en forme de flûte en verre noir. Les amateurs en donnent un bon prix.",2,0,0,

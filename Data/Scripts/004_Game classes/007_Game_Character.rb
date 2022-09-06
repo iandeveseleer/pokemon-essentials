@@ -6,15 +6,17 @@ class Game_Character
   attr_reader   :y
   attr_reader   :real_x
   attr_reader   :real_y
+  attr_writer   :x_offset   # In pixels, positive shifts sprite to the right
+  attr_writer   :y_offset   # In pixels, positive shifts sprite down
   attr_accessor :width
   attr_accessor :height
   attr_accessor :sprite_size
   attr_reader   :tile_id
   attr_accessor :character_name
   attr_accessor :character_hue
-  attr_reader   :opacity
+  attr_accessor :opacity
   attr_reader   :blend_type
-  attr_reader   :direction
+  attr_accessor :direction
   attr_accessor :pattern
   attr_accessor :pattern_surf
   attr_accessor :lock_pattern
@@ -26,7 +28,7 @@ class Game_Character
   attr_accessor :walk_anime
   attr_writer   :bob_height
 
-  def initialize(map=nil)
+  def initialize(map = nil)
     @map                       = map
     @id                        = 0
     @original_x                = 0
@@ -35,6 +37,8 @@ class Game_Character
     @y                         = 0
     @real_x                    = 0
     @real_y                    = 0
+    @x_offset                  = 0
+    @y_offset                  = 0
     @width                     = 1
     @height                    = 1
     @sprite_size               = [Game_Map::TILE_WIDTH, Game_Map::TILE_HEIGHT]
@@ -73,9 +77,13 @@ class Game_Character
     @bob_height                = 0
     @wait_count                = 0
     @moved_this_frame          = false
+    @moveto_happened           = false
     @locked                    = false
     @prelock_direction         = 0
   end
+
+  def x_offset; return @x_offset || 0; end
+  def y_offset; return @y_offset || 0; end
 
   def at_coordinate?(check_x, check_y)
     return check_x >= @x && check_x < @x + @width &&
@@ -88,15 +96,15 @@ class Game_Character
   end
 
   def each_occupied_tile
-    for i in @x...(@x + @width)
-      for j in (@y - @height + 1)..@y
+    (@x...(@x + @width)).each do |i|
+      ((@y - @height + 1)..@y).each do |j|
         yield i, j
       end
     end
   end
 
   def move_speed=(val)
-    return if val==@move_speed
+    return if val == @move_speed
     @move_speed = val
     # @move_speed_real is the number of quarter-pixels to move each frame. There
     # are 128 quarter-pixels per tile. By default, it is calculated from
@@ -107,7 +115,7 @@ class Game_Character
     # 4 => 25.6   # 5 frames per tile - running speed (2x walking speed)
     # 5 => 32     # 4 frames per tile - cycling speed (1.25x running speed)
     # 6 => 64     # 2 frames per tile
-    self.move_speed_real = (val == 6) ? 64 : (val == 5) ? 32 : (2 ** (val + 1)) * 0.8
+    self.move_speed_real = (val == 6) ? 64 : (val == 5) ? 32 : (2**(val + 1)) * 0.8
   end
 
   def move_speed_real
@@ -120,7 +128,7 @@ class Game_Character
   end
 
   def jump_speed_real
-    self.jump_speed_real = (2 ** (3 + 1)) * 0.8 if !@jump_speed_real   # 3 is walking speed
+    self.jump_speed_real = (2**(3 + 1)) * 0.8 if !@jump_speed_real   # 3 is walking speed
     return @jump_speed_real
   end
 
@@ -129,7 +137,7 @@ class Game_Character
   end
 
   def move_frequency=(val)
-    return if val==@move_frequency
+    return if val == @move_frequency
     @move_frequency = val
     # @move_frequency_real is the number of frames to wait between each action
     # in a move route (not forced). Specifically, this is the number of frames
@@ -142,7 +150,7 @@ class Game_Character
     # 4 => 64    # 1.6 seconds
     # 5 => 30    # 0.75 seconds
     # 6 => 0     # 0 seconds, i.e. continuous movement
-    self.move_frequency_real = (40 - val * 2) * (6 - val)
+    self.move_frequency_real = (40 - (val * 2)) * (6 - val)
   end
 
   def move_frequency_real
@@ -193,11 +201,38 @@ class Game_Character
   end
 
   def bush_depth
-    return 0 if @tile_id > 0 || @always_on_top || jumping?
-    xbehind = @x + (@direction==4 ? 1 : @direction==6 ? -1 : 0)
-    ybehind = @y + (@direction==8 ? 1 : @direction==2 ? -1 : 0)
-    return Game_Map::TILE_HEIGHT if self.map.deepBush?(@x, @y) && self.map.deepBush?(xbehind, ybehind)
-    return 12 if !moving? && self.map.bush?(@x, @y)
+    return @bush_depth || 0
+  end
+
+  def calculate_bush_depth
+    if @tile_id > 0 || @always_on_top || jumping?
+      @bush_depth = 0
+      return
+    end
+    this_map = (self.map.valid?(@x, @y)) ? [self.map, @x, @y] : $map_factory&.getNewMap(@x, @y, self.map.map_id)
+    if this_map && this_map[0].deepBush?(this_map[1], this_map[2])
+      xbehind = @x + (@direction == 4 ? 1 : @direction == 6 ? -1 : 0)
+      ybehind = @y + (@direction == 8 ? 1 : @direction == 2 ? -1 : 0)
+      if moving?
+        behind_map = (self.map.valid?(xbehind, ybehind)) ? [self.map, xbehind, ybehind] : $map_factory&.getNewMap(xbehind, ybehind, self.map.map_id)
+        @bush_depth = Game_Map::TILE_HEIGHT if behind_map[0].deepBush?(behind_map[1], behind_map[2])
+      else
+        @bush_depth = Game_Map::TILE_HEIGHT
+      end
+    elsif this_map && this_map[0].bush?(this_map[1], this_map[2]) && !moving?
+      @bush_depth = 12
+    else
+      @bush_depth = 0
+    end
+  end
+
+  def fullPattern
+    case self.direction
+    when 2 then return self.pattern
+    when 4 then return self.pattern + 4
+    when 6 then return self.pattern + 8
+    when 8 then return self.pattern + 12
+    end
     return 0
   end
 
@@ -216,12 +251,13 @@ class Game_Character
       return false unless self.map.passable?(x, y, d, self)
       return false unless self.map.passable?(new_x, new_y, 10 - d, self)
     end
-    for event in self.map.events.values
+    self.map.events.each_value do |event|
       next if self == event || !event.at_coordinate?(new_x, new_y) || event.through
       return false if self != $game_player || event.character_name != ""
     end
-    if $game_player.x == new_x && $game_player.y == new_y
-      return false if !$game_player.through && @character_name != ""
+    if $game_player.x == new_x && $game_player.y == new_y &&
+       !$game_player.through && @character_name != ""
+      return false
     end
     return true
   end
@@ -230,24 +266,24 @@ class Game_Character
     case dir
     when 2, 8   # Down, up
       y_diff = (dir == 8) ? @height - 1 : 0
-      for i in start_x...(start_x + @width)
+      (start_x...(start_x + @width)).each do |i|
         return false if !passable?(i, start_y - y_diff, dir, strict)
       end
       return true
     when 4, 6   # Left, right
       x_diff = (dir == 6) ? @width - 1 : 0
-      for i in (start_y - @height + 1)..start_y
+      ((start_y - @height + 1)..start_y).each do |i|
         return false if !passable?(start_x + x_diff, i, dir, strict)
       end
       return true
     when 1, 3   # Down diagonals
       # Treated as moving down first and then horizontally, because that
       # describes which tiles the character's feet touch
-      for i in start_x...(start_x + @width)
+      (start_x...(start_x + @width)).each do |i|
         return false if !passable?(i, start_y, 2, strict)
       end
       x_diff = (dir == 3) ? @width - 1 : 0
-      for i in (start_y - @height + 1)..start_y
+      ((start_y - @height + 1)..start_y).each do |i|
         return false if !passable?(start_x + x_diff, i + 1, dir + 3, strict)
       end
       return true
@@ -255,12 +291,12 @@ class Game_Character
       # Treated as moving horizontally first and then up, because that describes
       # which tiles the character's feet touch
       x_diff = (dir == 9) ? @width - 1 : 0
-      for i in (start_y - @height + 1)..start_y
+      ((start_y - @height + 1)..start_y).each do |i|
         return false if !passable?(start_x + x_diff, i, dir - 3, strict)
       end
-      x_offset = (dir == 9) ? 1 : -1
-      for i in start_x...(start_x + @width)
-        return false if !passable?(i + x_offset, start_y - @height + 1, 8, strict)
+      x_tile_offset = (dir == 9) ? 1 : -1
+      (start_x...(start_x + @width)).each do |i|
+        return false if !passable?(i + x_tile_offset, start_y - @height + 1, 8, strict)
       end
       return true
     end
@@ -275,13 +311,14 @@ class Game_Character
   # Screen position of the character
   #=============================================================================
   def screen_x
-    ret = ((@real_x - self.map.display_x) / Game_Map::X_SUBPIXELS).round
+    ret = ((@real_x.to_f - self.map.display_x) / Game_Map::X_SUBPIXELS).round
     ret += @width * Game_Map::TILE_WIDTH / 2
+    ret += self.x_offset
     return ret
   end
 
   def screen_y_ground
-    ret = ((@real_y - self.map.display_y) / Game_Map::Y_SUBPIXELS).round
+    ret = ((@real_y.to_f - self.map.display_y) / Game_Map::Y_SUBPIXELS).round
     ret += Game_Map::TILE_HEIGHT
     return ret
   end
@@ -294,8 +331,9 @@ class Game_Character
       else
         jump_fraction = ((@jump_distance_left / @jump_distance) - 0.5).abs   # 0.5 to 0 to 0.5
       end
-      ret += @jump_peak * (4 * jump_fraction**2 - 1)
+      ret += @jump_peak * ((4 * (jump_fraction**2)) - 1)
     end
+    ret += self.y_offset
     return ret
   end
 
@@ -304,7 +342,7 @@ class Game_Character
     z = screen_y_ground
     if @tile_id > 0
       begin
-        return z + self.map.priorities[@tile_id] * 32
+        return z + (self.map.priorities[@tile_id] * 32)
       rescue
         raise "Event's graphic is an out-of-range tile (event #{@id}, map #{self.map.map_id})"
       end
@@ -332,7 +370,7 @@ class Game_Character
   end
 
   def force_move_route(move_route)
-    if @original_move_route == nil
+    if @original_move_route.nil?
       @original_move_route       = @move_route
       @original_move_route_index = @move_route_index
     end
@@ -350,13 +388,15 @@ class Game_Character
     @real_x = @x * Game_Map::REAL_RES_X
     @real_y = @y * Game_Map::REAL_RES_Y
     @prelock_direction = 0
+    @moveto_happened = true
+    calculate_bush_depth
     triggerLeaveTile
   end
 
   def triggerLeaveTile
     if @oldX && @oldY && @oldMap &&
-       (@oldX!=self.x || @oldY!=self.y || @oldMap!=self.map.map_id)
-      Events.onLeaveTile.trigger(self,self,@oldMap,@oldX,@oldY)
+       (@oldX != self.x || @oldY != self.y || @oldMap != self.map.map_id)
+      EventHandlers.trigger(:on_leave_tile, self, @oldMap, @oldX, @oldY)
     end
     @oldX = self.x
     @oldY = self.y
@@ -380,8 +420,8 @@ class Game_Character
   end
 
   def move_type_toward_player
-    sx = @x + @width / 2.0 - ($game_player.x + $game_player.width / 2.0)
-    sy = @y - @height / 2.0 - ($game_player.y - $game_player.height / 2.0)
+    sx = @x + (@width / 2.0) - ($game_player.x + ($game_player.width / 2.0))
+    sy = @y - (@height / 2.0) - ($game_player.y - ($game_player.height / 2.0))
     if sx.abs + sy.abs >= 20
       move_random
       return
@@ -471,9 +511,16 @@ class Game_Character
         when 36 then @direction_fix = false
         when 37 then @through = true
         when 38 then @through = false
-        when 39 then @always_on_top = true
-        when 40 then @always_on_top = false
+        when 39
+          old_always_on_top = @always_on_top
+          @always_on_top = true
+          calculate_bush_depth if @always_on_top != old_always_on_top
+        when 40
+          old_always_on_top = @always_on_top
+          @always_on_top = false
+          calculate_bush_depth if @always_on_top != old_always_on_top
         when 41
+          old_tile_id = @tile_id
           @tile_id = 0
           @character_name = command.parameters[0]
           @character_hue = command.parameters[1]
@@ -486,6 +533,7 @@ class Game_Character
             @pattern = command.parameters[3]
             @original_pattern = @pattern
           end
+          calculate_bush_depth if @tile_id != old_tile_id
         when 42 then @opacity = command.parameters[0]
         when 43 then @blend_type = command.parameters[0]
         when 44 then pbSEPlay(command.parameters[0])
@@ -498,15 +546,13 @@ class Game_Character
 
   def move_generic(dir, turn_enabled = true)
     turn_generic(dir) if turn_enabled
-    x_offset = (dir == 4) ? -1 : (dir == 6) ? 1 : 0
-    y_offset = (dir == 8) ? -1 : (dir == 2) ? 1 : 0
     if can_move_in_direction?(dir)
       turn_generic(dir)
-      @x += x_offset
-      @y += y_offset
+      @x += (dir == 4) ? -1 : (dir == 6) ? 1 : 0
+      @y += (dir == 8) ? -1 : (dir == 2) ? 1 : 0
       increase_steps
     else
-      check_event_trigger_touch(@x + x_offset, @y + y_offset)
+      check_event_trigger_touch(dir)
     end
   end
 
@@ -597,21 +643,23 @@ class Game_Character
     end
   end
 
-  def move_random_range(xrange=-1,yrange=-1)
+  def move_random_range(xrange = -1, yrange = -1)
     dirs = []   # 0=down, 1=left, 2=right, 3=up
-    if xrange<0
-      dirs.push(1); dirs.push(2)
-    elsif xrange>0
+    if xrange < 0
+      dirs.push(1)
+      dirs.push(2)
+    elsif xrange > 0
       dirs.push(1) if @x > @original_x - xrange
       dirs.push(2) if @x < @original_x + xrange
     end
-    if yrange<0
-      dirs.push(0); dirs.push(3)
-    elsif yrange>0
+    if yrange < 0
+      dirs.push(0)
+      dirs.push(3)
+    elsif yrange > 0
       dirs.push(0) if @y < @original_y + yrange
       dirs.push(3) if @y > @original_y - yrange
     end
-    return if dirs.length==0
+    return if dirs.length == 0
     case dirs[rand(dirs.length)]
     when 0 then move_down(false)
     when 1 then move_left(false)
@@ -620,17 +668,17 @@ class Game_Character
     end
   end
 
-  def move_random_UD(range=-1)
-    move_random_range(0,range)
+  def move_random_UD(range = -1)
+    move_random_range(0, range)
   end
 
-  def move_random_LR(range=-1)
-    move_random_range(range,0)
+  def move_random_LR(range = -1)
+    move_random_range(range, 0)
   end
 
   def move_toward_player
-    sx = @x + @width / 2.0 - ($game_player.x + $game_player.width / 2.0)
-    sy = @y - @height / 2.0 - ($game_player.y - $game_player.height / 2.0)
+    sx = @x + (@width / 2.0) - ($game_player.x + ($game_player.width / 2.0))
+    sy = @y - (@height / 2.0) - ($game_player.y - ($game_player.height / 2.0))
     return if sx == 0 && sy == 0
     abs_sx = sx.abs
     abs_sy = sy.abs
@@ -651,8 +699,8 @@ class Game_Character
   end
 
   def move_away_from_player
-    sx = @x + @width / 2.0 - ($game_player.x + $game_player.width / 2.0)
-    sy = @y - @height / 2.0 - ($game_player.y - $game_player.height / 2.0)
+    sx = @x + (@width / 2.0) - ($game_player.x + ($game_player.width / 2.0))
+    sy = @y - (@height / 2.0) - ($game_player.y - ($game_player.height / 2.0))
     return if sx == 0 && sy == 0
     abs_sx = sx.abs
     abs_sy = sy.abs
@@ -704,7 +752,7 @@ class Game_Character
     end
     @x = @x + x_plus
     @y = @y + y_plus
-    real_distance = Math::sqrt(x_plus * x_plus + y_plus * y_plus)
+    real_distance = Math.sqrt((x_plus * x_plus) + (y_plus * y_plus))
     distance = [1, real_distance].max
     @jump_peak = distance * Game_Map::TILE_HEIGHT * 3 / 8   # 3/4 of tile for ledge jumping
     @jump_distance = [x_plus.abs * Game_Map::REAL_RES_X, y_plus.abs * Game_Map::REAL_RES_Y].max
@@ -716,27 +764,24 @@ class Game_Character
       @jump_count = Game_Map::REAL_RES_X / jump_speed_real   # Number of frames to jump one tile
     end
     @stop_count = 0
-    if self.is_a?(Game_Player)
-      $PokemonTemp.dependentEvents.pbMoveDependentEvents
-    end
     triggerLeaveTile
   end
 
   def jumpForward
     case self.direction
-    when 2 then jump(0,1)    # down
-    when 4 then jump(-1,0)   # left
-    when 6 then jump(1,0)    # right
-    when 8 then jump(0,-1)   # up
+    when 2 then jump(0, 1)    # down
+    when 4 then jump(-1, 0)   # left
+    when 6 then jump(1, 0)    # right
+    when 8 then jump(0, -1)   # up
     end
   end
 
   def jumpBackward
     case self.direction
-    when 2 then jump(0,-1)   # down
-    when 4 then jump(1,0)    # left
-    when 6 then jump(-1,0)   # right
-    when 8 then jump(0,1)    # up
+    when 2 then jump(0, -1)   # down
+    when 4 then jump(1, 0)    # left
+    when 6 then jump(-1, 0)   # right
+    when 8 then jump(0, 1)    # up
     end
   end
 
@@ -794,8 +839,8 @@ class Game_Character
   end
 
   def turn_toward_player
-    sx = @x + @width / 2.0 - ($game_player.x + $game_player.width / 2.0)
-    sy = @y - @height / 2.0 - ($game_player.y - $game_player.height / 2.0)
+    sx = @x + (@width / 2.0) - ($game_player.x + ($game_player.width / 2.0))
+    sy = @y - (@height / 2.0) - ($game_player.y - ($game_player.height / 2.0))
     return if sx == 0 && sy == 0
     if sx.abs > sy.abs
       (sx > 0) ? turn_left : turn_right
@@ -805,8 +850,8 @@ class Game_Character
   end
 
   def turn_away_from_player
-    sx = @x + @width / 2.0 - ($game_player.x + $game_player.width / 2.0)
-    sy = @y - @height / 2.0 - ($game_player.y - $game_player.height / 2.0)
+    sx = @x + (@width / 2.0) - ($game_player.x + ($game_player.width / 2.0))
+    sy = @y - (@height / 2.0) - ($game_player.y - ($game_player.height / 2.0))
     return if sx == 0 && sy == 0
     if sx.abs > sy.abs
       (sx > 0) ? turn_right : turn_left
@@ -820,6 +865,9 @@ class Game_Character
   #=============================================================================
   def update
     @moved_last_frame = @moved_this_frame
+    @stopped_last_frame = @stopped_this_frame
+    @moved_this_frame = false
+    @stopped_this_frame = false
     if !$game_temp.in_menu
       # Update command
       update_command
@@ -883,7 +931,13 @@ class Game_Character
       @jump_distance_left = [(dest_x - @real_x).abs, (dest_y - @real_y).abs].max
     end
     # End of a step, so perform events that happen at this time
-    Events.onStepTakenFieldMovement.trigger(self, self) if !jumping? && !moving?
+    if !jumping? && !moving?
+      EventHandlers.trigger(:on_step_taken, self)
+      calculate_bush_depth
+      @stopped_this_frame = true
+    elsif !@moved_last_frame || @stopped_last_frame   # Started a new step
+      calculate_bush_depth
+    end
     # Increment animation counter
     @anime_count += 1 if @walk_anime || @step_anime
     @moved_this_frame = true
@@ -892,7 +946,6 @@ class Game_Character
   def update_stop
     @anime_count += 1 if @step_anime
     @stop_count  += 1 if !@starting && !lock?
-    @moved_this_frame = false
   end
 
   def update_pattern
@@ -915,7 +968,7 @@ class Game_Character
     # game uses square tiles.
     real_speed = (jumping?) ? jump_speed_real : move_speed_real
     frames_per_pattern = Game_Map::REAL_RES_X / (real_speed * 2.0)
-    frames_per_pattern *= 2 if move_speed == 6   # Cycling/fastest speed
+    frames_per_pattern *= 2 if move_speed >= 5   # Cycling speed or faster
     return if @anime_count < frames_per_pattern
     # Advance to the next animation frame
     @pattern = (@pattern + 1) % 4

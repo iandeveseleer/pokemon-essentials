@@ -1,27 +1,27 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [CAMPER,Liam]
-LoseText = "A very good battle, indeed!"
+LoseText = A very good battle, indeed!
 Pokemon = DIGLETT,10
 Pokemon = BONSLY,11
 #-------------------------------
 [LEADER_Brock,Brock]
 Items = FULLRESTORE,FULLRESTORE
-LoseText = "Very good."
+LoseText = Very good.
 Pokemon = GEODUDE,12
     Gender = male
     Moves = DEFENSECURL,HEADSMASH,ROCKPOLISH,ROCKTHROW
-    Ability = 0
-    IV = 20
+    AbilityIndex = 0
+    IV = 20,20,20,20,20,20
 Pokemon = ONIX,14
     Name = Rocky
     Gender = male
     Shiny = yes
     Moves = HEADSMASH,ROCKTHROW,RAGE,ROCKTOMB
-    Ability = 0
+    AbilityIndex = 0
     Item = SITRUSBERRY
     IV = 20
-    Ball = 19
+    Ball = HEAVYBALL
 #-------------------------------
 [TEAMROCKET_M,Grunt,1]
 LoseText = "You're too good for me!"
