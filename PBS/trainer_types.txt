@@ -399,3 +399,68 @@ Gender = Male
 BaseMoney = 100
 BattleBGM = Battle Champion
 VictoryBGM = Battle victory leader
+#-------------------------------
+[ROCKET_M]
+Name = Agent de la Team Rocket
+Gender = Male
+BaseMoney = 16
+BattleBGM = Rencontre Rocket.ogg
+#-------------------------------
+[GAMIN_J]
+Name = Gamin
+Gender = Male
+BaseMoney = 16
+BattleBGM = Rencontre Gamin.ogg
+#-------------------------------
+[GAMIN_K]
+Name = Gamin
+Gender = Male
+BaseMoney = 32
+BattleBGM = Rencontre Gamin.ogg
+#-------------------------------
+[CHAMPION_Pierre]
+Name = Champion d'Arène
+Gender = Male
+BaseMoney = 64
+BattleBGM = Combat Champion Johto.ogg
+VictoryBGM = Victoire Champion.ogg
+#-------------------------------
+[MONTAGNARD_K]
+Name = Montagnard
+Gender = Male
+BaseMoney = 32
+BattleBGM = Rencontre Montagnard Kanto.ogg
+#-------------------------------
+[MONTAGNARD_J]
+Name = Montagnard
+Gender = Male
+BaseMoney = 32
+BattleBGM = Rencontre Montagnard Johto.ogg
+#-------------------------------
+[TARMAC_WORKER]
+Name = Ouvrier de l'aéroport
+Gender = Male
+BaseMoney = 32
+BattleBGM = Rencontre Montagnard Kanto.ogg
+#-------------------------------
+[FILLETTE_K]
+Name = Fillette
+Gender = Female
+BaseMoney = 16
+BattleBGM = Rencontre Fillette Kanto.ogg
+#-------------------------------
+[FILLETTE_H]
+Name = Fillette
+Gender = Female
+BaseMoney = 16
+BattleBGM = Rencontre Fillette Johto.ogg
+#-------------------------------
+[MADEMOISELLE_K]
+Name = Mademoiselle
+Gender = Female
+BaseMoney = 72
+#-------------------------------
+[MADEMOISELLE_H]
+Name = Mademoiselle
+Gender = Female
+BaseMoney = 72

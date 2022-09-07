@@ -12,7 +12,6 @@ Pokemon = GEODUDE,12
     Gender = male
     Moves = DEFENSECURL,HEADSMASH,ROCKPOLISH,ROCKTHROW
     AbilityIndex = 0
-    IV = 20,20,20,20,20,20
 Pokemon = ONIX,14
     Name = Rocky
     Gender = male
@@ -20,8 +19,6 @@ Pokemon = ONIX,14
     Moves = HEADSMASH,ROCKTHROW,RAGE,ROCKTOMB
     AbilityIndex = 0
     Item = SITRUSBERRY
-    IV = 20
-    Ball = HEAVYBALL
 #-------------------------------
 [TEAMROCKET_M,Grunt,1]
 LoseText = "You're too good for me!"
